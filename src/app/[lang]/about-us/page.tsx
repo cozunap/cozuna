@@ -1,12 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
+import { getPageData } from "@/lib/cms";
 
 export const metadata = {
   title: "About Us | COzuna Web Design & Printing",
   description: "Learn more about COzuna, our mission, and our passion for building digital and print identities.",
 };
 
-export default function AboutUsPage() {
+export const revalidate = 60; // ISR for SEO
+
+export default async function AboutUsPage({ params }: { params: Promise<{ lang: string }> }) {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+  const cmsData = await getPageData('about');
+
+  const heroTitle = cmsData?.heroTitle?.[lang] || (lang === 'es' ? "Quiénes " : lang === 'fr' ? "Qui Nous " : "Who We ");
+  const heroTitleHighlight = lang === 'es' ? "Somos" : lang === 'fr' ? "Sommes" : "Are";
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "We are a passionate team of designers, developers, and print specialists dedicated to bringing your brand's vision to life.";
+  const philosophyTitle = cmsData?.philosophyTitle?.[lang] || "What Drives Us";
+  const mainImage = cmsData?.image || "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop";
+
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">
       {/* Hero Section */}
@@ -19,13 +32,10 @@ export default function AboutUsPage() {
         <div className="relative z-10 mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-16">
           <div className="w-full lg:w-1/2">
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">
-              Who We <span className="text-brand-primary">Are</span>
+              {heroTitle} <span className="text-brand-primary">{heroTitleHighlight}</span>
             </h1>
-            <p className="text-xl leading-8 text-zinc-300 mb-8 font-light">
-              We are a passionate team of designers, developers, and print specialists dedicated to bringing your brand's vision to life.
-            </p>
-            <p className="text-base leading-7 text-zinc-400 mb-8">
-              At COzuna, we believe that great design is not just about looking good; it's about solving problems, communicating effectively, and driving real business results. For years, we have partnered with businesses of all sizes to craft identities that stand out in crowded markets.
+            <p className="text-xl leading-8 text-zinc-300 mb-8 font-light whitespace-pre-wrap">
+              {heroSubtitle}
             </p>
             <div className="flex gap-4">
               <div className="flex flex-col">
@@ -41,7 +51,7 @@ export default function AboutUsPage() {
           </div>
           <div className="w-full lg:w-1/2 relative aspect-square lg:aspect-auto lg:h-[600px] rounded-3xl overflow-hidden border border-zinc-800">
             <img
-              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop"
+              src={mainImage}
               alt="About COzuna"
               className="w-full h-full object-cover"
             />
@@ -55,7 +65,7 @@ export default function AboutUsPage() {
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
             <h2 className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">Our Philosophy</h2>
-            <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">What Drives Us</p>
+            <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">{philosophyTitle}</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

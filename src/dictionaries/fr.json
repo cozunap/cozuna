@@ -1,0 +1,21 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "aboutUs": "About Us",
+    "whatWeDo": "What We Do",
+    "getAQuote": "Get A Quote"
+  },
+  "home": {
+    "heroTitle": "Digital Excellence & Premium Printing",
+    "heroSubtitle": "We craft stunning digital experiences and high-quality printed materials that elevate your brand.",
+    "ctaSecondary": "View Portfolio"
+  },
+  "footer": {
+    "tagline": "Elevating brands through digital excellence and premium printing.",
+    "connect": "Connect",
+    "legal": "Legal",
+    "terms": "Terms of Service",
+    "privacy": "Privacy Policy"
+  }
+}

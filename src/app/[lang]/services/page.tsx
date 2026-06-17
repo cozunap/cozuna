@@ -37,16 +37,23 @@ export const metadata = {
   description: "Explore our professional web design, graphic design, printing, and signage services.",
 };
 
-export default function ServicesPage() {
+export default async function ServicesPage({ params }: { params: Promise<{ lang: string }> }) {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang || 'en';
+  const cmsData = await getPageData('services');
+
+  const heroTitle = cmsData?.heroTitle?.[lang] || "Our Services";
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "Everything you need to launch, grow, and scale your brand under one roof.";
+
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">
       {/* Header */}
       <section className="relative py-24 sm:py-32 px-6 lg:px-8 border-b border-zinc-900 bg-brand-dark overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.brand.primary/5),theme(colors.zinc.950))] opacity-50" />
         <div className="mx-auto max-w-7xl text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">Our Services</h1>
+          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">{heroTitle}</h1>
           <p className="mt-6 text-xl leading-8 text-zinc-300 max-w-2xl mx-auto font-light">
-            Everything you need to launch, grow, and scale your brand under one roof.
+            {heroSubtitle}
           </p>
         </div>
       </section>

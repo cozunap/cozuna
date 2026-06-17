@@ -49,6 +49,17 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           ))}
           
           <div className="hidden lg:block w-px h-6 bg-zinc-800 mx-2"></div>
+
+          {/* Language Switcher */}
+          <div className="flex gap-2 text-sm font-medium">
+            <Link href={pathname.replace(`/${lang}`, '/en')} className={`${lang === 'en' ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'}`}>EN</Link>
+            <span className="text-zinc-700">|</span>
+            <Link href={pathname.replace(`/${lang}`, '/es')} className={`${lang === 'es' ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'}`}>ES</Link>
+            <span className="text-zinc-700">|</span>
+            <Link href={pathname.replace(`/${lang}`, '/fr')} className={`${lang === 'fr' ? 'text-white' : 'text-zinc-500 hover:text-zinc-300'}`}>FR</Link>
+          </div>
+          
+          <div className="hidden lg:block w-px h-6 bg-zinc-800 mx-2"></div>
           
           <Link href={`/${lang}/get-a-quote`} className="rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-colors">
             {dict.navigation.getAQuote}

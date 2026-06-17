@@ -8,6 +8,7 @@ import { signOut } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { LogOut, Plus, Trash2, Edit, X, UploadCloud } from 'lucide-react';
 import Image from 'next/image';
+import PagesManager from '@/components/admin/PagesManager';
 
 interface Project {
   id: string;
@@ -22,6 +23,7 @@ interface Project {
 }
 
 export default function AdminDashboard() {
+  const [activeTab, setActiveTab] = useState<'projects' | 'pages'>('projects');
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -156,7 +158,7 @@ export default function AdminDashboard() {
           <div className="flex flex-col md:flex-row justify-between items-center mb-12">
             <div>
               <h1 className="text-4xl font-bold text-white mb-2">Admin Dashboard</h1>
-              <p className="text-zinc-400">Manage your portfolio projects directly from here.</p>
+              <p className="text-zinc-400">Manage your entire website directly from here.</p>
             </div>
             <button 
               onClick={handleLogout}
@@ -167,8 +169,26 @@ export default function AdminDashboard() {
             </button>
           </div>
 
-          {/* Project List */}
-          <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl">
+          {/* Navigation Tabs */}
+          <div className="flex gap-4 mb-8">
+            <button
+              onClick={() => setActiveTab('projects')}
+              className={`px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'projects' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700'}`}
+            >
+              Portfolio Projects
+            </button>
+            <button
+              onClick={() => setActiveTab('pages')}
+              className={`px-6 py-3 rounded-xl font-bold transition-all ${activeTab === 'pages' ? 'bg-brand-primary text-white shadow-lg shadow-brand-primary/20' : 'bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700'}`}
+            >
+              Manage Pages (CMS)
+            </button>
+          </div>
+
+          {activeTab === 'pages' && <PagesManager />}
+
+          {activeTab === 'projects' && (
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6 shadow-xl">
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold text-white">Your Projects</h2>
               <button 
@@ -223,6 +243,7 @@ export default function AdminDashboard() {
               </div>
             )}
           </div>
+          )}
         </div>
 
         {/* New Project Modal */}

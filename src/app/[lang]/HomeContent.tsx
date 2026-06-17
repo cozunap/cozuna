@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 
-export default function HomeContent({ lang, dict }: { lang: string, dict: any }) {
+export default function HomeContent({ lang, dict, cmsData }: { lang: string, dict: any, cmsData: any }) {
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -19,6 +19,13 @@ export default function HomeContent({ lang, dict }: { lang: string, dict: any })
     hidden: { opacity: 0, y: 30 },
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
+
+  const heroTitle = cmsData?.heroTitle?.[lang] || dict.home.heroTitle;
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || dict.home.heroSubtitle;
+
+  const titleWords = heroTitle.split(' ');
+  const titleStart = titleWords.slice(0, -2).join(' ');
+  const titleEnd = titleWords.slice(-2).join(' ');
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between">
@@ -47,11 +54,11 @@ export default function HomeContent({ lang, dict }: { lang: string, dict: any })
           className="relative z-10 mx-auto max-w-4xl text-center"
         >
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight text-white mb-6 text-balance">
-            {dict.home.heroTitle.split(' ').slice(0, -2).join(' ')}{' '}
-            <span className="text-brand-primary">{dict.home.heroTitle.split(' ').slice(-2).join(' ')}</span>
+            {titleStart}{' '}
+            <span className="text-brand-primary">{titleEnd}</span>
           </h1>
-          <p className="mt-6 text-xl md:text-2xl leading-8 text-zinc-300 max-w-3xl mx-auto text-balance font-light">
-            {dict.home.heroSubtitle}
+          <p className="mt-6 text-xl md:text-2xl leading-8 text-zinc-300 max-w-3xl mx-auto text-balance font-light whitespace-pre-wrap">
+            {heroSubtitle}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
