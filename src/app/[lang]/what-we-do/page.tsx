@@ -57,9 +57,18 @@ export const metadata = {
 
 export const revalidate = 60; // Revalidate every 60 seconds (ISR)
 
+import { getPortfolioProjects } from "@/lib/cms";
+
 export default async function WhatWeDoPage({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
-  const portfolioItems = fallbackPortfolioItems;
+  
+  // Fetch from Firebase first
+  let portfolioItems = await getPortfolioProjects();
+  
+  // If database is empty (brand new), use fallbacks to keep site from looking empty
+  if (!portfolioItems || portfolioItems.length === 0) {
+    portfolioItems = fallbackPortfolioItems;
+  }
 
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">
