@@ -1,6 +1,6 @@
 import { initializeApp, getApps, getApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
-import { getAuth } from "firebase/auth";
+import { getAuth, Auth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -15,6 +15,11 @@ const firebaseConfig = {
 // Initialize Firebase only if it hasn't been initialized already (Next.js HMR safe)
 const app = !getApps().length ? initializeApp(firebaseConfig) : getApp();
 const db = getFirestore(app);
-const auth = getAuth(app);
 
-export { db, auth };
+// Auth requires browser APIs, so we only initialize it on the client
+let auth: Auth | any = null;
+if (typeof window !== 'undefined') {
+  auth = getAuth(app);
+}
+
+export { app, db, auth };
