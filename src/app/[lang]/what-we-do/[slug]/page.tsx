@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
+export const runtime = 'edge';
 export const revalidate = 60;
 
 export default async function CaseStudyPage({ params }: { params: Promise<{ lang: string; slug: string }> }) {
