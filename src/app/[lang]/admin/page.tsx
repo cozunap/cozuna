@@ -39,6 +39,8 @@ export default function AdminDashboard() {
   const [solution, setSolution] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
+  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
 
   const fetchProjects = async () => {
     try {
@@ -79,6 +81,20 @@ export default function AdminDashboard() {
     }
   };
 
+  const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files) {
+      const files = Array.from(e.target.files);
+      setGalleryFiles(prev => [...prev, ...files]);
+      const newPreviews = files.map(file => URL.createObjectURL(file));
+      setGalleryPreviews(prev => [...prev, ...newPreviews]);
+    }
+  };
+
+  const removeGalleryImage = (index: number) => {
+    setGalleryFiles(prev => prev.filter((_, i) => i !== index));
+    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
+  };
+
   const uploadToCloudflare = async (file: File) => {
     // 1. Request Direct Upload URL from our secure API
     const res = await fetch('/api/upload-url', { method: 'POST' });
@@ -116,10 +132,17 @@ export default function AdminDashboard() {
 
     setIsUploading(true);
     try {
-      // 1. Upload the image to Cloudflare Images
+      // 1. Upload the main image to Cloudflare Images
       const imageUrl = await uploadToCloudflare(selectedFile);
 
-      // 2. Save project data to Firestore
+      // 2. Upload gallery images if any
+      const galleryUrls: string[] = [];
+      for (const file of galleryFiles) {
+        const url = await uploadToCloudflare(file);
+        galleryUrls.push(url);
+      }
+
+      // 3. Save project data to Firestore
       await addDoc(collection(db, 'projects'), {
         title,
         slug,
@@ -128,10 +151,11 @@ export default function AdminDashboard() {
         challenge,
         solution,
         image: imageUrl,
+        gallery: galleryUrls,
         createdAt: serverTimestamp()
       });
 
-      // 3. Reset form and refresh
+      // 4. Reset form and refresh
       setIsModalOpen(false);
       setTitle('');
       setSlug('');
@@ -141,6 +165,8 @@ export default function AdminDashboard() {
       setSolution('');
       setSelectedFile(null);
       setPreviewUrl(null);
+      setGalleryFiles([]);
+      setGalleryPreviews([]);
       fetchProjects();
     } catch (error: any) {
       console.error(error);
@@ -259,12 +285,12 @@ export default function AdminDashboard() {
 
               <form onSubmit={handleSubmit} className="p-6 space-y-6">
                 
-                {/* Image Upload Area */}
+                {/* Main Image Upload Area */}
                 <div>
                   <label className="block text-sm font-medium text-zinc-400 mb-2">Main Cover Image *</label>
                   <div className="border-2 border-dashed border-zinc-700 rounded-xl p-8 text-center hover:bg-zinc-800/50 transition-colors relative">
                     {previewUrl ? (
-                      <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-4">
+                      <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-4 border border-zinc-800">
                         <Image src={previewUrl} alt="Preview" fill className="object-cover" />
                       </div>
                     ) : (
@@ -280,6 +306,41 @@ export default function AdminDashboard() {
                       {selectedFile ? selectedFile.name : 'Click or drag an image here to upload directly to Cloudflare'}
                     </p>
                   </div>
+                </div>
+
+                {/* Gallery Upload Area */}
+                <div>
+                  <label className="block text-sm font-medium text-zinc-400 mb-2">Gallery Images (Optional - for Graphic Design & Print Projects)</label>
+                  <div className="border-2 border-dashed border-zinc-700 rounded-xl p-8 text-center hover:bg-zinc-800/50 transition-colors relative mb-4">
+                    <UploadCloud className="w-8 h-8 text-zinc-500 mx-auto mb-2" />
+                    <input 
+                      type="file" 
+                      accept="image/*"
+                      multiple
+                      onChange={handleGalleryChange}
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                    />
+                    <p className="text-zinc-400 text-sm">
+                      Click to select multiple images for the gallery
+                    </p>
+                  </div>
+
+                  {galleryPreviews.length > 0 && (
+                    <div className="grid grid-cols-3 gap-4">
+                      {galleryPreviews.map((preview, idx) => (
+                        <div key={idx} className="relative aspect-square rounded-lg overflow-hidden border border-zinc-800 group">
+                          <Image src={preview} alt="Gallery Preview" fill className="object-cover" />
+                          <button 
+                            type="button" 
+                            onClick={() => removeGalleryImage(idx)}
+                            className="absolute top-2 right-2 bg-red-500/80 hover:bg-red-500 text-white p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                          >
+                            <X className="w-4 h-4" />
+                          </button>
+                        </div>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

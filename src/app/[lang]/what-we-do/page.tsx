@@ -57,7 +57,8 @@ export const metadata = {
 
 export const revalidate = 60; // Revalidate every 60 seconds (ISR)
 
-export default async function WhatWeDoPage() {
+export default async function WhatWeDoPage({ params }: { params: Promise<{ lang: string }> }) {
+  const resolvedParams = await params;
   const portfolioItems = fallbackPortfolioItems;
 
   return (
@@ -75,7 +76,7 @@ export default async function WhatWeDoPage() {
       {/* Portfolio Grid */}
       <section className="py-24 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <ClientPortfolio items={portfolioItems} />
+          <ClientPortfolio items={portfolioItems} lang={resolvedParams.lang} />
         </div>
       </section>
 

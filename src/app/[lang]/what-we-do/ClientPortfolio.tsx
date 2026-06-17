@@ -14,8 +14,11 @@ type PortfolioItem = {
   slug?: string; // Optional for backward compatibility with hardcoded data
 };
 
-export default function ClientPortfolio({ items }: { items: PortfolioItem[] }) {
+export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[], lang: string }) {
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>(items);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+
+  const categories = ["All", ...Array.from(new Set(portfolioItems.map(item => item.category)))];
 
   useEffect(() => {
     async function fetchProjects() {
@@ -54,15 +57,38 @@ export default function ClientPortfolio({ items }: { items: PortfolioItem[] }) {
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
+  const filteredItems = activeCategory === "All" 
+    ? portfolioItems 
+    : portfolioItems.filter(item => item.category === activeCategory);
+
   return (
-    <motion.div 
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: "-100px" }}
-      className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-    >
-      {portfolioItems.map((item, index) => {
+    <div>
+      {/* Filters */}
+      <div className="flex flex-wrap justify-center gap-4 mb-16">
+        {categories.map((cat) => (
+          <button
+            key={cat}
+            onClick={() => setActiveCategory(cat)}
+            className={`px-6 py-2 rounded-full text-sm font-semibold transition-all duration-300 ${
+              activeCategory === cat
+                ? "bg-brand-primary text-white shadow-lg shadow-brand-primary/20 scale-105"
+                : "bg-zinc-900 text-zinc-400 hover:text-white border border-zinc-800 hover:border-zinc-700"
+            }`}
+          >
+            {cat}
+          </button>
+        ))}
+      </div>
+
+      <motion.div 
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, margin: "-100px" }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        layout
+      >
+        {filteredItems.map((item, index) => {
         const cardContent = (
           <motion.div variants={itemVariants} className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
             <Image 
@@ -82,13 +108,14 @@ export default function ClientPortfolio({ items }: { items: PortfolioItem[] }) {
         );
 
         return item.slug ? (
-          <Link href={`/what-we-do/${item.slug}`} key={index} className="block cursor-pointer">
+          <Link href={`/${lang}/what-we-do/${item.slug}`} key={item.slug || item.title} className="block cursor-pointer">
             {cardContent}
           </Link>
         ) : (
-          <div key={index}>{cardContent}</div>
+          <div key={item.title}>{cardContent}</div>
         );
       })}
-    </motion.div>
+      </motion.div>
+    </div>
   );
 }
