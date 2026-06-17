@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.8.10",
+    "@next/third-parties": "^16.2.9",
     "firebase": "^12.15.0",
     "framer-motion": "^12.40.0",
     "lucide-react": "^1.20.0",

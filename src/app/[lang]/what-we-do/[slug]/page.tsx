@@ -42,8 +42,22 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ lang
     notFound();
   }
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: projectData.title,
+    description: projectData.description || projectData.title,
+    image: projectData.image,
+    url: `https://cozuna.com/what-we-do/${slug}`,
+  };
+
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950 pt-24 pb-24">
+      {/* JSON-LD for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="max-w-5xl mx-auto px-6 lg:px-8 w-full">
         
         {/* Back Link */}
