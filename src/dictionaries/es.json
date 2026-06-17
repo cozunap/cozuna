@@ -1,0 +1,21 @@
+{
+  "navigation": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "aboutUs": "Nosotros",
+    "whatWeDo": "Portafolio",
+    "getAQuote": "Cotizar"
+  },
+  "home": {
+    "heroTitle": "Excelencia Digital e Impresión Premium",
+    "heroSubtitle": "Creamos experiencias digitales impresionantes y materiales impresos de alta calidad que elevan tu marca.",
+    "ctaSecondary": "Ver Portafolio"
+  },
+  "footer": {
+    "tagline": "Elevando marcas a través de la excelencia digital y la impresión premium.",
+    "connect": "Conectar",
+    "legal": "Legal",
+    "terms": "Términos de Servicio",
+    "privacy": "Política de Privacidad"
+  }
+}
