@@ -1,9 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
 import ClientPortfolio from "./ClientPortfolio";
-import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
-
 const fallbackPortfolioItems = [
   {
     title: "La Casa Del Mofongo MD",
@@ -61,24 +58,7 @@ export const metadata = {
 export const revalidate = 60; // Revalidate every 60 seconds (ISR)
 
 export default async function WhatWeDoPage() {
-  let portfolioItems = fallbackPortfolioItems;
-
-  try {
-    const querySnapshot = await getDocs(collection(db, "projects"));
-    if (!querySnapshot.empty) {
-      portfolioItems = querySnapshot.docs.map(doc => {
-        const data = doc.data();
-        return {
-          title: data.title || "Untitled Project",
-          category: data.category || "Uncategorized",
-          image: data.image || "/assets/images/2024/10/la-casa-del-mofongo.webp", // Fallback image so it doesn't crash
-          slug: data.slug || doc.id
-        };
-      });
-    }
-  } catch (error) {
-    console.error("Error fetching portfolio items from Firebase. Using fallback data.", error);
-  }
+  const portfolioItems = fallbackPortfolioItems;
 
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">

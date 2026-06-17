@@ -40,11 +40,10 @@ export default function AboutUsPage() {
             </div>
           </div>
           <div className="w-full lg:w-1/2 relative aspect-square lg:aspect-auto lg:h-[600px] rounded-3xl overflow-hidden border border-zinc-800">
-            <Image
-              src="/assets/images/2024/10/computer-in-sofa.webp"
+            <img
+              src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop"
               alt="About COzuna"
-              fill
-              className="object-cover"
+              className="w-full h-full object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/80 to-transparent"></div>
           </div>

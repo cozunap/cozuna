@@ -3,6 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
+import { useState, useEffect } from "react";
+import { db } from "@/lib/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 type PortfolioItem = {
   title: string;
@@ -12,6 +15,30 @@ type PortfolioItem = {
 };
 
 export default function ClientPortfolio({ items }: { items: PortfolioItem[] }) {
+  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>(items);
+
+  useEffect(() => {
+    async function fetchProjects() {
+      try {
+        const querySnapshot = await getDocs(collection(db, "projects"));
+        if (!querySnapshot.empty) {
+          const fetchedItems = querySnapshot.docs.map(doc => {
+            const data = doc.data();
+            return {
+              title: data.title || "Untitled Project",
+              category: data.category || "Uncategorized",
+              image: data.image || "/assets/images/2024/10/la-casa-del-mofongo.webp",
+              slug: data.slug || doc.id
+            };
+          });
+          setPortfolioItems(fetchedItems);
+        }
+      } catch (error) {
+        console.error("Error fetching portfolio items", error);
+      }
+    }
+    fetchProjects();
+  }, []);
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -35,7 +62,7 @@ export default function ClientPortfolio({ items }: { items: PortfolioItem[] }) {
       viewport={{ once: true, margin: "-100px" }}
       className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
     >
-      {items.map((item, index) => {
+      {portfolioItems.map((item, index) => {
         const cardContent = (
           <motion.div variants={itemVariants} className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
             <Image 
