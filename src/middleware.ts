@@ -1,8 +1,23 @@
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
+import { match } from '@formatjs/intl-localematcher'
+import Negotiator from 'negotiator'
 
 const locales = ['en', 'es', 'fr']
 const defaultLocale = 'en'
+
+function getLocale(request: NextRequest): string {
+  const acceptLanguage = request.headers.get('accept-language')
+  if (!acceptLanguage) return defaultLocale;
+
+  const headers = { 'accept-language': acceptLanguage }
+  try {
+    const languages = new Negotiator({ headers }).languages()
+    return match(languages, locales, defaultLocale)
+  } catch (error) {
+    return defaultLocale;
+  }
+}
 
 export function middleware(request: NextRequest) {
   // Check if there is any supported locale in the pathname
@@ -23,15 +38,8 @@ export function middleware(request: NextRequest) {
 
   if (pathnameHasLocale) return NextResponse.next()
 
-  // Redirect if there is no locale
-  const acceptLanguage = request.headers.get('accept-language') || ''
-  
-  let preferredLocale = defaultLocale;
-  if (acceptLanguage.toLowerCase().includes('fr')) {
-    preferredLocale = 'fr';
-  } else if (acceptLanguage.toLowerCase().includes('es')) {
-    preferredLocale = 'es';
-  }
+  // Redirect to the appropriate locale based on browser language
+  const preferredLocale = getLocale(request);
   
   request.nextUrl.pathname = `/${preferredLocale}${pathname === '/' ? '' : pathname}`
   return NextResponse.redirect(request.nextUrl)
