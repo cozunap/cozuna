@@ -156,6 +156,15 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                   )}
                 </div>
               )}
+
+              {/* Live URL Button */}
+              {project.liveUrl && (
+                <div className="pt-4 border-t border-zinc-800">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-brand-primary hover:bg-brand-secondary text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-brand-primary/20 hover:scale-105">
+                    View Live Website
+                  </a>
+                </div>
+              )}
             </div>
           </motion.div>
         ) : (

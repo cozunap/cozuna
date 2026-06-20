@@ -168,7 +168,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
               <h2 className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">Our Work</h2>
               <p className="mt-2 text-4xl font-bold tracking-tight text-white">Featured Projects</p>
             </div>
-            <Link href="/what-we-do" className="hidden sm:block text-sm font-semibold text-white hover:text-brand-primary transition-colors">
+            <Link href={`/${lang}/what-we-do`} className="hidden sm:block text-sm font-semibold text-white hover:text-brand-primary transition-colors">
               View All Projects <span aria-hidden="true">→</span>
             </Link>
           </motion.div>
