@@ -20,6 +20,7 @@ interface Project {
   solution?: string;
   image: string;
   gallery?: string[];
+  liveUrl?: string;
 }
 
 export default function AdminDashboard() {
@@ -37,6 +38,7 @@ export default function AdminDashboard() {
   const [description, setDescription] = useState('');
   const [challenge, setChallenge] = useState('');
   const [solution, setSolution] = useState('');
+  const [liveUrl, setLiveUrl] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
@@ -133,6 +135,7 @@ export default function AdminDashboard() {
     setDescription(project.description);
     setChallenge(project.challenge || '');
     setSolution(project.solution || '');
+    setLiveUrl(project.liveUrl || '');
     setEditingId(project.id);
     setExistingImage(project.image);
     setExistingGallery(project.gallery || []);
@@ -150,6 +153,7 @@ export default function AdminDashboard() {
     setDescription('');
     setChallenge('');
     setSolution('');
+    setLiveUrl('');
     setEditingId(null);
     setExistingImage(null);
     setExistingGallery([]);
@@ -189,6 +193,7 @@ export default function AdminDashboard() {
         description,
         challenge,
         solution,
+        liveUrl,
         image: imageUrl,
         gallery: finalGallery,
       };
@@ -216,6 +221,7 @@ export default function AdminDashboard() {
       setDescription('');
       setChallenge('');
       setSolution('');
+      setLiveUrl('');
       setSelectedFile(null);
       setPreviewUrl(null);
       setGalleryFiles([]);
@@ -437,6 +443,11 @@ export default function AdminDashboard() {
                     <label className="block text-sm font-medium text-zinc-400 mb-1">The Solution (Optional)</label>
                     <textarea value={solution} onChange={(e) => setSolution(e.target.value)} rows={4} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"></textarea>
                   </div>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-zinc-400 mb-1">Live Website URL (Optional)</label>
+                  <input type="url" value={liveUrl} onChange={(e) => setLiveUrl(e.target.value)} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none" placeholder="https://example.com" />
                 </div>
 
                 <div className="pt-4 flex justify-end gap-4 border-t border-zinc-800">

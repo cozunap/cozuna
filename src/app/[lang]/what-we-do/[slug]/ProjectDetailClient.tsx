@@ -17,6 +17,7 @@ interface Project {
   solution?: string;
   image: string;
   gallery?: string[];
+  liveUrl?: string;
 }
 
 export default function ProjectDetailClient({ lang, slug }: { lang: string; slug: string }) {
@@ -105,48 +106,72 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
               </div>
             ))}
           </motion.div>
-        ) : (
           /* Detailed Case Study Layout (Web Design) */
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="space-y-16"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative items-start"
           >
-            {/* Main Hero Image */}
-            <div className="relative w-full aspect-video md:aspect-[21/9] rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl">
-              <Image 
-                src={project.image} 
-                alt={project.title} 
-                fill 
-                className="object-cover"
-                priority
-              />
+            {/* Left Column: Stacked Images */}
+            <div className="lg:col-span-8 space-y-8">
+              <div className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl">
+                <Image 
+                  src={project.image} 
+                  alt={project.title} 
+                  fill 
+                  className="object-cover"
+                  priority
+                />
+              </div>
+              {project.gallery?.map((img, idx) => (
+                <div key={idx} className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl">
+                  <Image 
+                    src={img} 
+                    alt={`${project.title} screenshot ${idx + 1}`} 
+                    fill 
+                    className="object-cover"
+                  />
+                </div>
+              ))}
             </div>
 
-            {/* Challenge & Solution Grid */}
-            {(project.challenge || project.solution) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-5xl mx-auto">
-                {project.challenge && (
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl">
-                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-                      <span className="w-8 h-8 rounded-full bg-red-500/10 text-brand-primary flex items-center justify-center mr-3 text-sm">01</span>
-                      The Challenge
-                    </h3>
-                    <p className="text-zinc-400 leading-relaxed whitespace-pre-wrap">{project.challenge}</p>
-                  </div>
-                )}
-                {project.solution && (
-                  <div className="bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl">
-                    <h3 className="text-2xl font-bold text-white mb-4 flex items-center">
-                      <span className="w-8 h-8 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center mr-3 text-sm">02</span>
-                      The Solution
-                    </h3>
-                    <p className="text-zinc-400 leading-relaxed whitespace-pre-wrap">{project.solution}</p>
-                  </div>
-                )}
+            {/* Right Column: Sticky Details */}
+            <div className="lg:col-span-4 sticky top-32 space-y-12 bg-zinc-900/50 border border-zinc-800 p-8 rounded-3xl">
+              
+              <div>
+                <h2 className="text-2xl font-bold text-white mb-4">Project Overview</h2>
+                <p className="text-zinc-400 leading-relaxed whitespace-pre-wrap">{project.description}</p>
               </div>
-            )}
+
+              {project.challenge && (
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-3 flex items-center">
+                    <span className="w-6 h-6 rounded-full bg-red-500/10 text-brand-primary flex items-center justify-center mr-3 text-xs">01</span>
+                    The Challenge
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap">{project.challenge}</p>
+                </div>
+              )}
+
+              {project.solution && (
+                <div>
+                  <h3 className="text-lg font-bold text-white mb-3 flex items-center">
+                    <span className="w-6 h-6 rounded-full bg-green-500/10 text-green-500 flex items-center justify-center mr-3 text-xs">02</span>
+                    The Solution
+                  </h3>
+                  <p className="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap">{project.solution}</p>
+                </div>
+              )}
+
+              {project.liveUrl && (
+                <div className="pt-4 border-t border-zinc-800">
+                  <a href={project.liveUrl} target="_blank" rel="noopener noreferrer" className="block w-full text-center bg-brand-primary hover:bg-brand-secondary text-white py-4 rounded-xl font-bold transition-all shadow-lg shadow-brand-primary/20 hover:scale-105">
+                    View Live Website
+                  </a>
+                </div>
+              )}
+            </div>
           </motion.div>
         )}
 
