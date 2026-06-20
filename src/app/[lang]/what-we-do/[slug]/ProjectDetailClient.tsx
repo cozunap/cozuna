@@ -114,24 +114,23 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
             transition={{ delay: 0.2 }}
             className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative items-start"
           >
-            {/* Left Column: Stacked Images */}
-            <div className="lg:col-span-8 space-y-8">
-              <div className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl">
-                <Image 
+            {/* Left Column: Stacked Images (Full Height) */}
+            <div className="lg:col-span-8 space-y-12">
+              <div className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={project.image} 
                   alt={project.title} 
-                  fill 
-                  className="object-cover"
-                  priority
+                  className="w-full h-auto object-cover block"
                 />
               </div>
               {project.gallery?.map((img, idx) => (
-                <div key={idx} className="relative w-full aspect-[4/3] md:aspect-[16/10] rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl">
-                  <Image 
+                <div key={idx} className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img 
                     src={img} 
                     alt={`${project.title} screenshot ${idx + 1}`} 
-                    fill 
-                    className="object-cover"
+                    className="w-full h-auto object-cover block"
                   />
                 </div>
               ))}
