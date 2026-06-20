@@ -88,20 +88,28 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
 
         {/* Dynamic Content Rendering */}
         {isGraphicDesign ? (
-          /* Gallery Layout (Graphic Design) */
+          /* Showcase Layout (Graphic Design) */
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="space-y-8 md:space-y-12 max-w-5xl mx-auto"
           >
+            <div className="w-full rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl border border-zinc-800/50">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={project.image} 
+                alt={project.title} 
+                className="w-full h-auto block"
+              />
+            </div>
             {project.gallery?.map((img, idx) => (
-              <div key={idx} className="relative aspect-square md:aspect-[4/5] rounded-2xl overflow-hidden bg-zinc-900 border border-zinc-800 group cursor-pointer hover:shadow-2xl hover:shadow-brand-primary/10 transition-all">
-                <Image 
+              <div key={idx} className="w-full rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl border border-zinc-800/50">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img 
                   src={img} 
-                  alt={`${project.title} gallery image ${idx + 1}`} 
-                  fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-700" 
+                  alt={`${project.title} showcase image ${idx + 1}`} 
+                  className="w-full h-auto block"
                 />
               </div>
             ))}
