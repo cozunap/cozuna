@@ -88,31 +88,46 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
 
         {/* Dynamic Content Rendering */}
         {isGraphicDesign ? (
-          /* Showcase Layout (Graphic Design) */
+          /* Graphic Design / Branding Layout */
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="space-y-8 md:space-y-12 max-w-5xl mx-auto"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start"
           >
-            <div className="w-full rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl border border-zinc-800/50">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img 
-                src={project.image} 
-                alt={project.title} 
-                className="w-full h-auto block"
-              />
-            </div>
-            {project.gallery?.map((img, idx) => (
-              <div key={idx} className="w-full rounded-3xl overflow-hidden bg-zinc-900 shadow-2xl border border-zinc-800/50">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
-                  src={img} 
-                  alt={`${project.title} showcase image ${idx + 1}`} 
-                  className="w-full h-auto block"
+            {/* Left Column: 2-Column Image Grid */}
+            <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              {/* Main Image */}
+              <div className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative">
+                <Image 
+                  src={project.image} 
+                  alt={project.title} 
+                  fill
+                  className="object-cover"
                 />
               </div>
-            ))}
+              {/* Gallery Images */}
+              {project.gallery?.map((img, idx) => (
+                <div key={idx} className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative cursor-pointer hover:opacity-80 transition-opacity">
+                  <Image 
+                    src={img} 
+                    alt={`${project.title} gallery image ${idx + 1}`} 
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Right Column: Sticky Text */}
+            <div className="lg:col-span-4 sticky top-32 space-y-6">
+              <h2 className="text-xl font-bold text-white uppercase tracking-wider border-b border-brand-primary pb-2 inline-block">
+                About {project.title}
+              </h2>
+              <div className="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap">
+                {project.description}
+              </div>
+            </div>
           </motion.div>
         ) : (
           /* Detailed Case Study Layout (Web Design) */
