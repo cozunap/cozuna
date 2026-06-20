@@ -18,6 +18,9 @@ interface Project {
   image: string;
   gallery?: string[];
   liveUrl?: string;
+  clientName?: string;
+  softwareUsed?: string;
+  servicesOffered?: string;
 }
 
 export default function ProjectDetailClient({ lang, slug }: { lang: string; slug: string }) {
@@ -121,12 +124,38 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
 
             {/* Right Column: Sticky Text */}
             <div className="lg:col-span-4 sticky top-32 space-y-6">
-              <h2 className="text-xl font-bold text-white uppercase tracking-wider border-b border-brand-primary pb-2 inline-block">
-                About {project.title}
-              </h2>
-              <div className="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap">
-                {project.description}
+              <div>
+                <h2 className="text-xl font-bold text-white uppercase tracking-wider border-b border-brand-primary pb-2 inline-block">
+                  About {project.title}
+                </h2>
+                <div className="text-zinc-400 text-sm leading-relaxed whitespace-pre-wrap mt-4">
+                  {project.description}
+                </div>
               </div>
+
+              {/* Additional Details */}
+              {(project.clientName || project.softwareUsed || project.servicesOffered) && (
+                <div className="space-y-4 pt-6 border-t border-zinc-800/50">
+                  {project.clientName && (
+                    <div>
+                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Client</h3>
+                      <p className="text-white font-medium">{project.clientName}</p>
+                    </div>
+                  )}
+                  {project.servicesOffered && (
+                    <div>
+                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Services</h3>
+                      <p className="text-white font-medium">{project.servicesOffered}</p>
+                    </div>
+                  )}
+                  {project.softwareUsed && (
+                    <div>
+                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Software</h3>
+                      <p className="text-white font-medium">{project.softwareUsed}</p>
+                    </div>
+                  )}
+                </div>
+              )}
             </div>
           </motion.div>
         ) : (
