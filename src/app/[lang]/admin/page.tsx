@@ -41,6 +41,9 @@ export default function AdminDashboard() {
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
   const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
+  const [editingId, setEditingId] = useState<string | null>(null);
+  const [existingImage, setExistingImage] = useState<string | null>(null);
+  const [existingGallery, setExistingGallery] = useState<string[]>([]);
 
   const fetchProjects = async () => {
     try {
@@ -123,27 +126,63 @@ export default function AdminDashboard() {
     return `https://imagedelivery.net/eJfkbxcvXp804aif1wioXw/${data.id}/public`;
   };
 
+  const handleEdit = (project: Project) => {
+    setTitle(project.title);
+    setSlug(project.slug);
+    setCategory(project.category);
+    setDescription(project.description);
+    setChallenge(project.challenge || '');
+    setSolution(project.solution || '');
+    setEditingId(project.id);
+    setExistingImage(project.image);
+    setExistingGallery(project.gallery || []);
+    setPreviewUrl(project.image);
+    setGalleryPreviews(project.gallery || []);
+    setSelectedFile(null);
+    setGalleryFiles([]);
+    setIsModalOpen(true);
+  };
+
+  const handleOpenNewProject = () => {
+    setTitle('');
+    setSlug('');
+    setCategory('Web Design and Development');
+    setDescription('');
+    setChallenge('');
+    setSolution('');
+    setEditingId(null);
+    setExistingImage(null);
+    setExistingGallery([]);
+    setSelectedFile(null);
+    setPreviewUrl(null);
+    setGalleryFiles([]);
+    setGalleryPreviews([]);
+    setIsModalOpen(true);
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!title || !slug || !category || !description || !selectedFile) {
-      alert('Please fill out all required fields and select an image.');
+    if (!title || !slug || !category || !description || (!selectedFile && !existingImage)) {
+      alert('Please fill out all required fields and select a main image.');
       return;
     }
 
     setIsUploading(true);
     try {
-      // 1. Upload the main image to Cloudflare Images
-      const imageUrl = await uploadToCloudflare(selectedFile);
+      // 1. Upload new main image if selected
+      const imageUrl = selectedFile ? await uploadToCloudflare(selectedFile) : existingImage;
 
-      // 2. Upload gallery images if any
-      const galleryUrls: string[] = [];
+      // 2. Upload new gallery images if selected
+      const newGalleryUrls: string[] = [];
       for (const file of galleryFiles) {
         const url = await uploadToCloudflare(file);
-        galleryUrls.push(url);
+        newGalleryUrls.push(url);
       }
+      
+      // Combine existing gallery with new uploads
+      const finalGallery = [...existingGallery, ...newGalleryUrls];
 
-      // 3. Save project data to Firestore
-      await addDoc(collection(db, 'projects'), {
+      const projectData = {
         title,
         slug,
         category,
@@ -151,15 +190,29 @@ export default function AdminDashboard() {
         challenge,
         solution,
         image: imageUrl,
-        gallery: galleryUrls,
-        createdAt: serverTimestamp()
-      });
+        gallery: finalGallery,
+      };
+
+      if (editingId) {
+        await updateDoc(doc(db, 'projects', editingId), {
+          ...projectData,
+          updatedAt: serverTimestamp()
+        });
+      } else {
+        await addDoc(collection(db, 'projects'), {
+          ...projectData,
+          createdAt: serverTimestamp()
+        });
+      }
 
       // 4. Reset form and refresh
       setIsModalOpen(false);
+      setEditingId(null);
+      setExistingImage(null);
+      setExistingGallery([]);
       setTitle('');
       setSlug('');
-      setCategory('');
+      setCategory('Web Design and Development');
       setDescription('');
       setChallenge('');
       setSolution('');
@@ -218,7 +271,7 @@ export default function AdminDashboard() {
             <div className="flex justify-between items-center mb-8">
               <h2 className="text-2xl font-bold text-white">Your Projects</h2>
               <button 
-                onClick={() => setIsModalOpen(true)}
+                onClick={handleOpenNewProject}
                 className="bg-brand-primary hover:bg-brand-secondary text-white px-4 py-2 rounded-xl flex items-center transition-colors shadow-lg shadow-brand-primary/20"
               >
                 <Plus className="w-5 h-5 mr-2" />
@@ -252,7 +305,10 @@ export default function AdminDashboard() {
                         <td className="py-4 px-4 text-white font-medium">{project.title}</td>
                         <td className="py-4 px-4 text-zinc-400">{project.category}</td>
                         <td className="py-4 px-4 text-right">
-                          <button className="text-zinc-400 hover:text-brand-primary mr-4 transition-colors">
+                          <button 
+                            onClick={() => handleEdit(project)}
+                            className="text-zinc-400 hover:text-brand-primary mr-4 transition-colors"
+                          >
                             <Edit className="w-5 h-5" />
                           </button>
                           <button 
@@ -277,7 +333,7 @@ export default function AdminDashboard() {
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
             <div className="bg-zinc-900 border border-zinc-800 w-full max-w-2xl rounded-2xl shadow-2xl my-8">
               <div className="flex justify-between items-center p-6 border-b border-zinc-800">
-                <h3 className="text-2xl font-bold text-white">Create New Project</h3>
+                <h3 className="text-2xl font-bold text-white">{editingId ? 'Edit Project' : 'Create New Project'}</h3>
                 <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-white transition-colors">
                   <X className="w-6 h-6" />
                 </button>
@@ -356,7 +412,15 @@ export default function AdminDashboard() {
 
                 <div>
                   <label className="block text-sm font-medium text-zinc-400 mb-1">Category *</label>
-                  <input type="text" value={category} onChange={(e) => setCategory(e.target.value)} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none" required placeholder="e.g. Web Design & Branding" />
+                  <select 
+                    value={category} 
+                    onChange={(e) => setCategory(e.target.value)} 
+                    className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
+                    required
+                  >
+                    <option value="Web Design and Development">Web Design and Development</option>
+                    <option value="Graphic Design / Branding">Graphic Design / Branding</option>
+                  </select>
                 </div>
 
                 <div>
@@ -379,8 +443,8 @@ export default function AdminDashboard() {
                   <button type="button" onClick={() => setIsModalOpen(false)} className="px-6 py-3 rounded-xl text-zinc-400 hover:text-white transition-colors font-medium">Cancel</button>
                   <button type="submit" disabled={isUploading} className="bg-brand-primary hover:bg-brand-secondary text-white px-8 py-3 rounded-xl font-bold transition-all disabled:opacity-50 flex items-center">
                     {isUploading ? (
-                      <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div> Uploading...</>
-                    ) : 'Publish Project'}
+                      <><div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin mr-2"></div> Saving...</>
+                    ) : (editingId ? 'Save Changes' : 'Publish Project')}
                   </button>
                 </div>
               </form>

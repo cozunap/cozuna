@@ -62,7 +62,7 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
     );
   }
 
-  const hasGallery = project.gallery && project.gallery.length > 0;
+  const isGraphicDesign = project.category === "Graphic Design / Branding" || project.category === "Graphic Design";
 
   return (
     <main className="min-h-screen bg-zinc-950 pt-24 pb-32">
@@ -86,7 +86,7 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
         </motion.div>
 
         {/* Dynamic Content Rendering */}
-        {hasGallery ? (
+        {isGraphicDesign ? (
           /* Gallery Layout (Graphic Design) */
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
