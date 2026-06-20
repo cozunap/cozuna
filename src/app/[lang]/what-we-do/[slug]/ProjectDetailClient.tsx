@@ -106,6 +106,7 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
               </div>
             ))}
           </motion.div>
+        ) : (
           /* Detailed Case Study Layout (Web Design) */
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
