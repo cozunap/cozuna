@@ -4,48 +4,48 @@ import ClientPortfolio from "./ClientPortfolio";
 const fallbackPortfolioItems = [
   {
     title: "La Casa Del Mofongo MD",
-    category: "Web & Print",
+    category: "Web Design and Development",
     image: "/assets/images/2024/10/la-casa-del-mofongo.webp",
     slug: "la-casa-del-mofongo"
   },
   {
     title: "Monica Nails Spa",
-    category: "Brand Identity",
+    category: "Graphic Design / Branding",
     image: "/assets/images/2024/10/spa.webp",
   },
   {
     title: "La Shisha Restaurant",
-    category: "Web Design",
+    category: "Web Design and Development",
     image: "/assets/images/2024/10/lashisha.webp",
   },
   {
     title: "Elsy Leonso",
-    category: "Graphic Design",
+    category: "Graphic Design / Branding",
     image: "/assets/images/2024/10/elsyleonso.webp",
   },
   {
     title: "Crossway Driving School",
-    category: "Printing",
+    category: "Graphic Design / Branding",
     image: "/assets/images/2024/10/crossway_business_card.webp",
   },
   {
     title: "City Shields NY",
-    category: "Brand Identity",
+    category: "Graphic Design / Branding",
     image: "/assets/images/2024/10/cityshieldsny.webp",
   },
   {
     title: "Overall HVAC NJ",
-    category: "Web Development",
+    category: "Web Design and Development",
     image: "/assets/images/2024/10/overallhvacnj.webp",
   },
   {
     title: "Jacinthe Studio",
-    category: "Graphic Design",
+    category: "Graphic Design / Branding",
     image: "/assets/images/2024/10/jacinthestudio.webp",
   },
   {
     title: "TBS Tax Services",
-    category: "Brand Identity & Print",
+    category: "Graphic Design / Branding",
     image: "/assets/images/2024/10/tbstax.webp",
   },
 ];
