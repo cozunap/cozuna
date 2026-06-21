@@ -3,12 +3,13 @@ export const metadata = {
   description: "Privacy Policy for COzuna Web Design & Printing.",
 };
 
+import PageHero from "@/components/PageHero";
+
 export default function PrivacyPolicyPage() {
   return (
-    <main className="flex min-h-screen flex-col bg-zinc-950 py-24 px-6 lg:px-8">
-      <div className="mx-auto max-w-3xl prose prose-invert prose-zinc">
-        <h1 className="text-3xl font-bold tracking-tight text-white mb-8">Privacy Policy</h1>
-        <p className="text-zinc-400">Last updated: {new Date().toLocaleDateString()}</p>
+    <main className="flex min-h-screen flex-col bg-zinc-950">
+      <PageHero title="Privacy Policy" subtitle={`Last updated: ${new Date().toLocaleDateString()}`} />
+      <div className="mx-auto max-w-3xl prose prose-invert prose-zinc py-12 px-6 lg:px-8">
         
         <h2 className="text-xl font-semibold text-white mt-8 mb-4">1. Introduction</h2>
         <p className="text-zinc-400 mb-4">

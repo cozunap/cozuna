@@ -10,19 +10,14 @@ export default function PageHero({ title, subtitle, backgroundImage }: PageHeroP
   return (
     <section className="relative w-full h-[150px] min-h-[150px] max-h-[150px] flex flex-col items-center justify-center border-b border-zinc-900 overflow-hidden bg-brand-dark">
       {/* Background Image & Overlay */}
-      {backgroundImage && (
-        <div className="absolute inset-0 z-0">
-          <img src={backgroundImage} alt="Hero Background" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-black/80"></div>
-        </div>
-      )}
-
-      {/* Fallback Glow Effects (if no image) */}
-      {!backgroundImage && (
-        <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-          <div className="absolute w-[60vw] h-[60vw] max-w-[400px] max-h-[400px] bg-brand-primary/10 rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
-        </div>
-      )}
+      <div className="absolute inset-0 z-0">
+        <img 
+          src={backgroundImage || "/assets/images/2024/10/main-photo.webp"} 
+          alt="Hero Background" 
+          className="w-full h-full object-cover object-center" 
+        />
+        <div className="absolute inset-0 bg-black/80"></div>
+      </div>
 
       <div className="relative z-10 mx-auto max-w-7xl text-center px-6">
         <h1 className="text-3xl font-extrabold tracking-tight text-white sm:text-4xl mb-2">
