@@ -8,7 +8,7 @@ interface PageHeroProps {
 
 export default function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
   return (
-    <section className="relative w-full py-8 flex items-center justify-center border-b border-zinc-900 overflow-hidden bg-brand-dark">
+    <section className="relative w-full h-[150px] min-h-[150px] max-h-[150px] flex flex-col items-center justify-center border-b border-zinc-900 overflow-hidden bg-brand-dark">
       {/* Background Image & Overlay */}
       {backgroundImage && (
         <div className="absolute inset-0 z-0">
@@ -20,7 +20,7 @@ export default function PageHero({ title, subtitle, backgroundImage }: PageHeroP
       {/* Fallback Glow Effects (if no image) */}
       {!backgroundImage && (
         <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
-          <div className="absolute w-[60vw] h-[60vw] max-w-[800px] max-h-[400px] bg-brand-primary/10 rounded-full blur-[100px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="absolute w-[60vw] h-[60vw] max-w-[400px] max-h-[400px] bg-brand-primary/10 rounded-full blur-[80px] top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
         </div>
       )}
 
