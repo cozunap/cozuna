@@ -208,11 +208,12 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                 className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl cursor-pointer hover:opacity-90 transition-opacity"
                 onClick={() => setLightboxIndex(0)}
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img 
+                <Image 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-auto object-cover block"
+                  width={1920}
+                  height={1080}
+                  className="w-full h-auto block"
                 />
               </div>
               {project.gallery?.map((img, idx) => (
@@ -221,11 +222,12 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                   className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl cursor-pointer hover:opacity-90 transition-opacity"
                   onClick={() => setLightboxIndex(idx + 1)}
                 >
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img 
+                  <Image 
                     src={img} 
                     alt={`${project.title} screenshot ${idx + 1}`} 
-                    className="w-full h-auto object-cover block"
+                    width={1920}
+                    height={1080}
+                    className="w-full h-auto block"
                   />
                 </div>
               ))}
