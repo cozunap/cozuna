@@ -1,21 +1,71 @@
 {
   "navigation": {
-    "home": "Home",
+    "home": "Accueil",
     "services": "Services",
-    "aboutUs": "About Us",
-    "whatWeDo": "What We Do",
-    "getAQuote": "Get A Quote"
+    "aboutUs": "À Propos",
+    "whatWeDo": "Réalisations",
+    "getAQuote": "Devis"
   },
   "home": {
-    "heroTitle": "Digital Excellence & Premium Printing",
-    "heroSubtitle": "We craft stunning digital experiences and high-quality printed materials that elevate your brand.",
-    "ctaSecondary": "View Portfolio"
+    "heroTitle": "Excellence Numérique & Impression Premium",
+    "heroSubtitle": "Nous créons des expériences numériques époustouflantes et des supports imprimés de haute qualité qui subliment votre marque.",
+    "ctaSecondary": "Voir le Portfolio"
   },
   "footer": {
-    "tagline": "Elevating brands through digital excellence and premium printing.",
-    "connect": "Connect",
-    "legal": "Legal",
-    "terms": "Terms of Service",
-    "privacy": "Privacy Policy"
+    "tagline": "Élever les marques grâce à l'excellence numérique et l'impression premium.",
+    "connect": "Contact",
+    "legal": "Légal",
+    "terms": "Conditions d'utilisation",
+    "privacy": "Politique de confidentialité"
+  },
+  "quote": {
+    "step1": {
+      "title": "Comment pouvons-nous vous aider ?",
+      "subtitle": "Sélectionnez un service pour commencer"
+    },
+    "step2": {
+      "title": "Détails du Projet",
+      "subtitle": "Dites-nous en un peu plus sur l'étendue des travaux.",
+      "budgetLabel": "Budget Estimé",
+      "budgetPlaceholder": "Sélectionnez une fourchette",
+      "timelineLabel": "Délai Idéal",
+      "timelinePlaceholder": "Sélectionnez un délai",
+      "timelineOptions": {
+        "asap": "Dès que possible (Urgent)",
+        "1_month": "Dans un délai d'un mois",
+        "1_3_months": "1 à 3 mois",
+        "flexible": "Flexible"
+      }
+    },
+    "step3": {
+      "title": "Vos Informations",
+      "subtitle": "Comment pouvons-nous vous joindre ?",
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "Adresse E-mail",
+      "message": "Détails du projet, objectifs, liens, etc."
+    },
+    "buttons": {
+      "next": "Étape Suivante",
+      "prev": "Étape Précédente",
+      "submit": "Envoyer la Demande",
+      "submitting": "Envoi..."
+    },
+    "success": {
+      "title": "Demande Reçue !",
+      "message": "Nous examinerons les détails de votre projet et vous répondrons sous peu."
+    },
+    "services": {
+      "web": "Conception Web",
+      "graphic": "Conception Graphique",
+      "print": "Impression",
+      "signage": "Signalétique"
+    },
+    "budgets": {
+      "under_1k": "Moins de 1 000 $",
+      "1k_to_5k": "1 000 $ - 5 000 $",
+      "5k_to_10k": "5 000 $ - 10 000 $",
+      "10k_plus": "10 000 $ et +"
+    }
   }
 }

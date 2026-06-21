@@ -1,6 +1,7 @@
 import { getPageData, getQuoteSettings } from "@/lib/cms";
 import PageHero from "@/components/PageHero";
 import GetAQuoteClient from "./GetAQuoteClient";
+import { getDictionary } from "@/lib/dictionaries";
 
 export const metadata = {
   title: "Get a Quote | COzuna Web Design & Printing",
@@ -13,6 +14,7 @@ export default async function GetAQuotePage({ params }: { params: Promise<{ lang
   
   const cmsData = await getPageData('contact');
   const quoteSettings = await getQuoteSettings();
+  const dict = await getDictionary(lang as any);
   
   const heroTitle = cmsData?.heroTitle?.[lang] || (
     <>Start Your <span className="text-brand-primary">Project</span></>
@@ -30,6 +32,7 @@ export default async function GetAQuotePage({ params }: { params: Promise<{ lang
       <GetAQuoteClient 
         dynamicServices={quoteSettings?.services || []} 
         dynamicBudgets={quoteSettings?.budgets || []} 
+        dict={dict.quote}
       />
     </main>
   );

@@ -25,9 +25,10 @@ type Budget = {
 type GetAQuoteClientProps = {
   dynamicServices?: Service[];
   dynamicBudgets?: Budget[];
+  dict: any;
 };
 
-export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets = [] }: GetAQuoteClientProps) {
+export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets = [], dict }: GetAQuoteClientProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: "",
@@ -146,9 +147,9 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                   className="flex flex-col items-center justify-center h-full text-center py-12"
                 >
                   <CheckCircle2 className="w-20 h-20 text-green-500 mb-6" />
-                  <h2 className="text-3xl font-bold text-white mb-4">Quote Request Sent!</h2>
+                  <h2 className="text-3xl font-bold text-white mb-4">{dict?.success?.title || "Quote Request Sent!"}</h2>
                   <p className="text-zinc-400 max-w-md mx-auto mb-8">
-                    Thank you for reaching out, {formData.firstName}. Our team will review your request and get back to you within 24 hours.
+                    {dict?.success?.message || "We'll review your project details and get back to you shortly."}
                   </p>
                   <button 
                     onClick={() => window.location.href = "/"}
@@ -171,8 +172,8 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                   transition={{ duration: 0.3 }}
                   className="flex flex-col h-full"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-2">What do you need help with?</h2>
-                  <p className="text-zinc-400 mb-8">Select the primary service you are interested in.</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">{dict?.step1?.title || "What do you need help with?"}</h2>
+                  <p className="text-zinc-400 mb-8">{dict?.step1?.subtitle || "Select a service to begin"}</p>
                   
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
                     {services.map((svc) => (
@@ -189,7 +190,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                           const IconComponent = IconMap[svc.iconName] || FileQuestion;
                           return <IconComponent className="w-8 h-8 mb-4 text-brand-primary" />;
                         })()}
-                        <h3 className="text-lg font-semibold text-white">{svc.title}</h3>
+                        <h3 className="text-lg font-semibold text-white">{dict?.services?.[svc.id] || svc.title}</h3>
                       </button>
                     ))}
                   </div>
@@ -200,7 +201,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                       disabled={!formData.service}
                       className="flex items-center gap-2 rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                      Next Step <ArrowRight className="w-4 h-4" />
+                      {dict?.buttons?.next || "Next Step"} <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </motion.div>
@@ -218,36 +219,36 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                   transition={{ duration: 0.3 }}
                   className="flex flex-col h-full"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-2">Project Details</h2>
-                  <p className="text-zinc-400 mb-8">Tell us a bit more about the scope of the work.</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">{dict?.step2?.title || "Project Details"}</h2>
+                  <p className="text-zinc-400 mb-8">{dict?.step2?.subtitle || "Tell us a bit more about the scope of the work."}</p>
                   
                   <div className="space-y-6 mb-8">
                     <div>
-                      <label className="block text-sm font-medium text-white mb-2">Estimated Budget</label>
+                      <label className="block text-sm font-medium text-white mb-2">{dict?.step2?.budgetLabel || "Estimated Budget"}</label>
                       <select 
                         value={formData.budget}
                         onChange={(e) => setFormData({...formData, budget: e.target.value})}
                         className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
                       >
-                        <option value="" disabled>Select a budget range</option>
+                        <option value="" disabled>{dict?.step2?.budgetPlaceholder || "Select a budget range"}</option>
                         {budgets.map((b) => (
-                          <option key={b.id} value={b.id}>{b.label}</option>
+                          <option key={b.id} value={b.id}>{dict?.budgets?.[b.id] || b.label}</option>
                         ))}
                       </select>
                     </div>
 
                     <div>
-                      <label className="block text-sm font-medium text-white mb-2">Ideal Timeline</label>
+                      <label className="block text-sm font-medium text-white mb-2">{dict?.step2?.timelineLabel || "Ideal Timeline"}</label>
                       <select 
                         value={formData.timeline}
                         onChange={(e) => setFormData({...formData, timeline: e.target.value})}
                         className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
                       >
-                        <option value="" disabled>Select a timeline</option>
-                        <option value="asap">ASAP (Urgent)</option>
-                        <option value="1_month">Within 1 month</option>
-                        <option value="1_3_months">1 - 3 months</option>
-                        <option value="flexible">Flexible</option>
+                        <option value="" disabled>{dict?.step2?.timelinePlaceholder || "Select a timeline"}</option>
+                        <option value="asap">{dict?.step2?.timelineOptions?.asap || "ASAP (Urgent)"}</option>
+                        <option value="1_month">{dict?.step2?.timelineOptions?.["1_month"] || "Within 1 month"}</option>
+                        <option value="1_3_months">{dict?.step2?.timelineOptions?.["1_3_months"] || "1 - 3 months"}</option>
+                        <option value="flexible">{dict?.step2?.timelineOptions?.flexible || "Flexible"}</option>
                       </select>
                     </div>
                   </div>
@@ -257,14 +258,14 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                       onClick={handlePrev}
                       className="flex items-center gap-2 rounded-full bg-zinc-800 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-700 transition-colors"
                     >
-                      <ArrowLeft className="w-4 h-4" /> Back
+                      <ArrowLeft className="w-4 h-4" /> {dict?.buttons?.prev || "Back"}
                     </button>
                     <button
                       onClick={handleNext}
                       disabled={!formData.budget || !formData.timeline}
                       className="flex items-center gap-2 rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                     >
-                      Next Step <ArrowRight className="w-4 h-4" />
+                      {dict?.buttons?.next || "Next Step"} <ArrowRight className="w-4 h-4" />
                     </button>
                   </div>
                 </motion.div>
@@ -282,15 +283,15 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                   transition={{ duration: 0.3 }}
                   className="flex flex-col h-full"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-2">Your Information</h2>
-                  <p className="text-zinc-400 mb-8">Almost done! How can we reach you?</p>
+                  <h2 className="text-2xl font-bold text-white mb-2">{dict?.step3?.title || "Your Information"}</h2>
+                  <p className="text-zinc-400 mb-8">{dict?.step3?.subtitle || "How can we reach you?"}</p>
                   
                   <form onSubmit={handleSubmit} className="space-y-6 mb-8 flex-grow">
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                       <div>
                         <input 
                           type="text" 
-                          placeholder="First Name" 
+                          placeholder={dict?.step3?.firstName || "First Name"} 
                           required
                           value={formData.firstName}
                           onChange={(e) => setFormData({...formData, firstName: e.target.value})}
@@ -300,7 +301,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                       <div>
                         <input 
                           type="text" 
-                          placeholder="Last Name" 
+                          placeholder={dict?.step3?.lastName || "Last Name"} 
                           required
                           value={formData.lastName}
                           onChange={(e) => setFormData({...formData, lastName: e.target.value})}
@@ -311,7 +312,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                     <div>
                       <input 
                         type="email" 
-                        placeholder="Email Address" 
+                        placeholder={dict?.step3?.email || "Email Address"} 
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -320,7 +321,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                     </div>
                     <div>
                       <textarea 
-                        placeholder="Tell us a little more about your vision (optional)" 
+                        placeholder={dict?.step3?.message || "Project details, goals, links, etc."} 
                         rows={3}
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -340,14 +341,14 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                           onClick={handlePrev}
                           className="flex items-center gap-2 rounded-full bg-zinc-800 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-700 transition-colors"
                         >
-                          <ArrowLeft className="w-4 h-4" /> Back
+                          <ArrowLeft className="w-4 h-4" /> {dict?.buttons?.prev || "Back"}
                         </button>
                         <button
                           type="submit"
                           disabled={!formData.firstName || !formData.lastName || !formData.email || isSubmitting}
                           className="flex items-center gap-2 rounded-full bg-brand-primary px-8 py-3 text-sm font-bold text-white shadow-sm hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                         >
-                          {isSubmitting ? "Sending..." : "Submit Request"}
+                          {isSubmitting ? (dict?.buttons?.submitting || "Sending...") : (dict?.buttons?.submit || "Submit Request")}
                         </button>
                       </div>
                     </div>
