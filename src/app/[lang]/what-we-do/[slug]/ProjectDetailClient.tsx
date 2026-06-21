@@ -5,7 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { db } from "@/lib/firebase";
 import { collection, query, where, getDocs } from "firebase/firestore";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
 interface Project {
   id: string;
@@ -26,6 +27,7 @@ interface Project {
 export default function ProjectDetailClient({ lang, slug }: { lang: string; slug: string }) {
   const [project, setProject] = useState<Project | null>(null);
   const [loading, setLoading] = useState(true);
+  const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   useEffect(() => {
     async function fetchProject() {
@@ -67,6 +69,27 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
   }
 
   const isGraphicDesign = project.category === "Graphic Design / Branding" || project.category === "Graphic Design";
+  
+  // Combine main image and gallery for the lightbox
+  const allImages = [project.image, ...(project.gallery || [])];
+
+  const nextImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex + 1) % allImages.length);
+    }
+  };
+
+  const prevImage = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (lightboxIndex !== null) {
+      setLightboxIndex((lightboxIndex - 1 + allImages.length) % allImages.length);
+    }
+  };
+
+  const closeLightbox = () => {
+    setLightboxIndex(null);
+  };
 
   return (
     <main className="min-h-screen bg-zinc-950 pt-24 pb-32">
@@ -101,7 +124,10 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
             {/* Left Column: 2-Column Image Grid */}
             <div className="lg:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Main Image */}
-              <div className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative">
+              <div 
+                className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative cursor-pointer hover:opacity-80 transition-opacity"
+                onClick={() => setLightboxIndex(0)}
+              >
                 <Image 
                   src={project.image} 
                   alt={project.title} 
@@ -111,7 +137,11 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
               </div>
               {/* Gallery Images */}
               {project.gallery?.map((img, idx) => (
-                <div key={idx} className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative cursor-pointer hover:opacity-80 transition-opacity">
+                <div 
+                  key={idx} 
+                  className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative cursor-pointer hover:opacity-80 transition-opacity"
+                  onClick={() => setLightboxIndex(idx + 1)}
+                >
                   <Image 
                     src={img} 
                     alt={`${project.title} gallery image ${idx + 1}`} 
@@ -177,7 +207,10 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
           >
             {/* Left Column: Stacked Images (Full Height) */}
             <div className="lg:col-span-8 space-y-12">
-              <div className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl">
+              <div 
+                className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-2xl cursor-pointer hover:opacity-90 transition-opacity"
+                onClick={() => setLightboxIndex(0)}
+              >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img 
                   src={project.image} 
@@ -186,7 +219,11 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                 />
               </div>
               {project.gallery?.map((img, idx) => (
-                <div key={idx} className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl">
+                <div 
+                  key={idx} 
+                  className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl cursor-pointer hover:opacity-90 transition-opacity"
+                  onClick={() => setLightboxIndex(idx + 1)}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img 
                     src={img} 
@@ -244,6 +281,71 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
         </div>
 
       </article>
+
+      {/* Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxIndex !== null && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8"
+            onClick={closeLightbox}
+          >
+            {/* Close Button */}
+            <button 
+              className="absolute top-6 right-6 md:top-8 md:right-8 z-50 text-zinc-400 hover:text-white bg-black/50 hover:bg-black rounded-full p-2 transition-all"
+              onClick={closeLightbox}
+            >
+              <X className="w-8 h-8" />
+            </button>
+
+            {/* Previous Button */}
+            {allImages.length > 1 && (
+              <button 
+                className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-50 text-white/50 hover:text-white bg-black/30 hover:bg-black/80 rounded-full p-3 transition-all"
+                onClick={prevImage}
+              >
+                <ChevronLeft className="w-8 h-8 md:w-12 md:h-12" />
+              </button>
+            )}
+
+            {/* Image Container */}
+            <motion.div 
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", bounce: 0, duration: 0.3 }}
+              className="relative w-full h-full max-w-6xl max-h-[85vh] flex items-center justify-center"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img 
+                src={allImages[lightboxIndex]} 
+                alt={`${project.title} fullscreen view ${lightboxIndex + 1}`}
+                className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              />
+              
+              {/* Image Counter */}
+              {allImages.length > 1 && (
+                <div className="absolute bottom-[-40px] left-1/2 -translate-x-1/2 text-zinc-400 font-medium tracking-widest text-sm">
+                  {lightboxIndex + 1} / {allImages.length}
+                </div>
+              )}
+            </motion.div>
+
+            {/* Next Button */}
+            {allImages.length > 1 && (
+              <button 
+                className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-50 text-white/50 hover:text-white bg-black/30 hover:bg-black/80 rounded-full p-3 transition-all"
+                onClick={nextImage}
+              >
+                <ChevronRight className="w-8 h-8 md:w-12 md:h-12" />
+              </button>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
