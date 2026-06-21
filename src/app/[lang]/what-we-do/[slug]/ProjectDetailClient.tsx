@@ -171,14 +171,26 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                   )}
                   {project.servicesOffered && (
                     <div>
-                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Services</h3>
-                      <p className="text-white font-medium">{project.servicesOffered}</p>
+                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Services</h3>
+                      <ul className="text-white font-medium space-y-1">
+                        {project.servicesOffered.split(/[•,]/).map(s => s.trim()).filter(Boolean).map((item, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="text-brand-primary mr-2">•</span> {item}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                   {project.softwareUsed && (
                     <div>
-                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-1">Software</h3>
-                      <p className="text-white font-medium">{project.softwareUsed}</p>
+                      <h3 className="text-xs font-bold text-zinc-500 uppercase tracking-wider mb-2">Software</h3>
+                      <ul className="text-white font-medium space-y-1">
+                        {project.softwareUsed.split(/[•,]/).map(s => s.trim()).filter(Boolean).map((item, i) => (
+                          <li key={i} className="flex items-start">
+                            <span className="text-brand-primary mr-2">•</span> {item}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   )}
                 </div>
