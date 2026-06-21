@@ -104,12 +104,9 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
           <div className="inline-block px-4 py-1.5 rounded-full bg-zinc-900 border border-zinc-800 text-brand-primary text-sm font-bold tracking-wider uppercase mb-6">
             {project.category}
           </div>
-          <h1 className="text-4xl md:text-6xl font-extrabold text-white mb-6 text-balance">
+          <h1 className="text-4xl md:text-6xl font-extrabold text-white text-balance">
             {project.title}
           </h1>
-          <p className="text-xl text-zinc-400 font-light leading-relaxed">
-            {project.description}
-          </p>
         </motion.div>
 
         {/* Dynamic Content Rendering */}
