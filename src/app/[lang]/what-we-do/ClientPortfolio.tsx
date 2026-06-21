@@ -92,12 +92,11 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
       </div>
 
       <motion.div 
+        key={activeCategory}
         variants={containerVariants}
         initial="hidden"
-        whileInView="show"
-        viewport={{ once: true, margin: "-100px" }}
+        animate="show"
         className="columns-1 md:columns-2 lg:columns-3 gap-8"
-        layout
       >
         {filteredItems.map((item, index) => {
         const cardContent = (
@@ -118,13 +117,14 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
           </motion.div>
         );
 
-        // Using a combination of item.id and item.title as key to ensure uniqueness
+        // Using fallback keys to ensure uniqueness if id is missing during SSR
+        const itemKey = item.id || item.slug || item.title;
         return item.slug ? (
-          <Link href={`/${lang}/what-we-do/${item.slug}`} key={item.id} className="block cursor-pointer">
+          <Link href={`/${lang}/what-we-do/${item.slug}`} key={itemKey} className="block cursor-pointer">
             {cardContent}
           </Link>
         ) : (
-          <div key={item.id}>{cardContent}</div>
+          <div key={itemKey}>{cardContent}</div>
         );
       })}
       </motion.div>
