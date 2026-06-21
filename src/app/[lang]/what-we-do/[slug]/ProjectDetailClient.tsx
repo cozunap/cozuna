@@ -213,7 +213,7 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                   alt={project.title} 
                   width={2880}
                   height={1600}
-                  quality={100}
+                  unoptimized={true}
                   className="w-full h-auto block"
                   style={{ imageRendering: "high-quality" as any }}
                 />
@@ -229,7 +229,7 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                     alt={`${project.title} screenshot ${idx + 1}`} 
                     width={2880}
                     height={1600}
-                    quality={100}
+                    unoptimized={true}
                     className="w-full h-auto block"
                     style={{ imageRendering: "high-quality" as any }}
                   />
