@@ -47,6 +47,26 @@ export default async function RootLayout({
   return (
     <html lang={lang} className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} bg-zinc-950 text-white min-h-screen flex flex-col`} suppressHydrationWarning>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "COzuna Web Design & Printing",
+              "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
+              "description": "Affordable Printing, Graphic Design, and Web Design Services.",
+              "url": "https://cozuna.com",
+              "address": {
+                "@type": "PostalAddress",
+                "addressLocality": "New Jersey",
+                "addressRegion": "NJ",
+                "addressCountry": "US"
+              },
+              "priceRange": "$$"
+            })
+          }}
+        />
         <Navbar lang={lang} dict={dict} />
         <div className="flex-grow flex flex-col">{children}</div>
         <Footer lang={lang} dict={dict} />

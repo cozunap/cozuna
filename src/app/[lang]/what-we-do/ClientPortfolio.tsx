@@ -18,7 +18,7 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
   const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>(items);
   const [activeCategory, setActiveCategory] = useState<string>("All");
 
-  const categories = ["All", ...Array.from(new Set(portfolioItems.map(item => item.category)))];
+  const categories = ["All", "Graphic Design", "Web Design"];
 
   useEffect(() => {
     async function fetchProjects() {
