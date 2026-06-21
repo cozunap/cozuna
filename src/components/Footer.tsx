@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail } from "lucide-react";
+import { MessageSquare } from "lucide-react";
 
 type FooterProps = {
   lang: string;
@@ -40,10 +40,10 @@ export default function Footer({ lang, dict }: FooterProps) {
               <li><Link href={`/${lang}/privacy-policy`} className="text-zinc-400 hover:text-brand-primary transition-colors">{dict.footer.privacy}</Link></li>
               <li><Link href={`/${lang}/terms-of-service`} className="text-zinc-400 hover:text-brand-primary transition-colors">{dict.footer.terms}</Link></li>
               <li>
-                <a href="mailto:ozunaprinting@gmail.com" className="inline-flex items-center text-zinc-400 hover:text-white transition-colors mt-4 group">
-                  <Mail className="w-4 h-4 mr-2 group-hover:text-brand-primary transition-colors" />
-                  ozunaprinting@gmail.com
-                </a>
+                <Link href={`/${lang}/get-a-quote`} className="inline-flex items-center text-zinc-400 hover:text-white transition-colors mt-4 group">
+                  <MessageSquare className="w-4 h-4 mr-2 group-hover:text-brand-primary transition-colors" />
+                  {dict.navigation.getAQuote}
+                </Link>
               </li>
             </ul>
           </div>
