@@ -58,7 +58,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
       />
 
       {/* Services List */}
-      <section className="py-24 px-6 lg:px-8">
+      <section className="py-12 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="space-y-32">
             {services.map((service, index) => (

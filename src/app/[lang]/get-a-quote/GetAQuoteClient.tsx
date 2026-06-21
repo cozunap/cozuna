@@ -79,7 +79,7 @@ export default function GetAQuoteClient() {
   return (
     <>
       {/* Wizard Content */}
-      <section className="py-24 px-6 lg:px-8 flex-grow flex flex-col justify-center">
+      <section className="py-12 px-6 lg:px-8 flex-grow flex flex-col justify-center">
         <div className="mx-auto max-w-4xl w-full">
           
           {/* Progress Bar */}

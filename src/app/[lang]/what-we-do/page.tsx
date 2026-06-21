@@ -86,7 +86,7 @@ export default async function WhatWeDoPage({ params }: { params: Promise<{ lang:
       />
 
       {/* Portfolio Grid */}
-      <section className="py-24 px-6 lg:px-8">
+      <section className="py-12 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <ClientPortfolio items={portfolioItems} lang={resolvedParams.lang} />
         </div>
