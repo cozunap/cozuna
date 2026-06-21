@@ -2,9 +2,32 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MonitorSmartphone, PenTool, Printer, Signpost, ArrowRight, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { MonitorSmartphone, PenTool, Printer, Signpost, ArrowRight, ArrowLeft, CheckCircle2, FileQuestion } from "lucide-react";
 
-export default function GetAQuoteClient() {
+const IconMap: Record<string, any> = {
+  MonitorSmartphone,
+  PenTool,
+  Printer,
+  Signpost
+};
+
+type Service = {
+  id: string;
+  title: string;
+  iconName: string;
+};
+
+type Budget = {
+  id: string;
+  label: string;
+};
+
+type GetAQuoteClientProps = {
+  dynamicServices?: Service[];
+  dynamicBudgets?: Budget[];
+};
+
+export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets = [] }: GetAQuoteClientProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: "",
@@ -17,12 +40,22 @@ export default function GetAQuoteClient() {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const services = [
-    { id: "web", title: "Web Design", icon: <MonitorSmartphone className="w-8 h-8 mb-4 text-brand-primary" /> },
-    { id: "graphic", title: "Graphic Design", icon: <PenTool className="w-8 h-8 mb-4 text-brand-primary" /> },
-    { id: "print", title: "Printing", icon: <Printer className="w-8 h-8 mb-4 text-brand-primary" /> },
-    { id: "signage", title: "Signage", icon: <Signpost className="w-8 h-8 mb-4 text-brand-primary" /> },
+  const defaultServices = [
+    { id: "web", title: "Web Design", iconName: "MonitorSmartphone" },
+    { id: "graphic", title: "Graphic Design", iconName: "PenTool" },
+    { id: "print", title: "Printing", iconName: "Printer" },
+    { id: "signage", title: "Signage", iconName: "Signpost" },
   ];
+
+  const defaultBudgets = [
+    { id: "under_1k", label: "Under $1,000" },
+    { id: "1k_to_5k", label: "$1,000 - $5,000" },
+    { id: "5k_to_10k", label: "$5,000 - $10,000" },
+    { id: "10k_plus", label: "$10,000+" }
+  ];
+
+  const services = dynamicServices.length > 0 ? dynamicServices : defaultServices;
+  const budgets = dynamicBudgets.length > 0 ? dynamicBudgets : defaultBudgets;
 
   const handleNext = () => {
     if (step === 1 && !formData.service) return; // Basic validation
@@ -152,7 +185,10 @@ export default function GetAQuoteClient() {
                             : "border-zinc-800 bg-zinc-950 hover:border-zinc-600"
                         }`}
                       >
-                        {svc.icon}
+                        {(() => {
+                          const IconComponent = IconMap[svc.iconName] || FileQuestion;
+                          return <IconComponent className="w-8 h-8 mb-4 text-brand-primary" />;
+                        })()}
                         <h3 className="text-lg font-semibold text-white">{svc.title}</h3>
                       </button>
                     ))}
@@ -194,10 +230,9 @@ export default function GetAQuoteClient() {
                         className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
                       >
                         <option value="" disabled>Select a budget range</option>
-                        <option value="under_1k">Under $1,000</option>
-                        <option value="1k_to_5k">$1,000 - $5,000</option>
-                        <option value="5k_to_10k">$5,000 - $10,000</option>
-                        <option value="10k_plus">$10,000+</option>
+                        {budgets.map((b) => (
+                          <option key={b.id} value={b.id}>{b.label}</option>
+                        ))}
                       </select>
                     </div>
 

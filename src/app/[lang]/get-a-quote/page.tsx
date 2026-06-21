@@ -1,4 +1,4 @@
-import { getPageData } from "@/lib/cms";
+import { getPageData, getQuoteSettings } from "@/lib/cms";
 import PageHero from "@/components/PageHero";
 import GetAQuoteClient from "./GetAQuoteClient";
 
@@ -12,6 +12,7 @@ export default async function GetAQuotePage({ params }: { params: Promise<{ lang
   const lang = resolvedParams.lang || 'en';
   
   const cmsData = await getPageData('contact');
+  const quoteSettings = await getQuoteSettings();
   
   const heroTitle = cmsData?.heroTitle?.[lang] || (
     <>Start Your <span className="text-brand-primary">Project</span></>
@@ -26,7 +27,10 @@ export default async function GetAQuotePage({ params }: { params: Promise<{ lang
         subtitle={heroSubtitle} 
         backgroundImage={heroImage} 
       />
-      <GetAQuoteClient />
+      <GetAQuoteClient 
+        dynamicServices={quoteSettings?.services || []} 
+        dynamicBudgets={quoteSettings?.budgets || []} 
+      />
     </main>
   );
 }

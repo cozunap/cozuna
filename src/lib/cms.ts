@@ -67,3 +67,50 @@ export async function getPortfolioProjects() {
     return [];
   }
 }
+
+export async function getQuoteSettings() {
+  const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  if (!projectId) return null;
+
+  try {
+    const res = await fetch(
+      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/settings/quote`,
+      { next: { revalidate: 60 } }
+    );
+
+    if (!res.ok) {
+      return null;
+    }
+
+    const json = await res.json();
+    if (!json.fields) return null;
+
+    const data: any = { services: [], budgets: [] };
+    
+    if (json.fields.services?.arrayValue?.values) {
+      data.services = json.fields.services.arrayValue.values.map((v: any) => {
+        const fields = v.mapValue?.fields || {};
+        return {
+          id: fields.id?.stringValue || '',
+          title: fields.title?.stringValue || '',
+          iconName: fields.iconName?.stringValue || '',
+        };
+      });
+    }
+
+    if (json.fields.budgets?.arrayValue?.values) {
+      data.budgets = json.fields.budgets.arrayValue.values.map((v: any) => {
+        const fields = v.mapValue?.fields || {};
+        return {
+          id: fields.id?.stringValue || '',
+          label: fields.label?.stringValue || '',
+        };
+      });
+    }
+
+    return data;
+  } catch (error) {
+    console.error(`Error fetching quote settings:`, error);
+    return null;
+  }
+}
