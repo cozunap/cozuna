@@ -22,6 +22,12 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
 
   const heroTitle = cmsData?.heroTitle?.[lang] || dict.home.heroTitle;
   const heroSubtitle = cmsData?.heroSubtitle?.[lang] || dict.home.heroSubtitle;
+  
+  const heroMediaType = cmsData?.heroMediaType || 'video';
+  const heroImage = cmsData?.heroImage || '/assets/images/2024/10/main-photo.webp';
+  const heroVideo = cmsData?.heroVideo?.[lang] || "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-designer-working-on-a-tablet-42898-large.mp4";
+  const heroOverlayOpacity = cmsData?.heroOverlayOpacity !== undefined ? cmsData.heroOverlayOpacity : 40;
+  const overlayOpacityDecimal = heroOverlayOpacity / 100;
 
   const titleWords = heroTitle.split(' ');
   const titleStart = titleWords.slice(0, -2).join(' ');
@@ -33,18 +39,31 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
       {/* Hero Section */}
       <section className="relative w-full min-h-[90vh] flex items-center justify-center overflow-hidden bg-zinc-950 px-6 lg:px-8">
         
-        {/* Video Background */}
-        <div className="absolute inset-0 z-0 w-full h-full">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-screen"
-          >
-            <source src="https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-designer-working-on-a-tablet-42898-large.mp4" type="video/mp4" />
-          </video>
-          <div className="absolute inset-0 bg-gradient-to-b from-zinc-950/60 via-zinc-950/80 to-zinc-950"></div>
+        {/* Media Background */}
+        <div className="absolute inset-0 z-0 w-full h-full bg-black">
+          {heroMediaType === 'video' ? (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="absolute inset-0 w-full h-full object-cover opacity-60 mix-blend-screen"
+            >
+              <source src={heroVideo} type="video/mp4" />
+            </video>
+          ) : (
+            <Image
+              src={heroImage}
+              alt="Hero Background"
+              fill
+              className="object-cover object-center"
+              priority
+            />
+          )}
+          <div 
+            className="absolute inset-0 bg-black pointer-events-none" 
+            style={{ opacity: overlayOpacityDecimal }}
+          ></div>
         </div>
 
         <motion.div 

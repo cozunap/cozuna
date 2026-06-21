@@ -97,7 +97,7 @@ export default function PagesManager() {
     }
   };
 
-  const renderField = (label: string, field: string, type: 'text' | 'textarea' | 'image' = 'text') => {
+  const renderField = (label: string, field: string, type: 'text' | 'textarea' | 'image' | 'select' | 'range' = 'text', options?: { label: string, value: string }[]) => {
     if (type === 'image') {
       return (
         <div className="mb-6">
@@ -113,6 +113,39 @@ export default function PagesManager() {
             <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, field)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
             <p className="text-zinc-400 text-xs mt-2">Click to replace image</p>
           </div>
+        </div>
+      );
+    }
+
+    if (type === 'select' && options) {
+      return (
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-zinc-400 mb-2">{label}</label>
+          <select
+            value={data[field] || options[0].value}
+            onChange={(e) => handleSimpleChange(field, e.target.value)}
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
+          >
+            {options.map(opt => (
+              <option key={opt.value} value={opt.value}>{opt.label}</option>
+            ))}
+          </select>
+        </div>
+      );
+    }
+
+    if (type === 'range') {
+      return (
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-zinc-400 mb-2">{label} ({data[field] ?? 40}%)</label>
+          <input
+            type="range"
+            min="0"
+            max="100"
+            value={data[field] ?? 40}
+            onChange={(e) => handleSimpleChange(field, parseInt(e.target.value))}
+            className="w-full accent-brand-primary"
+          />
         </div>
       );
     }
@@ -193,6 +226,15 @@ export default function PagesManager() {
                 <div className="space-y-4">
                   {renderField('Hero Title', 'heroTitle', 'text')}
                   {renderField('Hero Subtitle', 'heroSubtitle', 'textarea')}
+                  <hr className="border-zinc-800 my-8" />
+                  <h3 className="text-white font-bold mb-4 uppercase tracking-widest text-xs text-zinc-500">Hero Background</h3>
+                  {renderField('Hero Media Type', 'heroMediaType', 'select', [
+                    { label: 'Video', value: 'video' },
+                    { label: 'Image', value: 'image' }
+                  ])}
+                  {data.heroMediaType === 'image' && renderField('Hero Background Image', 'heroImage', 'image')}
+                  {(!data.heroMediaType || data.heroMediaType === 'video') && renderField('Hero Video URL (MP4)', 'heroVideo', 'text')}
+                  {renderField('Overlay Opacity (Darkness)', 'heroOverlayOpacity', 'range')}
                 </div>
               )}
 
