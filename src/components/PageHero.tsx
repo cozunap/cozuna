@@ -8,7 +8,7 @@ interface PageHeroProps {
 
 export default function PageHero({ title, subtitle, backgroundImage }: PageHeroProps) {
   return (
-    <section className="relative w-full h-[25vh] min-h-[250px] flex items-center justify-center border-b border-zinc-900 overflow-hidden bg-brand-dark">
+    <section className="relative w-full h-[25vh] min-h-[180px] flex items-center justify-center border-b border-zinc-900 overflow-hidden bg-brand-dark">
       {/* Background Image & Overlay */}
       {backgroundImage && (
         <div className="absolute inset-0 z-0">
