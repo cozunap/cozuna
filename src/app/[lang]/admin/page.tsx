@@ -51,11 +51,9 @@ export default function AdminDashboard() {
   const [testimonialRole, setTestimonialRole] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
-  const [galleryPreviews, setGalleryPreviews] = useState<string[]>([]);
+  const [galleryItems, setGalleryItems] = useState<Array<{ url: string; file: File | null }>>([]);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [existingImage, setExistingImage] = useState<string | null>(null);
-  const [existingGallery, setExistingGallery] = useState<string[]>([]);
 
   const fetchProjects = async () => {
     try {
@@ -99,15 +97,16 @@ export default function AdminDashboard() {
   const handleGalleryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const files = Array.from(e.target.files);
-      setGalleryFiles(prev => [...prev, ...files]);
-      const newPreviews = files.map(file => URL.createObjectURL(file));
-      setGalleryPreviews(prev => [...prev, ...newPreviews]);
+      const newItems = files.map(file => ({
+        url: URL.createObjectURL(file),
+        file
+      }));
+      setGalleryItems(prev => [...prev, ...newItems]);
     }
   };
 
   const removeGalleryImage = (index: number) => {
-    setGalleryFiles(prev => prev.filter((_, i) => i !== index));
-    setGalleryPreviews(prev => prev.filter((_, i) => i !== index));
+    setGalleryItems(prev => prev.filter((_, i) => i !== index));
   };
 
   const uploadToCloudflare = async (file: File) => {
@@ -153,11 +152,9 @@ export default function AdminDashboard() {
     setTestimonialRole(project.testimonialRole || '');
     setEditingId(project.id);
     setExistingImage(project.image);
-    setExistingGallery(project.gallery || []);
     setPreviewUrl(project.image);
-    setGalleryPreviews(project.gallery || []);
+    setGalleryItems((project.gallery || []).map(url => ({ url, file: null })));
     setSelectedFile(null);
-    setGalleryFiles([]);
     setIsModalOpen(true);
   };
 
@@ -176,11 +173,9 @@ export default function AdminDashboard() {
     setTestimonialRole('');
     setEditingId(null);
     setExistingImage(null);
-    setExistingGallery([]);
     setSelectedFile(null);
     setPreviewUrl(null);
-    setGalleryFiles([]);
-    setGalleryPreviews([]);
+    setGalleryItems([]);
     setIsModalOpen(true);
   };
 
@@ -196,15 +191,16 @@ export default function AdminDashboard() {
       // 1. Upload new main image if selected
       const imageUrl = selectedFile ? await uploadToCloudflare(selectedFile) : existingImage;
 
-      // 2. Upload new gallery images if selected
-      const newGalleryUrls: string[] = [];
-      for (const file of galleryFiles) {
-        const url = await uploadToCloudflare(file);
-        newGalleryUrls.push(url);
+      // 2. Process gallery images (upload new ones, keep existing)
+      const finalGallery: string[] = [];
+      for (const item of galleryItems) {
+        if (item.file) {
+          const url = await uploadToCloudflare(item.file);
+          finalGallery.push(url);
+        } else {
+          finalGallery.push(item.url);
+        }
       }
-      
-      // Combine existing gallery with new uploads
-      const finalGallery = [...existingGallery, ...newGalleryUrls];
 
       const projectData = {
         title,
@@ -239,7 +235,6 @@ export default function AdminDashboard() {
       setIsModalOpen(false);
       setEditingId(null);
       setExistingImage(null);
-      setExistingGallery([]);
       setTitle('');
       setSlug('');
       setCategory('Web Design and Development');
@@ -254,8 +249,7 @@ export default function AdminDashboard() {
       setTestimonialRole('');
       setSelectedFile(null);
       setPreviewUrl(null);
-      setGalleryFiles([]);
-      setGalleryPreviews([]);
+      setGalleryItems([]);
       fetchProjects();
     } catch (error: any) {
       console.error(error);
@@ -366,8 +360,8 @@ export default function AdminDashboard() {
 
         {/* New Project Modal */}
         {isModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
-            <div className="bg-zinc-900 border border-zinc-800 w-full max-w-2xl rounded-2xl shadow-2xl my-8">
+          <div className="fixed inset-0 z-50 flex items-start justify-center bg-black/80 backdrop-blur-sm p-4 overflow-y-auto">
+            <div className="bg-zinc-900 border border-zinc-800 w-full max-w-2xl rounded-2xl shadow-2xl mt-10 mb-10">
               <div className="flex justify-between items-center p-6 border-b border-zinc-800">
                 <h3 className="text-2xl font-bold text-white">{editingId ? 'Edit Project' : 'Create New Project'}</h3>
                 <button onClick={() => setIsModalOpen(false)} className="text-zinc-400 hover:text-white transition-colors">
@@ -417,11 +411,11 @@ export default function AdminDashboard() {
                     </p>
                   </div>
 
-                  {galleryPreviews.length > 0 && (
+                  {galleryItems.length > 0 && (
                     <div className="grid grid-cols-3 gap-4">
-                      {galleryPreviews.map((preview, idx) => (
+                      {galleryItems.map((item, idx) => (
                         <div key={idx} className="relative aspect-square rounded-lg overflow-hidden border border-zinc-800 group">
-                          <Image src={preview} alt="Gallery Preview" fill className="object-cover" />
+                          <Image src={item.url} alt="Gallery Preview" fill className="object-cover" />
                           <button 
                             type="button" 
                             onClick={() => removeGalleryImage(idx)}
