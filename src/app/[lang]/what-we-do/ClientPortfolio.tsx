@@ -8,10 +8,11 @@ import { db } from "@/lib/firebase";
 import { collection, getDocs } from "firebase/firestore";
 
 type PortfolioItem = {
+  id: string;
   title: string;
   category: string;
   image: string;
-  slug?: string; // Optional for backward compatibility with hardcoded data
+  slug?: string;
 };
 
 export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[], lang: string }) {
@@ -28,6 +29,7 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
           const fetchedItems = querySnapshot.docs.map(doc => {
             const data = doc.data();
             return {
+              id: doc.id,
               title: data.title || "Untitled Project",
               category: data.category || "Uncategorized",
               image: data.image || "/assets/images/2024/10/la-casa-del-mofongo.webp",
@@ -42,6 +44,7 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
     }
     fetchProjects();
   }, []);
+
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     show: {
@@ -115,12 +118,13 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
           </motion.div>
         );
 
+        // Using a combination of item.id and item.title as key to ensure uniqueness
         return item.slug ? (
-          <Link href={`/${lang}/what-we-do/${item.slug}`} key={item.slug || item.title} className="block cursor-pointer">
+          <Link href={`/${lang}/what-we-do/${item.slug}`} key={item.id} className="block cursor-pointer">
             {cardContent}
           </Link>
         ) : (
-          <div key={item.title}>{cardContent}</div>
+          <div key={item.id}>{cardContent}</div>
         );
       })}
       </motion.div>
