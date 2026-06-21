@@ -48,7 +48,7 @@ export default async function RootLayout({
     <html lang={lang} className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} bg-zinc-950 text-white min-h-screen flex flex-col`} suppressHydrationWarning>
         <Navbar lang={lang} dict={dict} />
-        <div className="flex-grow flex flex-col pt-24">{children}</div>
+        <div className="flex-grow flex flex-col">{children}</div>
         <Footer lang={lang} dict={dict} />
         <BackToTop />
         {process.env.NEXT_PUBLIC_GA_ID && (
