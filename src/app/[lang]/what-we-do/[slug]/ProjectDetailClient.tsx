@@ -211,9 +211,11 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                 <Image 
                   src={project.image} 
                   alt={project.title} 
-                  width={1920}
-                  height={1080}
+                  width={2880}
+                  height={1600}
+                  quality={100}
                   className="w-full h-auto block"
+                  style={{ imageRendering: "high-quality" as any }}
                 />
               </div>
               {project.gallery?.map((img, idx) => (
@@ -225,9 +227,11 @@ export default function ProjectDetailClient({ lang, slug }: { lang: string; slug
                   <Image 
                     src={img} 
                     alt={`${project.title} screenshot ${idx + 1}`} 
-                    width={1920}
-                    height={1080}
+                    width={2880}
+                    height={1600}
+                    quality={100}
                     className="w-full h-auto block"
+                    style={{ imageRendering: "high-quality" as any }}
                   />
                 </div>
               ))}
