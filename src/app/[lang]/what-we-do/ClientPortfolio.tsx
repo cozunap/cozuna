@@ -59,7 +59,15 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
 
   const filteredItems = activeCategory === "All" 
     ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
+    : portfolioItems.filter(item => {
+        if (activeCategory === "Graphic Design") {
+          return item.category === "Graphic Design" || item.category === "Graphic Design / Branding";
+        }
+        if (activeCategory === "Web Design") {
+          return item.category === "Web Design" || item.category === "Web Design and Development";
+        }
+        return item.category === activeCategory;
+      });
 
   return (
     <div>
