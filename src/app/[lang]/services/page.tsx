@@ -2,6 +2,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { getPageData } from "@/lib/cms";
 
+import PageHero from "@/components/PageHero";
+
 const services = [
   {
     title: "Web Design & Development",
@@ -45,19 +47,15 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
 
   const heroTitle = cmsData?.heroTitle?.[lang] || "Our Services";
   const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "Everything you need to launch, grow, and scale your brand under one roof.";
+  const heroImage = cmsData?.heroImage;
 
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">
-      {/* Header */}
-      <section className="relative py-24 sm:py-32 px-6 lg:px-8 border-b border-zinc-900 bg-brand-dark overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme(colors.brand.primary/5),theme(colors.zinc.950))] opacity-50" />
-        <div className="mx-auto max-w-7xl text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">{heroTitle}</h1>
-          <p className="mt-6 text-xl leading-8 text-zinc-300 max-w-2xl mx-auto font-light">
-            {heroSubtitle}
-          </p>
-        </div>
-      </section>
+      <PageHero 
+        title={heroTitle} 
+        subtitle={heroSubtitle} 
+        backgroundImage={heroImage} 
+      />
 
       {/* Services List */}
       <section className="py-24 px-6 lg:px-8">

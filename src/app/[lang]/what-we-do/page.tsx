@@ -57,30 +57,33 @@ export const metadata = {
 
 export const revalidate = 60; // Revalidate every 60 seconds (ISR)
 
-import { getPortfolioProjects } from "@/lib/cms";
+import { getPortfolioProjects, getPageData } from "@/lib/cms";
+import PageHero from "@/components/PageHero";
 
 export default async function WhatWeDoPage({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
+  const lang = resolvedParams.lang || 'en';
   
   // Fetch from Firebase first
   let portfolioItems = await getPortfolioProjects();
+  const cmsData = await getPageData('portfolio');
   
   // If database is empty (brand new), use fallbacks to keep site from looking empty
   if (!portfolioItems || portfolioItems.length === 0) {
     portfolioItems = fallbackPortfolioItems;
   }
 
+  const heroTitle = cmsData?.heroTitle?.[lang] || "What We Do";
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "A showcase of our best work. We let our results speak for themselves.";
+  const heroImage = cmsData?.heroImage;
+
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">
-      {/* Header */}
-      <section className="relative py-24 sm:py-32 px-6 lg:px-8 border-b border-zinc-900 bg-brand-dark overflow-hidden">
-        <div className="mx-auto max-w-7xl text-center">
-          <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">What We Do</h1>
-          <p className="mt-6 text-xl leading-8 text-zinc-300 max-w-2xl mx-auto font-light">
-            A showcase of our best work. We let our results speak for themselves.
-          </p>
-        </div>
-      </section>
+      <PageHero 
+        title={heroTitle} 
+        subtitle={heroSubtitle} 
+        backgroundImage={heroImage} 
+      />
 
       {/* Portfolio Grid */}
       <section className="py-24 px-6 lg:px-8">

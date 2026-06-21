@@ -39,7 +39,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
             </p>
             <div className="flex gap-4">
               <div className="flex flex-col">
-                <span className="text-4xl font-black text-brand-primary">10+</span>
+                <span className="text-4xl font-black text-brand-primary">15+</span>
                 <span className="text-sm text-zinc-500 uppercase tracking-wider font-bold mt-1">Years Experience</span>
               </div>
               <div className="w-px h-16 bg-zinc-800 mx-4"></div>

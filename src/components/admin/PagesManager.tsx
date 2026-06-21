@@ -6,7 +6,7 @@ import { doc, getDoc, setDoc, serverTimestamp } from 'firebase/firestore';
 import { Save, UploadCloud } from 'lucide-react';
 import Image from 'next/image';
 
-const PAGES = ['home', 'about', 'services'];
+const PAGES = ['home', 'about', 'services', 'portfolio', 'contact'];
 const LANGUAGES = ['en', 'es', 'fr'];
 
 export default function PagesManager() {
@@ -208,9 +208,26 @@ export default function PagesManager() {
                 <div className="space-y-4">
                   {renderField('Hero Title', 'heroTitle', 'text')}
                   {renderField('Hero Subtitle', 'heroSubtitle', 'textarea')}
+                  {renderField('Hero Background Image', 'heroImage', 'image')}
                   <hr className="border-zinc-800 my-8" />
                   <p className="text-sm text-zinc-400 mb-2">Since Services have multiple cards, please edit the main text below. The dynamic cards manager will be added in phase 2.</p>
                   {renderField('Services Description (Rich Text)', 'servicesContent', 'textarea')}
+                </div>
+              )}
+
+              {activePage === 'portfolio' && (
+                <div className="space-y-4">
+                  {renderField('Hero Title', 'heroTitle', 'text')}
+                  {renderField('Hero Subtitle', 'heroSubtitle', 'textarea')}
+                  {renderField('Hero Background Image', 'heroImage', 'image')}
+                </div>
+              )}
+
+              {activePage === 'contact' && (
+                <div className="space-y-4">
+                  {renderField('Hero Title', 'heroTitle', 'text')}
+                  {renderField('Hero Subtitle', 'heroSubtitle', 'textarea')}
+                  {renderField('Hero Background Image', 'heroImage', 'image')}
                 </div>
               )}
 
