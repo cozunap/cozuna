@@ -24,6 +24,8 @@ interface Project {
   clientName?: string;
   softwareUsed?: string;
   servicesOffered?: string;
+  testimonial?: string;
+  testimonialRole?: string;
 }
 
 export default function AdminDashboard() {
@@ -45,6 +47,8 @@ export default function AdminDashboard() {
   const [clientName, setClientName] = useState('');
   const [softwareUsed, setSoftwareUsed] = useState('');
   const [servicesOffered, setServicesOffered] = useState('');
+  const [testimonial, setTestimonial] = useState('');
+  const [testimonialRole, setTestimonialRole] = useState('');
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [galleryFiles, setGalleryFiles] = useState<File[]>([]);
@@ -145,6 +149,8 @@ export default function AdminDashboard() {
     setClientName(project.clientName || '');
     setSoftwareUsed(project.softwareUsed || '');
     setServicesOffered(project.servicesOffered || '');
+    setTestimonial(project.testimonial || '');
+    setTestimonialRole(project.testimonialRole || '');
     setEditingId(project.id);
     setExistingImage(project.image);
     setExistingGallery(project.gallery || []);
@@ -166,6 +172,8 @@ export default function AdminDashboard() {
     setClientName('');
     setSoftwareUsed('');
     setServicesOffered('');
+    setTestimonial('');
+    setTestimonialRole('');
     setEditingId(null);
     setExistingImage(null);
     setExistingGallery([]);
@@ -209,6 +217,8 @@ export default function AdminDashboard() {
         clientName,
         softwareUsed,
         servicesOffered,
+        testimonial,
+        testimonialRole,
         image: imageUrl,
         gallery: finalGallery,
       };
@@ -240,6 +250,8 @@ export default function AdminDashboard() {
       setClientName('');
       setSoftwareUsed('');
       setServicesOffered('');
+      setTestimonial('');
+      setTestimonialRole('');
       setSelectedFile(null);
       setPreviewUrl(null);
       setGalleryFiles([]);
@@ -482,6 +494,17 @@ export default function AdminDashboard() {
                   <div>
                     <label className="block text-sm font-medium text-zinc-400 mb-1">Services Offered (Optional)</label>
                     <input type="text" value={servicesOffered} onChange={(e) => setServicesOffered(e.target.value)} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none" placeholder="e.g. Branding, Logo Design" />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-zinc-400 mb-1">Testimonial Quote (Optional)</label>
+                    <textarea value={testimonial} onChange={(e) => setTestimonial(e.target.value)} rows={3} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none" placeholder="Leave empty to hide from homepage..." />
+                  </div>
+                  <div className="md:col-span-2">
+                    <label className="block text-sm font-medium text-zinc-400 mb-1">Testimonial Role / Industry (Optional)</label>
+                    <input type="text" value={testimonialRole} onChange={(e) => setTestimonialRole(e.target.value)} className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none" placeholder="e.g. Restaurant, Law Firm" />
                   </div>
                 </div>
 
