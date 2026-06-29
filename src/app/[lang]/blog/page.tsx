@@ -64,30 +64,29 @@ export default async function Blog({ params }: { params: Promise<{ lang: string 
             
             return (
             <article key={post.slug} className="relative flex flex-col items-start justify-between bg-zinc-900 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors">
-              <div className="flex items-center gap-x-4 text-xs">
-                <time dateTime={post.createdAt} className="text-zinc-500">
-                  {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </time>
-                <span className="relative z-10 rounded-full bg-brand-primary/10 px-3 py-1.5 font-medium text-brand-primary">
-                  {postCategory}
-                </span>
-              </div>
-              <div className="group">
-                <h3 className="mt-3 text-xl font-semibold leading-6 text-white group-hover:text-zinc-300">
-                  <Link href={`/${lang}/blog/${post.slug}`}>
-                    <span className="absolute inset-0" />
-                    {postTitle}
-                  </Link>
-                </h3>
-                <p className="mt-5 line-clamp-3 text-sm leading-6 text-zinc-400">{postExcerpt}</p>
-              </div>
-              <div className="relative mt-8 flex items-center gap-x-4">
-                <div className="text-sm leading-6">
-                  <p className="font-semibold text-white">
-                    cozuna
-                  </p>
+              <Link href={`/${lang}/blog/${post.slug}`} className="flex flex-col items-start justify-between w-full h-full">
+                <div className="flex items-center gap-x-4 text-xs w-full">
+                  <time dateTime={post.createdAt} className="text-zinc-500">
+                    {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </time>
+                  <span className="relative z-10 rounded-full bg-brand-primary/10 px-3 py-1.5 font-medium text-brand-primary">
+                    {postCategory}
+                  </span>
                 </div>
-              </div>
+                <div className="group mt-3 w-full">
+                  <h3 className="text-xl font-semibold leading-6 text-white group-hover:text-zinc-300">
+                    {postTitle}
+                  </h3>
+                  <p className="mt-5 line-clamp-3 text-sm leading-6 text-zinc-400">{postExcerpt}</p>
+                </div>
+                <div className="mt-8 flex items-center gap-x-4 w-full">
+                  <div className="text-sm leading-6">
+                    <p className="font-semibold text-white">
+                      cozuna
+                    </p>
+                  </div>
+                </div>
+              </Link>
             </article>
             );
           })}
