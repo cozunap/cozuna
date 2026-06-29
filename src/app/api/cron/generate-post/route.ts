@@ -14,7 +14,7 @@ async function writeToFirestore(projectId: string, post: any) {
       title_en: { stringValue: post.title_en || post.title || 'Untitled' },
       title_es: { stringValue: post.title_es || '' },
       title_fr: { stringValue: post.title_fr || '' },
-      slug: { stringValue: post.slug },
+      slug: { stringValue: post.slug || (post.title_en || post.title || 'untitled').toLowerCase().replace(/[^a-z0-9]+/g, '-') + '-' + Date.now().toString().slice(-4) },
       excerpt: { stringValue: post.excerpt_en || post.excerpt || '' },
       excerpt_en: { stringValue: post.excerpt_en || post.excerpt || '' },
       excerpt_es: { stringValue: post.excerpt_es || '' },
