@@ -96,11 +96,11 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="columns-1 md:columns-2 lg:columns-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {filteredItems.map((item, index) => {
         const cardContent = (
-          <motion.div variants={itemVariants} className={`group relative ${index % 3 === 0 ? 'aspect-square' : 'aspect-[4/5]'} overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 mb-8 break-inside-avoid w-full inline-block`}>
+          <motion.div variants={itemVariants} className={`group relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 w-full`}>
             <Image 
               src={item.image} 
               alt={item.title} 
