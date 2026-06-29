@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
+import { Monitor, PenTool, Printer, Presentation } from "lucide-react";
 import DynamicTestimonials from '@/components/DynamicTestimonials';
 
 export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }: { lang: string, dict: any, cmsData: any, portfolioItems?: any[] }) {
@@ -119,14 +120,13 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, margin: "-100px" }}
-            className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none"
+            className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-5xl"
           >
-            <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-12 lg:max-w-none lg:grid-cols-4">
+            <dl className="grid max-w-xl grid-cols-1 gap-8 lg:max-w-none md:grid-cols-2">
               {/* Service 1 */}
               <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
-                <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
-                  <Image src="/assets/images/2024/10/web-design.jpg" alt="Web Design" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                <div className="mb-6 flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 group-hover:bg-brand-primary/10 group-hover:border-brand-primary/30 transition-colors">
+                  <Monitor className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
                   Web Design
@@ -137,9 +137,8 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
               </motion.div>
               {/* Service 2 */}
               <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
-                <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
-                  <Image src="/assets/images/2024/10/graphic-design.webp" alt="Graphic Design" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                <div className="mb-6 flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 group-hover:bg-brand-primary/10 group-hover:border-brand-primary/30 transition-colors">
+                  <PenTool className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
                   Graphic Design
@@ -150,9 +149,8 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
               </motion.div>
               {/* Service 3 */}
               <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
-                <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
-                  <Image src="/assets/images/2024/10/printing.webp" alt="Printing" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                <div className="mb-6 flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 group-hover:bg-brand-primary/10 group-hover:border-brand-primary/30 transition-colors">
+                  <Printer className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
                   Printing
@@ -163,9 +161,8 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
               </motion.div>
               {/* Service 4 */}
               <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
-                <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
-                  <Image src="/assets/images/2024/10/signage.webp" alt="Signage" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
-                  <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
+                <div className="mb-6 flex items-center justify-center w-16 h-16 rounded-2xl bg-zinc-900 border border-zinc-800 group-hover:bg-brand-primary/10 group-hover:border-brand-primary/30 transition-colors">
+                  <Presentation className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
                   Signage
