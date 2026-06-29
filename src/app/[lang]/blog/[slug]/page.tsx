@@ -102,7 +102,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
         
-        <footer className="mt-16 pt-8 border-t border-zinc-800">
+        <footer className="mt-16 pt-8 border-t border-zinc-800 flex items-center justify-between">
           <div className="flex items-center gap-x-4">
             <div className="text-sm leading-6">
               <p className="font-semibold text-white">
@@ -110,6 +110,10 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
               </p>
             </div>
           </div>
+          <Link href={`/${lang}/blog`} className="inline-flex items-center gap-2 text-sm font-semibold text-brand-primary hover:text-brand-primary/80 transition-colors bg-brand-primary/10 px-4 py-2 rounded-full">
+            <ArrowLeft className="w-4 h-4" />
+            {lang === 'es' ? 'Volver al Blog' : 'Back to Blog'}
+          </Link>
         </footer>
       </div>
     </div>
