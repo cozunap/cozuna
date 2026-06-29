@@ -18,6 +18,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     { name: dict.navigation.services, href: `/${lang}/services` },
     { name: dict.navigation.aboutUs, href: `/${lang}/about-us` },
     { name: dict.navigation.whatWeDo, href: `/${lang}/what-we-do` },
+    { name: lang === 'es' ? 'Blog' : 'Blog', href: `/${lang}/blog` },
   ];
 
   return (

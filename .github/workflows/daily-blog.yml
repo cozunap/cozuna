@@ -1,0 +1,22 @@
+name: Daily AI Blog Generation
+
+on:
+  schedule:
+    # Runs every day at 13:00 UTC (9:00 AM EST)
+    - cron: '0 13 * * *'
+  workflow_dispatch:
+    # Allows manual triggering from the GitHub Actions tab
+
+jobs:
+  generate-post:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Generate Post API Endpoint
+        run: |
+          response=$(curl -s -w "%{http_code}" -o response.json -X GET "https://cozuna.com/api/cron/generate-post?secret=${{ secrets.CRON_SECRET }}")
+          echo "HTTP Status Code: $response"
+          cat response.json
+          if [ "$response" -ne 200 ]; then
+            echo "Failed to generate post"
+            exit 1
+          fi
