@@ -31,6 +31,22 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
       description,
       type: "website",
       locale: lang,
+      url: "https://cozuna.com",
+      siteName: "COzuna",
+      images: [
+        {
+          url: "https://cozuna.com/assets/images/2024/10/main-photo.webp",
+          width: 1200,
+          height: 630,
+          alt: "COzuna Web Design & Printing",
+        }
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://cozuna.com/assets/images/2024/10/main-photo.webp"],
     }
   };
 }
