@@ -58,7 +58,7 @@ export default async function Blog({ params }: { params: Promise<{ lang: string 
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
           {posts.map((post: any) => (
-            <article key={post.slug} className="flex flex-col items-start justify-between bg-zinc-900 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors">
+            <article key={post.slug} className="relative flex flex-col items-start justify-between bg-zinc-900 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors">
               <div className="flex items-center gap-x-4 text-xs">
                 <time dateTime={post.createdAt} className="text-zinc-500">
                   {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -67,7 +67,7 @@ export default async function Blog({ params }: { params: Promise<{ lang: string 
                   {post.category}
                 </span>
               </div>
-              <div className="group relative">
+              <div className="group">
                 <h3 className="mt-3 text-xl font-semibold leading-6 text-white group-hover:text-zinc-300">
                   <Link href={`/${lang}/blog/${post.slug}`}>
                     <span className="absolute inset-0" />
