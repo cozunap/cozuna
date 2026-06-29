@@ -106,7 +106,7 @@ export default async function WhatWeDoPage({ params }: { params: Promise<{ lang:
       </section>
 
       {/* Portfolio Grid Client Component */}
-      <ClientPortfolio initialItems={portfolioItems} dict={dict} />
+      <ClientPortfolio items={portfolioItems} dict={dict} lang={lang} />
 
       {/* CTA Section */}
       <section className="py-24 bg-brand-dark px-6 lg:px-8 text-center mt-auto border-t border-zinc-900">

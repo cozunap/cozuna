@@ -3,47 +3,24 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, Variants } from "framer-motion";
-import { useState, useEffect } from "react";
-import { db } from "@/lib/firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { useState } from "react";
 
 type PortfolioItem = {
-  id: string;
+  id?: string;
   title: string;
   category: string;
   image: string;
   slug?: string;
 };
 
-export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[], lang: string }) {
-  const [portfolioItems, setPortfolioItems] = useState<PortfolioItem[]>(items);
-  const [activeCategory, setActiveCategory] = useState<string>("All");
+export default function ClientPortfolio({ items, dict, lang }: { items: PortfolioItem[], dict: any, lang: string }) {
+  const [activeCategory, setActiveCategory] = useState<string>(dict.portfolio.categories.all);
 
-  const categories = ["All", "Graphic Design", "Web Design"];
-
-  useEffect(() => {
-    async function fetchProjects() {
-      try {
-        const querySnapshot = await getDocs(collection(db, "projects"));
-        if (!querySnapshot.empty) {
-          const fetchedItems = querySnapshot.docs.map(doc => {
-            const data = doc.data();
-            return {
-              id: doc.id,
-              title: data.title || "Untitled Project",
-              category: data.category || "Uncategorized",
-              image: data.image || "/assets/images/2024/10/la-casa-del-mofongo.webp",
-              slug: data.slug || doc.id
-            };
-          });
-          setPortfolioItems(fetchedItems);
-        }
-      } catch (error) {
-        console.error("Error fetching portfolio items", error);
-      }
-    }
-    fetchProjects();
-  }, []);
+  const categories = [
+    dict.portfolio.categories.all, 
+    dict.portfolio.categories.graphic, 
+    dict.portfolio.categories.web
+  ];
 
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
@@ -60,17 +37,9 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
     show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
   };
 
-  const filteredItems = activeCategory === "All" 
-    ? portfolioItems 
-    : portfolioItems.filter(item => {
-        if (activeCategory === "Graphic Design") {
-          return item.category === "Graphic Design" || item.category === "Graphic Design / Branding";
-        }
-        if (activeCategory === "Web Design") {
-          return item.category === "Web Design" || item.category === "Web Design and Development";
-        }
-        return item.category === activeCategory;
-      });
+  const filteredItems = activeCategory === dict.portfolio.categories.all 
+    ? items 
+    : items.filter(item => item.category === activeCategory);
 
   return (
     <div>
@@ -98,7 +67,7 @@ export default function ClientPortfolio({ items, lang }: { items: PortfolioItem[
         animate="show"
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
-        {filteredItems.map((item, index) => {
+        {filteredItems.map((item) => {
         const cardContent = (
           <motion.div variants={itemVariants} className={`group relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 w-full`}>
             <Image 
