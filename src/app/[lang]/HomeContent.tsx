@@ -105,10 +105,14 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
             transition={{ duration: 0.6 }}
             className="mx-auto max-w-2xl lg:text-center"
           >
-            <h2 className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">Our Expertise</h2>
-            <p className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              Everything Your Brand Needs
+            <p className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">
+              {lang === 'es' ? 'Nuestra Especialidad' : 'Our Expertise'}
             </p>
+            <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+              {lang === 'es' 
+                ? 'Diseño Web Económico y Desarrollo' 
+                : 'Affordable Web Design & Web Development'}
+            </h2>
           </motion.div>
           <motion.div 
             variants={containerVariants}

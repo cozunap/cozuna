@@ -3,3 +3,5 @@ Allow: /
 
 User-agent: AdsBot-Google
 Allow: /
+
+Sitemap: https://cozuna.com/sitemap.xml
