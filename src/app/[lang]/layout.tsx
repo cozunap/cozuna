@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import SecurityShield from "@/components/SecurityShield";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import { getDictionary } from "@/lib/dictionaries";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -101,6 +102,7 @@ export default async function RootLayout({
         <div className="flex-grow flex flex-col">{children}</div>
         <Footer lang={lang} dict={dict} />
         <BackToTop />
+        <WhatsAppButton />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
