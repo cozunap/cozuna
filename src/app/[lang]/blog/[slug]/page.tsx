@@ -49,20 +49,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     return { title: 'Post Not Found' };
   }
 
+  const lang = resolvedParams.lang;
+  const postTitle = lang === 'es' ? (post.title_es || post.title) : lang === 'fr' ? (post.title_fr || post.title) : (post.title_en || post.title);
+  const postExcerpt = lang === 'es' ? (post.excerpt_es || post.excerpt) : lang === 'fr' ? (post.excerpt_fr || post.excerpt) : (post.excerpt_en || post.excerpt);
+
   return {
-    title: `${post.title} | COzuna Blog`,
-    description: post.excerpt,
+    title: `${postTitle} | COzuna Blog`,
+    description: postExcerpt,
     openGraph: {
-      title: post.title,
-      description: post.excerpt,
+      title: postTitle,
+      description: postExcerpt,
       type: 'article',
       publishedTime: post.createdAt,
-      authors: [post.author],
+      authors: [post.author || 'cozuna'],
     },
     twitter: {
       card: 'summary_large_image',
-      title: post.title,
-      description: post.excerpt,
+      title: postTitle,
+      description: postExcerpt,
     },
   };
 }
@@ -76,6 +80,12 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
     notFound();
   }
 
+  // Get localized content with English fallback
+  const postTitle = lang === 'es' ? (post.title_es || post.title) : lang === 'fr' ? (post.title_fr || post.title) : (post.title_en || post.title);
+  const postCategory = lang === 'es' ? (post.category_es || post.category) : lang === 'fr' ? (post.category_fr || post.category) : (post.category_en || post.category);
+  const postExcerpt = lang === 'es' ? (post.excerpt_es || post.excerpt) : lang === 'fr' ? (post.excerpt_fr || post.excerpt) : (post.excerpt_en || post.excerpt);
+  const postContent = lang === 'es' ? (post.content_es || post.content) : lang === 'fr' ? (post.content_fr || post.content) : (post.content_en || post.content);
+
   return (
     <div className="bg-zinc-950 py-24 sm:py-32 min-h-screen">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
@@ -87,19 +97,23 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         <header className="mb-12">
           <div className="flex items-center gap-x-4 text-sm mb-6">
             <time dateTime={post.createdAt} className="text-zinc-500">
-              {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </time>
             <span className="relative z-10 rounded-full bg-brand-primary/10 px-3 py-1.5 font-medium text-brand-primary">
-              {post.category}
+              {postCategory}
             </span>
           </div>
-          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-6">{post.title}</h1>
-          <p className="text-lg leading-8 text-zinc-400 font-light border-l-4 border-brand-primary pl-4">{post.excerpt}</p>
+          <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-6">
+            {postTitle}
+          </h1>
+          <p className="text-lg leading-8 text-zinc-400 font-light border-l-4 border-brand-primary pl-4">
+            {postExcerpt}
+          </p>
         </header>
         
         <div 
           className="prose prose-invert prose-brand max-w-none prose-h2:text-white prose-a:text-brand-primary prose-strong:text-zinc-200"
-          dangerouslySetInnerHTML={{ __html: post.content }}
+          dangerouslySetInnerHTML={{ __html: postContent }}
         />
         
         <footer className="mt-16 pt-8 border-t border-zinc-800 flex items-center justify-between">

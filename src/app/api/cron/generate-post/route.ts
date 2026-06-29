@@ -74,11 +74,19 @@ Write a highly engaging, SEO-optimized blog post about: "${randomTopic}".
 
 Return EXACTLY a JSON object with no markdown formatting, no backticks, just the raw JSON with these exact keys:
 {
-  "title": "A catchy, SEO friendly title",
-  "slug": "url-friendly-slug-of-the-title",
-  "excerpt": "A 2 sentence summary of the article",
-  "content": "The full article in HTML format. Use <h2>, <p>, <ul>, <li>, <strong>. Minimum 600 words. Do NOT include <h1> or <html>/<body> tags.",
-  "category": "${randomTopic}",
+  "title_en": "A catchy, SEO friendly title in English",
+  "title_es": "A catchy, SEO friendly title in Spanish",
+  "title_fr": "A catchy, SEO friendly title in French",
+  "slug": "url-friendly-slug-of-the-english-title",
+  "excerpt_en": "A 2 sentence summary in English",
+  "excerpt_es": "A 2 sentence summary in Spanish",
+  "excerpt_fr": "A 2 sentence summary in French",
+  "content_en": "The full article in English (HTML format). Use <h2>, <p>, <ul>, <li>, <strong>. Minimum 600 words. Do NOT include <h1> or <html>/<body> tags.",
+  "content_es": "The full article translated to Spanish (HTML format). Use the exact same HTML structure as English.",
+  "content_fr": "The full article translated to French (HTML format). Use the exact same HTML structure as English.",
+  "category_en": "${randomTopic}",
+  "category_es": "Categoría en Español",
+  "category_fr": "Catégorie en Français",
   "author": "cozuna"
 }`;
 
