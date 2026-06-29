@@ -26,9 +26,10 @@ type GetAQuoteClientProps = {
   dynamicServices?: Service[];
   dynamicBudgets?: Budget[];
   dict: any;
+  lang: string;
 };
 
-export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets = [], dict }: GetAQuoteClientProps) {
+export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets = [], dict, lang }: GetAQuoteClientProps) {
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: "",
@@ -79,7 +80,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, lang }),
       });
 
       if (!response.ok) {

@@ -33,6 +33,7 @@ export default async function GetAQuotePage({ params }: { params: Promise<{ lang
         dynamicServices={quoteSettings?.services || []} 
         dynamicBudgets={quoteSettings?.budgets || []} 
         dict={dict.quote}
+        lang={lang}
       />
     </main>
   );

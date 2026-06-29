@@ -5,7 +5,7 @@ export const runtime = 'edge';
 export async function POST(request: Request) {
   try {
     const data = await request.json();
-    const { service, budget, timeline, firstName, lastName, email, message } = data;
+    const { service, budget, timeline, firstName, lastName, email, message, lang } = data;
 
     // Validate required fields
     if (!firstName || !lastName || !email || !service || !budget || !timeline) {
@@ -36,7 +36,8 @@ export async function POST(request: Request) {
         service,
         budget,
         timeline,
-        message: message || "No additional message."
+        message: message || "No additional message.",
+        lang: lang || 'en'
       }),
     });
 
