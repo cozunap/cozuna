@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getPageData } from "@/lib/cms";
+import { getDictionary } from "@/lib/dictionaries";
 
 export const metadata = {
   title: "About Us | COzuna Web Design & Printing",
@@ -13,11 +14,12 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   const cmsData = await getPageData('about');
+  const dict = await getDictionary(lang as any);
 
-  const heroTitle = cmsData?.heroTitle?.[lang] || (lang === 'es' ? "Quiénes " : lang === 'fr' ? "Qui Nous " : "Who We ");
-  const heroTitleHighlight = lang === 'es' ? "Somos" : lang === 'fr' ? "Sommes" : "Are";
-  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "We are a passionate team of designers, developers, and print specialists dedicated to bringing your brand's vision to life.";
-  const philosophyTitle = cmsData?.philosophyTitle?.[lang] || "What Drives Us";
+  const heroTitle = cmsData?.heroTitle?.[lang] || dict.about.heroTitle;
+  const heroTitleHighlight = dict.about.heroTitleHighlight;
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || dict.about.heroSubtitle;
+  const philosophyTitle = cmsData?.philosophyTitle?.[lang] || dict.about.philosophyTitle;
   const mainImage = cmsData?.image || "https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=2000&auto=format&fit=crop";
 
   return (
@@ -40,12 +42,12 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
             <div className="flex gap-4">
               <div className="flex flex-col">
                 <span className="text-4xl font-black text-brand-primary">15+</span>
-                <span className="text-sm text-zinc-500 uppercase tracking-wider font-bold mt-1">Years Experience</span>
+                <span className="text-sm text-zinc-500 uppercase tracking-wider font-bold mt-1">{dict.about.stats.experience}</span>
               </div>
               <div className="w-px h-16 bg-zinc-800 mx-4"></div>
               <div className="flex flex-col">
                 <span className="text-4xl font-black text-white">500+</span>
-                <span className="text-sm text-zinc-500 uppercase tracking-wider font-bold mt-1">Projects Delivered</span>
+                <span className="text-sm text-zinc-500 uppercase tracking-wider font-bold mt-1">{dict.about.stats.projects}</span>
               </div>
             </div>
           </div>
@@ -64,7 +66,7 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
       <section className="py-24 px-6 lg:px-8 bg-zinc-900 border-t border-zinc-800">
         <div className="mx-auto max-w-7xl">
           <div className="text-center mb-16">
-            <h2 className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">Our Philosophy</h2>
+            <h2 className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">{dict.about.philosophy}</h2>
             <p className="mt-2 text-3xl font-bold tracking-tight text-white sm:text-4xl">{philosophyTitle}</p>
           </div>
           
@@ -75,8 +77,8 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Innovation First</h3>
-              <p className="text-zinc-400">We constantly push boundaries to deliver modern, cutting-edge solutions that keep our clients ahead of the curve.</p>
+              <h3 className="text-xl font-bold text-white mb-4">{dict.about.values.innovation.title}</h3>
+              <p className="text-zinc-400">{dict.about.values.innovation.description}</p>
             </div>
             
             <div className="bg-zinc-950 p-10 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors">
@@ -85,8 +87,8 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Fast Execution</h3>
-              <p className="text-zinc-400">We respect your time. Our streamlined processes ensure high-quality delivery without unnecessary delays.</p>
+              <h3 className="text-xl font-bold text-white mb-4">{dict.about.values.fast.title}</h3>
+              <p className="text-zinc-400">{dict.about.values.fast.description}</p>
             </div>
             
             <div className="bg-zinc-950 p-10 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors">
@@ -95,8 +97,8 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.514" />
                 </svg>
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Client Success</h3>
-              <p className="text-zinc-400">Your success is our success. We build long-term relationships by consistently over-delivering on our promises.</p>
+              <h3 className="text-xl font-bold text-white mb-4">{dict.about.values.success.title}</h3>
+              <p className="text-zinc-400">{dict.about.values.success.description}</p>
             </div>
           </div>
         </div>

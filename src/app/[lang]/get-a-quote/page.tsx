@@ -17,9 +17,9 @@ export default async function GetAQuotePage({ params }: { params: Promise<{ lang
   const dict = await getDictionary(lang as any);
   
   const heroTitle = cmsData?.heroTitle?.[lang] || (
-    <>Start Your <span className="text-brand-primary">Project</span></>
+    <>{dict.quote.step1.title}</>
   );
-  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "Let's build something amazing together. Complete the steps below to request a personalized quote.";
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || dict.quote.step1.subtitle;
   const heroImage = cmsData?.heroImage;
 
   return (

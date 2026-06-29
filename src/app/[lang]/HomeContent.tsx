@@ -107,12 +107,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
             className="mx-auto max-w-2xl lg:text-center"
           >
             <p className="text-base font-semibold leading-7 text-brand-primary tracking-widest uppercase">
-              {lang === 'es' ? 'Nuestra Especialidad' : 'Our Expertise'}
+              {dict.home.expertise}
             </p>
             <h2 className="mt-2 text-4xl font-bold tracking-tight text-white sm:text-5xl">
-              {lang === 'es' 
-                ? 'Diseño Web Económico y Desarrollo' 
-                : 'Affordable Web Design & Web Development'}
+              {dict.home.expertiseTitle}
             </h2>
           </motion.div>
           <motion.div 
@@ -129,10 +127,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
                   <Monitor className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
-                  Web Design
+                  {dict.home.services.web.title}
                 </dt>
                 <dd className="flex flex-auto flex-col text-base leading-7 text-zinc-400">
-                  <p className="flex-auto">Stunning, fast, and responsive websites engineered to convert visitors into loyal customers.</p>
+                  <p className="flex-auto">{dict.home.services.web.description}</p>
                 </dd>
               </motion.div>
               {/* Service 2 */}
@@ -141,10 +139,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
                   <PenTool className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
-                  Graphic Design
+                  {dict.home.services.graphic.title}
                 </dt>
                 <dd className="flex flex-auto flex-col text-base leading-7 text-zinc-400">
-                  <p className="flex-auto">From striking logos to complete brand identities, we make your visual communication unforgettable.</p>
+                  <p className="flex-auto">{dict.home.services.graphic.description}</p>
                 </dd>
               </motion.div>
               {/* Service 3 */}
@@ -153,10 +151,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
                   <Printer className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
-                  Printing
+                  {dict.home.services.print.title}
                 </dt>
                 <dd className="flex flex-auto flex-col text-base leading-7 text-zinc-400">
-                  <p className="flex-auto">High-quality business cards, flyers, and menus. We bridge the gap between digital and physical.</p>
+                  <p className="flex-auto">{dict.home.services.print.description}</p>
                 </dd>
               </motion.div>
               {/* Service 4 */}
@@ -165,10 +163,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
                   <Presentation className="w-8 h-8 text-zinc-400 group-hover:text-brand-primary transition-colors" />
                 </div>
                 <dt className="text-2xl font-bold leading-7 text-white mb-4">
-                  Signage
+                  {dict.home.services.signage.title}
                 </dt>
                 <dd className="flex flex-auto flex-col text-base leading-7 text-zinc-400">
-                  <p className="flex-auto">Eye-catching indoor and outdoor signage solutions that ensure your business gets noticed instantly.</p>
+                  <p className="flex-auto">{dict.home.services.signage.description}</p>
                 </dd>
               </motion.div>
             </dl>

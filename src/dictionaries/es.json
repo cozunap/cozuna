@@ -7,27 +7,119 @@
     "getAQuote": "Cotizar"
   },
   "home": {
-    "heroTitle": "Excelencia Digital e Impresión Premium",
+    "heroTitle": "Excelencia Digital & Impresión Premium",
     "heroSubtitle": "Creamos experiencias digitales impresionantes y materiales impresos de alta calidad que elevan tu marca.",
-    "ctaSecondary": "Ver Portafolio"
+    "ctaSecondary": "Ver Portafolio",
+    "expertise": "Nuestra Especialidad",
+    "expertiseTitle": "Diseño Web Económico y Desarrollo",
+    "services": {
+      "web": {
+        "title": "Diseño Web",
+        "description": "Sitios web impresionantes, rápidos y adaptables diseñados para convertir visitantes en clientes leales."
+      },
+      "graphic": {
+        "title": "Diseño Gráfico",
+        "description": "Desde logotipos llamativos hasta identidades de marca completas, hacemos que tu comunicación visual sea inolvidable."
+      },
+      "print": {
+        "title": "Impresión Premium",
+        "description": "Cerramos la brecha entre lo digital y lo físico con materiales impresos de alta calidad."
+      },
+      "signage": {
+        "title": "Letreros Personalizados",
+        "description": "Hazte notar al instante con llamativos letreros para interiores y exteriores."
+      }
+    }
+  },
+  "about": {
+    "heroTitle": "Quiénes ",
+    "heroTitleHighlight": "Somos",
+    "heroSubtitle": "Somos un equipo apasionado de diseñadores, desarrolladores y especialistas en impresión dedicados a dar vida a la visión de tu marca.",
+    "philosophy": "Nuestra Filosofía",
+    "philosophyTitle": "Lo Que Nos Impulsa",
+    "stats": {
+      "experience": "Años de Experiencia",
+      "projects": "Proyectos Entregados"
+    },
+    "values": {
+      "innovation": {
+        "title": "Innovación Primero",
+        "description": "Constantemente empujamos los límites para ofrecer soluciones modernas e innovadoras que mantienen a nuestros clientes a la vanguardia."
+      },
+      "fast": {
+        "title": "Ejecución Rápida",
+        "description": "Respetamos tu tiempo. Nuestros procesos optimizados garantizan entregas de alta calidad sin demoras innecesarias."
+      },
+      "success": {
+        "title": "Éxito del Cliente",
+        "description": "Tu éxito es nuestro éxito. Construimos relaciones a largo plazo entregando consistentemente más de lo prometido."
+      }
+    }
+  },
+  "servicesPage": {
+    "heroTitle": "Nuestros Servicios",
+    "heroSubtitle": "Todo lo que necesitas para lanzar, hacer crecer y escalar tu marca bajo un mismo techo.",
+    "items": {
+      "web": {
+        "title": "Diseño y Desarrollo Web",
+        "description": "Tu sitio web es el escaparate digital de tu negocio. Construimos sitios web adaptables, de carga rápida y visualmente impresionantes, diseñados para convertir a tus visitantes en clientes leales. Desde sitios corporativos hasta plataformas de comercio electrónico dinámicas, lo hacemos todo.",
+        "features": ["Diseño Adaptable", "Optimización SEO", "Carga Rápida", "Desarrollo Personalizado"]
+      },
+      "graphic": {
+        "title": "Diseño Gráfico y Branding",
+        "description": "Las primeras impresiones importan. Desde logotipos llamativos hasta identidades de marca completas, nos aseguramos de que tu comunicación visual sea inolvidable. Te ayudamos a crear una apariencia coherente en todos tus canales de marketing.",
+        "features": ["Diseño de Logotipo", "Guías de Marca", "Materiales de Marketing", "Gráficos para Redes Sociales"]
+      },
+      "print": {
+        "title": "Servicios de Impresión Premium",
+        "description": "Cierra la brecha entre lo digital y lo físico con materiales impresos de alta calidad. Ofrecemos impresión asequible y profesional para tarjetas de presentación, volantes, menús de restaurantes, folletos y más.",
+        "features": ["Tarjetas de Presentación", "Menús de Restaurantes", "Volantes y Folletos", "Formato Grande"]
+      },
+      "signage": {
+        "title": "Letreros Personalizados",
+        "description": "Hazte notar al instante con llamativos letreros para interiores y exteriores. Ya sea que necesites una pancarta para tu escaparate, una caja de luz o letreros direccionales, diseñamos y producimos letreros que exigen atención.",
+        "features": ["Pancartas Exteriores", "Cajas de Luz", "Gráficos para Ventanas", "Letreros Interiores"]
+      }
+    }
+  },
+  "portfolio": {
+    "heroTitleStart": "Nuestro ",
+    "heroTitleHighlight": "Portafolio",
+    "heroSubtitle": "Una selección de nuestro mejor trabajo en diseño web, diseño gráfico e impresión.",
+    "categories": {
+      "all": "Todos los Trabajos",
+      "web": "Diseño y Desarrollo Web",
+      "graphic": "Diseño Gráfico / Branding",
+      "print": "Impresión",
+      "signage": "Letreros"
+    },
+    "cta": {
+      "title": "¿Quieres ver tu proyecto aquí?",
+      "description": "Contáctanos hoy para una consulta gratuita y comencemos a construir tu identidad digital.",
+      "button": "Inicia Tu Proyecto"
+    }
+  },
+  "blog": {
+    "title": "Nuestro Blog",
+    "subtitle": "Últimas noticias sobre Tecnología, Desarrollo Web e Impresión."
   },
   "footer": {
     "tagline": "Elevando marcas a través de la excelencia digital y la impresión premium.",
-    "connect": "Conectar",
+    "connect": "Contacto",
     "legal": "Legal",
     "terms": "Términos de Servicio",
     "privacy": "Política de Privacidad"
   },
   "quote": {
     "step1": {
-      "title": "¿En qué te podemos ayudar?",
+      "title": "¿En qué podemos ayudarte?",
       "subtitle": "Selecciona un servicio para comenzar"
     },
     "step2": {
       "title": "Detalles del Proyecto",
       "subtitle": "Cuéntanos un poco más sobre el alcance del trabajo.",
       "budgetLabel": "Presupuesto Estimado",
-      "budgetPlaceholder": "Selecciona un rango de presupuesto",
+      "budgetPlaceholder": "Selecciona un rango",
       "timelineLabel": "Plazo Ideal",
       "timelinePlaceholder": "Selecciona un plazo",
       "timelineOptions": {
@@ -53,19 +145,19 @@
     },
     "success": {
       "title": "¡Solicitud Recibida!",
-      "message": "Revisaremos los detalles de tu proyecto y te contactaremos en breve."
+      "message": "Revisaremos los detalles de tu proyecto y nos pondremos en contacto contigo a la brevedad."
     },
     "services": {
       "web": "Diseño Web",
       "graphic": "Diseño Gráfico",
       "print": "Impresión",
-      "signage": "Letreros y Rótulos"
+      "signage": "Letreros"
     },
     "budgets": {
       "under_1k": "Menos de $1,000",
       "1k_to_5k": "$1,000 - $5,000",
       "5k_to_10k": "$5,000 - $10,000",
-      "10k_plus": "$10,000+"
+      "10k_plus": "$10,000 o más"
     }
   }
 }

@@ -1,39 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getPageData } from "@/lib/cms";
+import { getDictionary } from "@/lib/dictionaries";
 
 import PageHero from "@/components/PageHero";
-
-const services = [
-  {
-    title: "Web Design & Development",
-    description:
-      "Your website is the digital storefront of your business. We build responsive, fast-loading, and visually stunning websites engineered to convert your visitors into loyal customers. From corporate sites to dynamic e-commerce platforms, we handle it all.",
-    features: ["Responsive Design", "SEO Optimization", "Fast Load Times", "Custom Development"],
-    image: "/assets/images/2024/10/web-design.jpg",
-  },
-  {
-    title: "Graphic Design & Branding",
-    description:
-      "First impressions matter. From striking logos to complete brand identities, we ensure your visual communication is unforgettable. We help you create a consistent look and feel across all your marketing channels.",
-    features: ["Logo Design", "Brand Guidelines", "Marketing Materials", "Social Media Graphics"],
-    image: "/assets/images/2024/10/graphic-design.webp",
-  },
-  {
-    title: "Premium Printing Services",
-    description:
-      "Bridge the gap between digital and physical with high-quality printed materials. We offer affordable and professional printing for business cards, flyers, restaurant menus, brochures, and more.",
-    features: ["Business Cards", "Restaurant Menus", "Flyers & Brochures", "Large Format"],
-    image: "/assets/images/2024/10/printing.webp",
-  },
-  {
-    title: "Custom Signage",
-    description:
-      "Get noticed instantly with eye-catching indoor and outdoor signage. Whether you need a storefront banner, a light box, or directional signs, we design and produce signage that demands attention.",
-    features: ["Outdoor Banners", "Light Boxes", "Window Graphics", "Indoor Signs"],
-    image: "/assets/images/2024/10/signage.webp",
-  },
-];
 
 export const metadata = {
   title: "Our Services | COzuna Web Design & Printing",
@@ -44,10 +14,30 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
   const resolvedParams = await params;
   const lang = resolvedParams.lang || 'en';
   const cmsData = await getPageData('services');
+  const dict = await getDictionary(lang as any);
 
-  const heroTitle = cmsData?.heroTitle?.[lang] || "Our Services";
-  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || "Everything you need to launch, grow, and scale your brand under one roof.";
+  const heroTitle = cmsData?.heroTitle?.[lang] || dict.servicesPage.heroTitle;
+  const heroSubtitle = cmsData?.heroSubtitle?.[lang] || dict.servicesPage.heroSubtitle;
   const heroImage = cmsData?.heroImage;
+  
+  const services = [
+    {
+      ...dict.servicesPage.items.web,
+      image: "/assets/images/2024/10/web-design.jpg",
+    },
+    {
+      ...dict.servicesPage.items.graphic,
+      image: "/assets/images/2024/10/graphic-design.webp",
+    },
+    {
+      ...dict.servicesPage.items.print,
+      image: "/assets/images/2024/10/printing.webp",
+    },
+    {
+      ...dict.servicesPage.items.signage,
+      image: "/assets/images/2024/10/signage.webp",
+    },
+  ];
 
   return (
     <main className="flex min-h-screen flex-col bg-zinc-950">
@@ -61,7 +51,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
       <section className="py-12 px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="space-y-32">
-            {services.map((service, index) => (
+            {services.map((service: any, index: number) => (
               <div
                 key={service.title}
                 className={`flex flex-col lg:flex-row gap-16 items-center ${
@@ -89,7 +79,7 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
                   </p>
                   
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
-                    {service.features.map((feature) => (
+                    {service.features.map((feature: string) => (
                       <li key={feature} className="flex items-center gap-3">
                         <svg className="w-5 h-5 text-brand-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />

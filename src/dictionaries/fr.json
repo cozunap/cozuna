@@ -9,7 +9,99 @@
   "home": {
     "heroTitle": "Excellence Numérique & Impression Premium",
     "heroSubtitle": "Nous créons des expériences numériques époustouflantes et des supports imprimés de haute qualité qui subliment votre marque.",
-    "ctaSecondary": "Voir le Portfolio"
+    "ctaSecondary": "Voir le Portfolio",
+    "expertise": "Notre Expertise",
+    "expertiseTitle": "Conception Web Abordable et Développement",
+    "services": {
+      "web": {
+        "title": "Conception Web",
+        "description": "Des sites Web époustouflants, rapides et réactifs conçus pour convertir les visiteurs en clients fidèles."
+      },
+      "graphic": {
+        "title": "Conception Graphique",
+        "description": "Des logos saisissants aux identités de marque complètes, nous rendons votre communication visuelle inoubliable."
+      },
+      "print": {
+        "title": "Impression Premium",
+        "description": "Faites le pont entre le numérique et le physique avec des supports imprimés de haute qualité."
+      },
+      "signage": {
+        "title": "Signalétique Personnalisée",
+        "description": "Faites-vous remarquer instantanément avec une signalétique intérieure et extérieure attrayante."
+      }
+    }
+  },
+  "about": {
+    "heroTitle": "Qui Nous ",
+    "heroTitleHighlight": "Sommes",
+    "heroSubtitle": "Nous sommes une équipe passionnée de concepteurs, de développeurs et de spécialistes de l'impression dédiés à donner vie à la vision de votre marque.",
+    "philosophy": "Notre Philosophie",
+    "philosophyTitle": "Ce Qui Nous Anime",
+    "stats": {
+      "experience": "Années d'Expérience",
+      "projects": "Projets Livrés"
+    },
+    "values": {
+      "innovation": {
+        "title": "L'Innovation d'Abord",
+        "description": "Nous repoussons constamment les limites pour fournir des solutions modernes et de pointe qui maintiennent nos clients à l'avant-garde."
+      },
+      "fast": {
+        "title": "Exécution Rapide",
+        "description": "Nous respectons votre temps. Nos processus simplifiés garantissent une livraison de haute qualité sans retards inutiles."
+      },
+      "success": {
+        "title": "Succès du Client",
+        "description": "Votre succès est notre succès. Nous établissons des relations à long terme en dépassant constamment nos promesses."
+      }
+    }
+  },
+  "servicesPage": {
+    "heroTitle": "Nos Services",
+    "heroSubtitle": "Tout ce dont vous avez besoin pour lancer, développer et faire évoluer votre marque sous un même toit.",
+    "items": {
+      "web": {
+        "title": "Conception et Développement Web",
+        "description": "Votre site Web est la vitrine numérique de votre entreprise. Nous créons des sites Web réactifs, à chargement rapide et visuellement époustouflants, conçus pour convertir vos visiteurs en clients fidèles. Des sites d'entreprise aux plates-formes de commerce électronique dynamiques, nous gérons tout.",
+        "features": ["Conception Réactive", "Optimisation SEO", "Temps de Chargement Rapides", "Développement Personnalisé"]
+      },
+      "graphic": {
+        "title": "Conception Graphique et Image de Marque",
+        "description": "Les premières impressions comptent. Des logos saisissants aux identités de marque complètes, nous veillons à ce que votre communication visuelle soit inoubliable. Nous vous aidons à créer une apparence et une sensation cohérentes sur tous vos canaux marketing.",
+        "features": ["Création de Logo", "Directives de Marque", "Matériel de Marketing", "Graphiques pour Réseaux Sociaux"]
+      },
+      "print": {
+        "title": "Services d'Impression Premium",
+        "description": "Faites le pont entre le numérique et le physique avec des supports imprimés de haute qualité. Nous proposons une impression abordable et professionnelle de cartes de visite, dépliants, menus de restaurants, brochures et plus encore.",
+        "features": ["Cartes de Visite", "Menus de Restaurants", "Dépliants et Brochures", "Grand Format"]
+      },
+      "signage": {
+        "title": "Signalétique Personnalisée",
+        "description": "Faites-vous remarquer instantanément avec une signalétique intérieure et extérieure attrayante. Que vous ayez besoin d'une bannière de vitrine, d'une boîte à lumière ou de panneaux directionnels, nous concevons et produisons une signalétique qui attire l'attention.",
+        "features": ["Bannières Extérieures", "Boîtes à Lumière", "Graphiques de Fenêtre", "Panneaux Intérieurs"]
+      }
+    }
+  },
+  "portfolio": {
+    "heroTitleStart": "Notre ",
+    "heroTitleHighlight": "Portfolio",
+    "heroSubtitle": "Une sélection de nos meilleurs travaux en conception web, conception graphique et impression.",
+    "categories": {
+      "all": "Tous les Travaux",
+      "web": "Conception et Développement Web",
+      "graphic": "Conception Graphique / Image de Marque",
+      "print": "Impression",
+      "signage": "Signalétique"
+    },
+    "cta": {
+      "title": "Vous voulez voir votre projet ici ?",
+      "description": "Contactez-nous aujourd'hui pour une consultation gratuite et commençons à construire votre identité numérique.",
+      "button": "Démarrez Votre Projet"
+    }
+  },
+  "blog": {
+    "title": "Notre Blog",
+    "subtitle": "Dernières actualités sur la technologie, le développement Web et l'impression."
   },
   "footer": {
     "tagline": "Élever les marques grâce à l'excellence numérique et l'impression premium.",

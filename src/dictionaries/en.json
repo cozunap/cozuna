@@ -9,7 +9,99 @@
   "home": {
     "heroTitle": "Digital Excellence & Premium Printing",
     "heroSubtitle": "We craft stunning digital experiences and high-quality printed materials that elevate your brand.",
-    "ctaSecondary": "View Portfolio"
+    "ctaSecondary": "View Portfolio",
+    "expertise": "Our Expertise",
+    "expertiseTitle": "Affordable Web Design & Web Development",
+    "services": {
+      "web": {
+        "title": "Web Design",
+        "description": "Stunning, fast, and responsive websites engineered to convert visitors into loyal customers."
+      },
+      "graphic": {
+        "title": "Graphic Design",
+        "description": "From striking logos to complete brand identities, we make your visual communication unforgettable."
+      },
+      "print": {
+        "title": "Premium Printing",
+        "description": "Bridge the gap between digital and physical with high-quality printed materials."
+      },
+      "signage": {
+        "title": "Custom Signage",
+        "description": "Get noticed instantly with eye-catching indoor and outdoor signage."
+      }
+    }
+  },
+  "about": {
+    "heroTitle": "Who We ",
+    "heroTitleHighlight": "Are",
+    "heroSubtitle": "We are a passionate team of designers, developers, and print specialists dedicated to bringing your brand's vision to life.",
+    "philosophy": "Our Philosophy",
+    "philosophyTitle": "What Drives Us",
+    "stats": {
+      "experience": "Years Experience",
+      "projects": "Projects Delivered"
+    },
+    "values": {
+      "innovation": {
+        "title": "Innovation First",
+        "description": "We constantly push boundaries to deliver modern, cutting-edge solutions that keep our clients ahead of the curve."
+      },
+      "fast": {
+        "title": "Fast Execution",
+        "description": "We respect your time. Our streamlined processes ensure high-quality delivery without unnecessary delays."
+      },
+      "success": {
+        "title": "Client Success",
+        "description": "Your success is our success. We build long-term relationships by consistently over-delivering on our promises."
+      }
+    }
+  },
+  "servicesPage": {
+    "heroTitle": "Our Services",
+    "heroSubtitle": "Everything you need to launch, grow, and scale your brand under one roof.",
+    "items": {
+      "web": {
+        "title": "Web Design & Development",
+        "description": "Your website is the digital storefront of your business. We build responsive, fast-loading, and visually stunning websites engineered to convert your visitors into loyal customers. From corporate sites to dynamic e-commerce platforms, we handle it all.",
+        "features": ["Responsive Design", "SEO Optimization", "Fast Load Times", "Custom Development"]
+      },
+      "graphic": {
+        "title": "Graphic Design & Branding",
+        "description": "First impressions matter. From striking logos to complete brand identities, we ensure your visual communication is unforgettable. We help you create a consistent look and feel across all your marketing channels.",
+        "features": ["Logo Design", "Brand Guidelines", "Marketing Materials", "Social Media Graphics"]
+      },
+      "print": {
+        "title": "Premium Printing Services",
+        "description": "Bridge the gap between digital and physical with high-quality printed materials. We offer affordable and professional printing for business cards, flyers, restaurant menus, brochures, and more.",
+        "features": ["Business Cards", "Restaurant Menus", "Flyers & Brochures", "Large Format"]
+      },
+      "signage": {
+        "title": "Custom Signage",
+        "description": "Get noticed instantly with eye-catching indoor and outdoor signage. Whether you need a storefront banner, a light box, or directional signs, we design and produce signage that demands attention.",
+        "features": ["Outdoor Banners", "Light Boxes", "Window Graphics", "Indoor Signs"]
+      }
+    }
+  },
+  "portfolio": {
+    "heroTitleStart": "Our ",
+    "heroTitleHighlight": "Portfolio",
+    "heroSubtitle": "A selection of our best work in web design, graphic design, and printing.",
+    "categories": {
+      "all": "All Work",
+      "web": "Web Design and Development",
+      "graphic": "Graphic Design / Branding",
+      "print": "Printing",
+      "signage": "Signage"
+    },
+    "cta": {
+      "title": "Want to see your project here?",
+      "description": "Contact us today for a free consultation and let's start building your digital identity.",
+      "button": "Start Your Project"
+    }
+  },
+  "blog": {
+    "title": "Our Blog",
+    "subtitle": "Latest news about Technology, Web Development, and Printing."
   },
   "footer": {
     "tagline": "Elevating brands through digital excellence and premium printing.",

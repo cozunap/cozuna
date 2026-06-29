@@ -39,7 +39,7 @@ async function getPosts() {
 export default async function Blog({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
-  const dict = await getDictionary(lang as 'en' | 'es');
+  const dict = await getDictionary(lang as any);
   
   const posts = await getPosts();
 
@@ -48,12 +48,10 @@ export default async function Blog({ params }: { params: Promise<{ lang: string 
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            {lang === 'es' ? 'Nuestro Blog' : 'Our Blog'}
+            {dict.blog.title}
           </h2>
           <p className="mt-2 text-lg leading-8 text-zinc-400">
-            {lang === 'es' 
-              ? 'Últimas noticias sobre Tecnología, Desarrollo Web e Impresión.' 
-              : 'Latest news about Technology, Web Development, and Printing.'}
+            {dict.blog.subtitle}
           </p>
         </div>
         <div className="mx-auto mt-16 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3">
