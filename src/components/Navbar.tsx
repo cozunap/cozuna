@@ -28,7 +28,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         <div className="flex lg:flex-1">
           <Link href={`/${lang}`} className="-m-1.5 p-1.5 flex items-center gap-3">
             <span className="sr-only">COzuna Web Design & Printing</span>
-            <div className="text-2xl font-black text-white tracking-tighter">
+            <div className="text-4xl font-black text-white tracking-tighter">
               CO<span className="text-brand-primary">zuna</span>.
             </div>
           </Link>
@@ -40,7 +40,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             <Link
               key={item.name}
               href={item.href}
-              className={`text-sm font-semibold leading-6 transition-colors ${
+              className={`uppercase text-sm font-semibold leading-6 transition-colors ${
                 pathname === item.href ? "text-brand-primary" : "text-zinc-300 hover:text-white"
               }`}
             >
@@ -77,7 +77,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             <div className="flex items-center justify-between">
               <Link href={`/${lang}`} className="-m-1.5 p-1.5 flex items-center gap-3" onClick={() => setMobileMenuOpen(false)}>
                 <span className="sr-only">COzuna</span>
-                <div className="text-2xl font-black text-white tracking-tighter">
+                <div className="text-4xl font-black text-white tracking-tighter">
                   CO<span className="text-brand-primary">zuna</span>.
                 </div>
               </Link>
@@ -100,7 +100,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                       key={item.name}
                       href={item.href}
                       onClick={() => setMobileMenuOpen(false)}
-                      className={`-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
+                      className={`uppercase -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
                         pathname === item.href ? "text-brand-primary bg-zinc-900" : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
                       }`}
                     >

@@ -27,7 +27,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
   const heroMediaType = cmsData?.heroMediaType || 'video';
   const heroImage = cmsData?.heroImage || '/assets/images/2024/10/main-photo.webp';
   const heroVideo = cmsData?.heroVideo?.[lang] || "https://assets.mixkit.co/videos/preview/mixkit-hands-of-a-designer-working-on-a-tablet-42898-large.mp4";
-  const heroOverlayOpacity = cmsData?.heroOverlayOpacity !== undefined ? cmsData.heroOverlayOpacity : 40;
+  const heroOverlayOpacity = cmsData?.heroOverlayOpacity !== undefined ? cmsData.heroOverlayOpacity : 80;
   const overlayOpacityDecimal = heroOverlayOpacity / 100;
 
   const titleWords = heroTitle.split(' ');
