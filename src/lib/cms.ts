@@ -1,10 +1,11 @@
 export async function getPageData(pageId: string) {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
   if (!projectId) return null;
 
   try {
     const res = await fetch(
-      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/pages/${pageId}`,
+      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/pages/${pageId}?key=${apiKey}`,
       { next: { revalidate: 60 } } // Revalidate every 60 seconds
     );
 
@@ -36,11 +37,12 @@ export async function getPageData(pageId: string) {
 
 export async function getPortfolioProjects() {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
   if (!projectId) return [];
 
   try {
     const res = await fetch(
-      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/projects`,
+      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/projects?key=${apiKey}`,
       { next: { revalidate: 60 } }
     );
 

@@ -101,7 +101,8 @@
   },
   "blog": {
     "title": "Our Blog",
-    "subtitle": "Latest news about Technology, Web Development, and Printing."
+    "subtitle": "Discover the latest insights, tips, and trends in web design, development, and digital marketing from the COzuna team.",
+    "noArticles": "No articles yet. Check back tomorrow!"
   },
   "footer": {
     "tagline": "Elevating brands through digital excellence and premium printing.",

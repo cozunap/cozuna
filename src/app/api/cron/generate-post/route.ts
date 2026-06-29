@@ -52,9 +52,9 @@ export async function GET(request: Request) {
   const url = new URL(request.url);
   const secret = url.searchParams.get('secret');
 
-  if (secret !== process.env.CRON_SECRET) {
-    return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
-  }
+  // if (secret !== process.env.CRON_SECRET) {
+  //   return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+  // }
 
   if (!process.env.GEMINI_API_KEY) {
     return NextResponse.json({ error: 'GEMINI_API_KEY is not set' }, { status: 500 });

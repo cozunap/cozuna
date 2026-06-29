@@ -7,11 +7,12 @@ export const revalidate = 60;
 
 async function getPost(slug: string) {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
   if (!projectId) return null;
 
   try {
     const res = await fetch(
-      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/posts`,
+      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/posts?key=${apiKey}`,
       { next: { revalidate: 60 } }
     );
 

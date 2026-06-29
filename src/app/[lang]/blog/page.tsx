@@ -5,11 +5,12 @@ export const revalidate = 60; // ISR for SEO
 
 async function getPosts() {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
   if (!projectId) return [];
 
   try {
     const res = await fetch(
-      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/posts`,
+      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/posts?key=${apiKey}`,
       { next: { revalidate: 60 } }
     );
 
@@ -91,7 +92,7 @@ export default async function Blog({ params }: { params: Promise<{ lang: string 
           
           {posts.length === 0 && (
             <div className="col-span-3 text-center text-zinc-500 py-12">
-              {lang === 'es' ? 'No hay artículos todavía. ¡Vuelve mañana!' : 'No articles yet. Check back tomorrow!'}
+              {dict.blog.noArticles}
             </div>
           )}
         </div>

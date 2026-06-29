@@ -41,5 +41,37 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("Failed to fetch projects for sitemap:", error);
   }
 
+  // Fetch blog posts
+  try {
+    const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+    const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+    if (projectId && apiKey) {
+      const res = await fetch(
+        `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/posts?key=${apiKey}`,
+        { next: { revalidate: 60 } }
+      );
+      if (res.ok) {
+        const json = await res.json();
+        if (json.documents) {
+          languages.forEach((lang) => {
+            json.documents.forEach((doc: any) => {
+              const slugField = doc.fields?.slug?.stringValue;
+              if (slugField) {
+                routes.push({
+                  url: `${baseUrl}/${lang}/blog/${slugField}`,
+                  lastModified: new Date(),
+                  changeFrequency: 'weekly',
+                  priority: 0.7,
+                });
+              }
+            });
+          });
+        }
+      }
+    }
+  } catch (error) {
+    console.error("Failed to fetch blog posts for sitemap:", error);
+  }
+
   return routes;
 }

@@ -101,7 +101,8 @@
   },
   "blog": {
     "title": "Notre Blog",
-    "subtitle": "Dernières actualités sur la technologie, le développement Web et l'impression."
+    "subtitle": "Découvrez les dernières idées, conseils et tendances en conception web, développement et marketing digital de l'équipe COzuna.",
+    "noArticles": "Aucun article pour le moment. Revenez demain !"
   },
   "footer": {
     "tagline": "Élever les marques grâce à l'excellence numérique et l'impression premium.",
