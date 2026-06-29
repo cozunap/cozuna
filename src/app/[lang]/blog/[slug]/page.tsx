@@ -106,7 +106,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
           <div className="flex items-center gap-x-4">
             <div className="text-sm leading-6">
               <p className="font-semibold text-white">
-                Escrito por: <span className="text-brand-primary">{post.author}</span>
+                {lang === 'es' ? 'Escrito por:' : 'Written by:'} <span className="text-brand-primary">cozuna</span>
               </p>
             </div>
           </div>

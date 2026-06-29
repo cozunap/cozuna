@@ -79,7 +79,7 @@ Return EXACTLY a JSON object with no markdown formatting, no backticks, just the
   "excerpt": "A 2 sentence summary of the article",
   "content": "The full article in HTML format. Use <h2>, <p>, <ul>, <li>, <strong>. Minimum 600 words. Do NOT include <h1> or <html>/<body> tags.",
   "category": "${randomTopic}",
-  "author": "COzuna AI"
+  "author": "cozuna"
 }`;
 
     const response = await ai.models.generateContent({
