@@ -52,7 +52,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
           <div className="hidden lg:block w-px h-6 bg-zinc-800 mx-2"></div>
           
-          <Link href={`/${lang}/get-a-quote`} className="rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-colors">
+          <Link href={`/${lang}/get-a-quote`} className="animate-pulse-glow rounded-full bg-brand-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-red-500 transition-all duration-300 hover:scale-105 hover:shadow-lg hover:shadow-brand-primary/50">
             {dict.navigation.getAQuote}
           </Link>
         </div>

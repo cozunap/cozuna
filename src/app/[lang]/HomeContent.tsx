@@ -83,7 +83,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               href={`/${lang}/get-a-quote`}
-              className="rounded-full bg-brand-primary px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:scale-105"
+              className="animate-pulse-glow rounded-full bg-brand-primary px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/50"
             >
               {dict.navigation.getAQuote}
             </Link>
@@ -118,7 +118,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
           >
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-12 lg:max-w-none lg:grid-cols-4">
               {/* Service 1 */}
-              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors group">
+              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
                 <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
                   <Image src="/assets/images/2024/10/web-design.jpg" alt="Web Design" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
@@ -131,7 +131,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
                 </dd>
               </motion.div>
               {/* Service 2 */}
-              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors group">
+              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
                 <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
                   <Image src="/assets/images/2024/10/graphic-design.webp" alt="Graphic Design" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
@@ -144,7 +144,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
                 </dd>
               </motion.div>
               {/* Service 3 */}
-              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors group">
+              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
                 <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
                   <Image src="/assets/images/2024/10/printing.webp" alt="Printing" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
@@ -157,7 +157,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
                 </dd>
               </motion.div>
               {/* Service 4 */}
-              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors group">
+              <motion.div variants={itemVariants} className="flex flex-col bg-zinc-950 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500 group">
                 <div className="mb-6 overflow-hidden rounded-xl h-48 relative">
                   <Image src="/assets/images/2024/10/signage.webp" alt="Signage" fill className="object-cover group-hover:scale-105 transition-transform duration-500" />
                   <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-colors"></div>
@@ -201,7 +201,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
           >
             {/* Project 1 */}
-            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
+            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500">
               <Image src="/assets/images/2024/10/la-casa-del-mofongo.webp" alt="La Casa Del Mofongo" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -211,7 +211,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
             </motion.div>
 
             {/* Project 2 */}
-            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
+            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500">
               <Image src="/assets/images/2024/10/spa.webp" alt="Monica Nails Spa" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -221,7 +221,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
             </motion.div>
 
             {/* Project 3 */}
-            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
+            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500">
               <Image src="/assets/images/2024/10/lashisha.webp" alt="La Shisha Restaurant" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -231,7 +231,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
             </motion.div>
             
             {/* Project 4 */}
-            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
+            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500">
               <Image src="/assets/images/2024/10/elsyleonso.webp" alt="Elsy Leonso" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -241,7 +241,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
             </motion.div>
 
             {/* Project 5 */}
-            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
+            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500">
               <Image src="/assets/images/2024/10/crossway_business_card.webp" alt="Crossway Driving School" fill className="object-contain bg-white transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -251,7 +251,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
             </motion.div>
 
             {/* Project 6 */}
-            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800">
+            <motion.div variants={itemVariants} className="group relative aspect-[4/3] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 hover:-translate-y-2 hover:shadow-2xl hover:shadow-brand-primary/20 transition-all duration-500">
               <Image src="/assets/images/2024/10/cityshieldsny.webp" alt="City Shields NY" fill className="object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/20 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
@@ -282,7 +282,7 @@ export default function HomeContent({ lang, dict, cmsData }: { lang: string, dic
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
               href="/get-a-quote"
-              className="rounded-full bg-white px-10 py-5 text-sm font-bold text-brand-dark shadow-sm hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:scale-105"
+              className="animate-pulse-glow rounded-full bg-white px-10 py-5 text-sm font-bold text-brand-dark shadow-sm hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/50"
             >
               Start Your Project
             </Link>
