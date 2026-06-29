@@ -42,7 +42,7 @@ export default function ClientPortfolio({ items, dict, lang }: { items: Portfoli
     : items.filter(item => item.category === activeCategory);
 
   return (
-    <div>
+    <div className="pt-[30px]">
       {/* Filters */}
       <div className="flex flex-wrap justify-center gap-4 mb-16">
         {categories.map((cat) => (
@@ -68,34 +68,38 @@ export default function ClientPortfolio({ items, dict, lang }: { items: Portfoli
         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
       >
         {filteredItems.map((item) => {
-        const cardContent = (
-          <motion.div variants={itemVariants} className={`group relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 w-full`}>
-            <Image 
-              src={item.image} 
-              alt={item.title} 
-              fill 
-              className={`object-cover transition-transform duration-700 group-hover:scale-110 ${
-                item.image.includes('crossway') || item.image.includes('overall') || item.image.includes('tbstax') ? 'object-contain bg-white p-4' : ''
-              }`} 
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
-            <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-              <p className="text-brand-primary text-sm font-bold tracking-wider mb-2 uppercase">{item.category}</p>
-              <h3 className="text-2xl font-bold text-white">{item.title}</h3>
+          const itemKey = item.id || item.slug || item.title;
+          
+          const cardContent = (
+            <div className={`group relative aspect-[4/5] overflow-hidden rounded-2xl bg-zinc-900 border border-zinc-800 w-full`}>
+              <Image 
+                src={item.image} 
+                alt={item.title} 
+                fill 
+                className={`object-cover transition-transform duration-700 group-hover:scale-110 ${
+                  item.image.includes('crossway') || item.image.includes('overall') || item.image.includes('tbstax') ? 'object-contain bg-white p-4' : ''
+                }`} 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                <p className="text-brand-primary text-sm font-bold tracking-wider mb-2 uppercase">{item.category}</p>
+                <h3 className="text-2xl font-bold text-white">{item.title}</h3>
+              </div>
             </div>
-          </motion.div>
-        );
+          );
 
-        // Using fallback keys to ensure uniqueness if id is missing during SSR
-        const itemKey = item.id || item.slug || item.title;
-        return item.slug ? (
-          <Link href={`/${lang}/what-we-do/${item.slug}`} key={itemKey} className="block cursor-pointer">
-            {cardContent}
-          </Link>
-        ) : (
-          <div key={itemKey}>{cardContent}</div>
-        );
-      })}
+          return (
+            <motion.div variants={itemVariants} key={itemKey}>
+              {item.slug ? (
+                <Link href={`/${lang}/what-we-do/${item.slug}`} className="block cursor-pointer">
+                  {cardContent}
+                </Link>
+              ) : (
+                <div>{cardContent}</div>
+              )}
+            </motion.div>
+          );
+        })}
       </motion.div>
     </div>
   );
