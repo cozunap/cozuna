@@ -55,7 +55,7 @@ export default function Footer({ lang, dict }: FooterProps) {
             &copy; {new Date().getFullYear()} COzuna. All rights reserved.
           </p>
           <div className="flex space-x-6 text-sm text-zinc-600">
-            <span>Designed in New Jersey</span>
+            <span>Designed by us</span>
           </div>
         </div>
       </div>
