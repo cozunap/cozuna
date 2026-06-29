@@ -10,12 +10,24 @@ async function writeToFirestore(projectId: string, post: any) {
   // Format for Firestore REST API
   const document = {
     fields: {
-      title: { stringValue: post.title },
+      title: { stringValue: post.title_en || post.title || 'Untitled' },
+      title_en: { stringValue: post.title_en || post.title || 'Untitled' },
+      title_es: { stringValue: post.title_es || '' },
+      title_fr: { stringValue: post.title_fr || '' },
       slug: { stringValue: post.slug },
-      excerpt: { stringValue: post.excerpt },
-      content: { stringValue: post.content },
-      category: { stringValue: post.category },
-      author: { stringValue: post.author },
+      excerpt: { stringValue: post.excerpt_en || post.excerpt || '' },
+      excerpt_en: { stringValue: post.excerpt_en || post.excerpt || '' },
+      excerpt_es: { stringValue: post.excerpt_es || '' },
+      excerpt_fr: { stringValue: post.excerpt_fr || '' },
+      content: { stringValue: post.content_en || post.content || '' },
+      content_en: { stringValue: post.content_en || post.content || '' },
+      content_es: { stringValue: post.content_es || '' },
+      content_fr: { stringValue: post.content_fr || '' },
+      category: { stringValue: post.category_en || post.category || 'Blog' },
+      category_en: { stringValue: post.category_en || post.category || 'Blog' },
+      category_es: { stringValue: post.category_es || '' },
+      category_fr: { stringValue: post.category_fr || '' },
+      author: { stringValue: post.author || 'cozuna' },
       createdAt: { timestampValue: new Date().toISOString() },
     }
   };
