@@ -1,23 +1,45 @@
 import { MetadataRoute } from 'next';
+import { getPortfolioProjects } from '@/lib/cms';
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://cozuna.com';
   
   // Base routes
-  const routes = ['', '/about-us', '/services', '/what-we-do', '/get-a-quote'].map((route) => ({
-    url: `${baseUrl}/en${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
+  const staticPaths = ['', '/about-us', '/services', '/what-we-do', '/get-a-quote'];
+  const languages = ['en', 'es', 'fr'];
+  
+  let routes: MetadataRoute.Sitemap = [];
 
-  // Spanish routes
-  const esRoutes = ['', '/about-us', '/services', '/what-we-do', '/get-a-quote'].map((route) => ({
-    url: `${baseUrl}/es${route}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: route === '' ? 1 : 0.8,
-  }));
+  // Generate static routes for all languages
+  languages.forEach((lang) => {
+    staticPaths.forEach((route) => {
+      routes.push({
+        url: `${baseUrl}/${lang}${route}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: route === '' ? 1 : 0.8,
+      });
+    });
+  });
 
-  return [...routes, ...esRoutes];
+  // Fetch dynamic projects
+  try {
+    const projects = await getPortfolioProjects();
+    
+    // Generate dynamic routes for all languages
+    languages.forEach((lang) => {
+      projects.forEach((project: any) => {
+        routes.push({
+          url: `${baseUrl}/${lang}/what-we-do/${project.slug}`,
+          lastModified: new Date(),
+          changeFrequency: 'monthly',
+          priority: 0.6,
+        });
+      });
+    });
+  } catch (error) {
+    console.error("Failed to fetch projects for sitemap:", error);
+  }
+
+  return routes;
 }

@@ -37,5 +37,35 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
 export default async function ProjectDetail({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const resolvedParams = await params;
-  return <ProjectDetailClient lang={resolvedParams.lang} slug={resolvedParams.slug} />;
+  
+  // Fetch project for JSON-LD structured data
+  const projects = await getPortfolioProjects();
+  const project = projects.find((p: any) => p.slug === resolvedParams.slug);
+  
+  const title = project ? `${project.title} | COzuna Web Design & Printing` : "Project | COzuna Web Design & Printing";
+  const description = project?.description || "View this amazing project built by COzuna Web Design & Printing.";
+  const image = project?.image || project?.thumbnail || "https://cozuna.com/assets/images/2024/10/main-photo.webp";
+
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CreativeWork",
+    "name": title,
+    "description": description,
+    "image": image,
+    "url": `https://cozuna.com/${resolvedParams.lang}/what-we-do/${resolvedParams.slug}`,
+    "creator": {
+      "@type": "Organization",
+      "name": "COzuna Web Design & Printing"
+    }
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <ProjectDetailClient lang={resolvedParams.lang} slug={resolvedParams.slug} />
+    </>
+  );
 }
