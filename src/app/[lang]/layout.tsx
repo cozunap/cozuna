@@ -99,7 +99,7 @@ export default async function RootLayout({
           }}
         />
         <Navbar lang={lang} dict={dict} />
-        <div className="flex-grow flex flex-col">{children}</div>
+        <div className="flex-grow flex flex-col pt-[30px]">{children}</div>
         <Footer lang={lang} dict={dict} />
         <BackToTop />
         <WhatsAppButton />
