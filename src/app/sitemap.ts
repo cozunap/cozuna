@@ -13,11 +13,21 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // Generate static routes for all languages
   languages.forEach((lang) => {
     staticPaths.forEach((route) => {
+      const alternates: Record<string, string> = {};
+      languages.forEach((l) => {
+        alternates[l] = `${baseUrl}/${l}${route}`;
+      });
+      // Add x-default for the root/redirecting page
+      alternates['x-default'] = `${baseUrl}/en${route}`;
+
       routes.push({
         url: `${baseUrl}/${lang}${route}`,
         lastModified: new Date(),
         changeFrequency: 'weekly',
         priority: route === '' ? 1 : 0.8,
+        alternates: {
+          languages: alternates,
+        },
       });
     });
   });
@@ -29,11 +39,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Generate dynamic routes for all languages
     languages.forEach((lang) => {
       projects.forEach((project: any) => {
+        const alternates: Record<string, string> = {};
+        languages.forEach((l) => {
+          alternates[l] = `${baseUrl}/${l}/what-we-do/${project.slug}`;
+        });
+        alternates['x-default'] = `${baseUrl}/en/what-we-do/${project.slug}`;
+
         routes.push({
           url: `${baseUrl}/${lang}/what-we-do/${project.slug}`,
           lastModified: new Date(),
           changeFrequency: 'monthly',
           priority: 0.6,
+          alternates: {
+            languages: alternates,
+          },
         });
       });
     });
@@ -57,11 +76,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             json.documents.forEach((doc: any) => {
               const slugField = doc.fields?.slug?.stringValue;
               if (slugField) {
+                const alternates: Record<string, string> = {};
+                languages.forEach((l) => {
+                  alternates[l] = `${baseUrl}/${l}/blog/${slugField}`;
+                });
+                alternates['x-default'] = `${baseUrl}/en/blog/${slugField}`;
+
                 routes.push({
                   url: `${baseUrl}/${lang}/blog/${slugField}`,
                   lastModified: new Date(),
                   changeFrequency: 'weekly',
                   priority: 0.7,
+                  alternates: {
+                    languages: alternates,
+                  },
                 });
               }
             });

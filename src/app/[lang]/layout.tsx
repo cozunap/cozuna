@@ -24,6 +24,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for businesses and individuals.";
 
   return {
+    metadataBase: new URL('https://cozuna.com'),
     title,
     description,
     keywords: "web design, affordable web design, web development, custom websites, SEO, graphic design, printing services, COzuna",
