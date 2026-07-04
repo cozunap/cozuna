@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import SecurityShield from "@/components/SecurityShield";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import SkipToContent from "@/components/SkipToContent";
 import { getDictionary } from "@/lib/dictionaries";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -69,6 +70,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} className="scroll-smooth" suppressHydrationWarning>
       <body className={`${inter.className} bg-zinc-950 text-white min-h-screen flex flex-col`} suppressHydrationWarning>
+        <SkipToContent />
         <SecurityShield />
         <script
           type="application/ld+json"
@@ -100,7 +102,7 @@ export default async function RootLayout({
           }}
         />
         <Navbar lang={lang} dict={dict} />
-        <div className="flex-grow flex flex-col pt-[30px]">{children}</div>
+        <div id="main-content" className="flex-grow flex flex-col pt-[30px]">{children}</div>
         <Footer lang={lang} dict={dict} />
         <BackToTop />
         <WhatsAppButton />
