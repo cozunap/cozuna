@@ -7,11 +7,11 @@
     "getAQuote": "Cotizar"
   },
   "home": {
-    "heroTitle": "Excelencia Digital & Impresión Premium",
-    "heroSubtitle": "Creamos experiencias digitales impresionantes y materiales impresos de alta calidad que elevan tu marca.",
+    "heroTitle": "Diseño Web Económico & Impresión Premium",
+    "heroSubtitle": "Creamos experiencias digitales impresionantes y materiales impresos de alta calidad que elevan tu marca sin romper el presupuesto.",
     "ctaSecondary": "Ver Portafolio",
     "expertise": "Nuestra Especialidad",
-    "expertiseTitle": "Diseño Web Económico y Desarrollo",
+    "expertiseTitle": "Desarrollo Web y Diseño Gráfico",
     "services": {
       "web": {
         "title": "Diseño Web",
@@ -106,10 +106,11 @@
   },
   "footer": {
     "tagline": "Elevando marcas a través de la excelencia digital y la impresión premium.",
-    "connect": "Contacto",
-    "legal": "Legal",
+    "connect": "Conéctate con Nosotros",
+    "legal": "Legales y Soporte",
     "terms": "Términos de Servicio",
-    "privacy": "Política de Privacidad"
+    "privacy": "Política de Privacidad",
+    "areasWeServe": "Sirviendo con orgullo a clientes en República Dominicana, New York (NY), Maryland (MD) y el resto del mundo con diseño y desarrollo web económico."
   },
   "quote": {
     "step1": {

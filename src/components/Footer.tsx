@@ -50,6 +50,12 @@ export default function Footer({ lang, dict }: FooterProps) {
 
         </div>
 
+        <div className="border-t border-zinc-900 pt-8 pb-8 text-center md:text-left">
+          <p className="text-zinc-500 text-sm leading-relaxed max-w-4xl">
+            {dict.footer.areasWeServe}
+          </p>
+        </div>
+
         <div className="pt-8 border-t border-zinc-900 flex flex-col md:flex-row items-center justify-between">
           <p className="text-zinc-600 text-sm mb-4 md:mb-0">
             &copy; {new Date().getFullYear()} COzuna. All rights reserved.

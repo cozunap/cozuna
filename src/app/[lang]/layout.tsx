@@ -16,19 +16,19 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
-  // Basic metadata matching language
+  // Basic metadata matching language and location targets
   const title = lang === 'es' 
-    ? "COzuna | Diseño Web Económico, Desarrollo y Servicios de Impresión" 
-    : "COzuna | Affordable Web Design, Web Development & Printing";
+    ? "COzuna | Diseño y Desarrollo Web Económico en República Dominicana" 
+    : "COzuna | Affordable Web Design & Development in NY & MD";
   const description = lang === 'es' 
-    ? "Servicios económicos de diseño web, desarrollo a medida, diseño gráfico y de impresión de alta calidad para empresas y particulares." 
-    : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for businesses and individuals.";
+    ? "Servicios económicos de diseño web, desarrollo a medida, diseño gráfico y de impresión de alta calidad en República Dominicana." 
+    : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for businesses in New York (NY) and Maryland (MD).";
 
   return {
     metadataBase: new URL('https://cozuna.com'),
     title,
     description,
-    keywords: "web design, affordable web design, web development, custom websites, SEO, graphic design, printing services, COzuna",
+    keywords: "affordable web design NY, web development MD, custom websites New York, diseño web económico república dominicana, desarrollo web RD, graphic design, printing services, COzuna",
     openGraph: {
       title,
       description,
@@ -84,10 +84,15 @@ export default async function RootLayout({
               "url": "https://cozuna.com",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "New Jersey",
-                "addressRegion": "NJ",
+                "addressLocality": "New York",
+                "addressRegion": "NY",
                 "addressCountry": "US"
               },
+              "areaServed": [
+                { "@type": "State", "name": "New York" },
+                { "@type": "State", "name": "Maryland" },
+                { "@type": "Country", "name": "Dominican Republic" }
+              ],
               "priceRange": "$$",
               "hasOfferCatalog": {
                 "@type": "OfferCatalog",
