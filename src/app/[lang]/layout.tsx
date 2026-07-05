@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     metadataBase: new URL('https://cozuna.com'),
     title,
     description,
-    keywords: "affordable web design NY, web development MD, custom websites New York, diseño web económico república dominicana, desarrollo web RD, graphic design, printing services, COzuna",
+    keywords: "affordable web design New York, best web development agency NY, cheap web designers Maryland, custom web development MD, small business website design NY, ecommerce web development New York, premium web design services MD, diseño web económico República Dominicana, desarrollo de páginas web RD, agencias de diseño web en Santo Domingo, creador de paginas web baratas, desarrollo web a medida República Dominicana, diseño gráfico e impresión RD, diseño de tiendas online RD, COzuna web design, affordable web design and development",
     openGraph: {
       title,
       description,
