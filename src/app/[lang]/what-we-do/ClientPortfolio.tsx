@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion, Variants, AnimatePresence } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 type PortfolioItem = {
   id?: string;
@@ -14,6 +15,7 @@ type PortfolioItem = {
 };
 
 export default function ClientPortfolio({ items, dict, lang }: { items: PortfolioItem[], dict: any, lang: string }) {
+  const router = useRouter();
   const [activeCategory, setActiveCategory] = useState<string>(dict.portfolio.categories.all);
 
   const categories = [
@@ -90,14 +92,17 @@ export default function ClientPortfolio({ items, dict, lang }: { items: Portfoli
           );
 
           return (
-            <motion.div variants={itemVariants} key={itemKey}>
-              {item.slug ? (
-                <Link href={`/${lang}/what-we-do/${item.slug}`} className="block cursor-pointer">
-                  {cardContent}
-                </Link>
-              ) : (
-                <div>{cardContent}</div>
-              )}
+            <motion.div 
+              variants={itemVariants} 
+              key={itemKey}
+              onClick={() => {
+                if (item.slug) {
+                  router.push(`/${lang}/what-we-do/${item.slug}`);
+                }
+              }}
+              className={item.slug ? "cursor-pointer" : ""}
+            >
+              {cardContent}
             </motion.div>
           );
         })}
