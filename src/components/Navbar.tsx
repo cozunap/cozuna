@@ -38,15 +38,27 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         {/* Right Aligned Links & CTA */}
         <div className="hidden lg:flex lg:items-center lg:gap-x-8 lg:justify-end">
           {navigation.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              className={`uppercase text-sm font-semibold leading-6 transition-colors ${
-                pathname === item.href ? "text-brand-primary" : "text-zinc-300 hover:text-white"
-              }`}
-            >
-              {item.name}
-            </Link>
+            item.name === dict.navigation.whatWeDo ? (
+              <a
+                key={item.name}
+                href={item.href}
+                className={`uppercase text-sm font-semibold leading-6 transition-colors ${
+                  pathname === item.href ? "text-brand-primary" : "text-zinc-300 hover:text-white"
+                }`}
+              >
+                {item.name}
+              </a>
+            ) : (
+              <Link
+                key={item.name}
+                href={item.href}
+                className={`uppercase text-sm font-semibold leading-6 transition-colors ${
+                  pathname === item.href ? "text-brand-primary" : "text-zinc-300 hover:text-white"
+                }`}
+              >
+                {item.name}
+              </Link>
+            )
           ))}
           
 
@@ -97,16 +109,29 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               <div className="-my-6 divide-y divide-zinc-800">
                 <div className="space-y-2 py-6">
                   {navigation.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      onClick={() => setMobileMenuOpen(false)}
-                      className={`uppercase -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
-                        pathname === item.href ? "text-brand-primary bg-zinc-900" : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
-                      }`}
-                    >
-                      {item.name}
-                    </Link>
+                    item.name === dict.navigation.whatWeDo ? (
+                      <a
+                        key={item.name}
+                        href={item.href}
+                        className={`uppercase -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
+                          pathname === item.href ? "text-brand-primary bg-zinc-900" : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </a>
+                    ) : (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className={`uppercase -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 ${
+                          pathname === item.href ? "text-brand-primary bg-zinc-900" : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
+                        }`}
+                        onClick={() => setMobileMenuOpen(false)}
+                      >
+                        {item.name}
+                      </Link>
+                    )
                   ))}
                 </div>
               </div>
