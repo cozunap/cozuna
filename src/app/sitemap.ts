@@ -5,7 +5,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://cozuna.com';
   
   // Base routes
-  const staticPaths = ['', '/about-us', '/services', '/what-we-do', '/get-a-quote'];
+  const staticPaths = ['', '/about-us', '/services', '/what-we-do', '/get-a-quote', '/affordable-web-development'];
   const languages = ['en', 'es', 'fr'];
   
   let routes: MetadataRoute.Sitemap = [];

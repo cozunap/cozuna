@@ -77,7 +77,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "LocalBusiness",
+              "@type": "Corporation",
               "name": "COzuna Web Design Agency",
               "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
               "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
