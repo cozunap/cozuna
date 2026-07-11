@@ -7,6 +7,15 @@ const nextConfig: import('next').NextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
   },
+  async redirects() {
+    return [
+      {
+        source: '/contact-us',
+        destination: '/en/get-a-quote',
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
