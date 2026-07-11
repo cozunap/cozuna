@@ -14,7 +14,7 @@ export default function Footer({ lang, dict }: FooterProps) {
           
           <div className="col-span-1 md:col-span-2">
             <Link href={`/${lang}`} className="inline-block mb-6">
-              <span className="sr-only">COzuna Web Design & Printing</span>
+              <span className="sr-only">COzuna Web Design Agency</span>
               <div className="text-3xl font-black text-white tracking-tighter">
                 CO<span className="text-brand-primary">zuna</span>.
               </div>

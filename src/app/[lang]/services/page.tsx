@@ -6,7 +6,7 @@ import { getDictionary } from "@/lib/dictionaries";
 import PageHero from "@/components/PageHero";
 
 export const metadata = {
-  title: "Our Services | COzuna Web Design & Printing",
+  title: "Our Services | COzuna Web Design Agency",
   description: "Explore our professional web design, graphic design, printing, and signage services.",
 };
 

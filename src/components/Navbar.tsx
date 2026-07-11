@@ -27,8 +27,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <Link href={`/${lang}`} className="-m-1.5 p-1.5 flex items-center gap-3">
-            <span className="sr-only">COzuna Web Design & Printing</span>
+          <Link href={`/${lang}`} className="-m-1.5 p-1.5 flex items-center gap-2">
+            <span className="sr-only">COzuna Web Design Agency</span>
             <div className="text-4xl font-black text-white tracking-tighter">
               CO<span className="text-brand-primary">zuna</span>.
             </div>

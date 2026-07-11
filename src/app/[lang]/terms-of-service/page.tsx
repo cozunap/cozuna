@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Terms of Service | COzuna Web Design & Printing",
-  description: "Terms of Service for COzuna Web Design & Printing.",
+  title: "Terms of Service | COzuna Web Design Agency",
+  description: "Terms of Service for COzuna Web Design Agency.",
 };
 
 import PageHero from "@/components/PageHero";
@@ -18,7 +18,7 @@ export default function TermsOfServicePage() {
 
         <h2 className="text-xl font-semibold text-white mt-8 mb-4">2. Services</h2>
         <p className="text-zinc-400 mb-4">
-          COzuna Web Design & Printing provides web design, graphic design, printing, and signage services. The specifics of any project, including timelines, deliverables, and costs, will be agreed upon in a separate written contract or proposal.
+          COzuna Web Design Agency provides web design, graphic design, printing, and signage services. The specifics of any project, including timelines, deliverables, and costs, will be agreed upon in a separate written contract or proposal.
         </p>
 
         <h2 className="text-xl font-semibold text-white mt-8 mb-4">3. Intellectual Property</h2>

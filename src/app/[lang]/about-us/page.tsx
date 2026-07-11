@@ -4,7 +4,7 @@ import { getPageData } from "@/lib/cms";
 import { getDictionary } from "@/lib/dictionaries";
 
 export const metadata = {
-  title: "About Us | COzuna Web Design & Printing",
+  title: "About Us | COzuna Web Design Agency",
   description: "Learn more about COzuna, our mission, and our passion for building digital and print identities.",
 };
 

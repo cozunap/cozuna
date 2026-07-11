@@ -18,8 +18,8 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   // Basic metadata matching language and location targets
   const title = lang === 'es' 
-    ? "COzuna | Diseño y Desarrollo Web Económico en República Dominicana" 
-    : "COzuna | Affordable Web Design & Development in NY & MD";
+    ? "COzuna Web Design Agency | Diseño y Desarrollo Web Económico en RD" 
+    : "COzuna Web Design Agency | Affordable Web Design & Development in NY & MD";
   const description = lang === 'es' 
     ? "Servicios económicos de diseño web, desarrollo a medida, diseño gráfico y de impresión de alta calidad en República Dominicana." 
     : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for businesses in New York (NY) and Maryland (MD).";
@@ -41,7 +41,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
           url: "https://cozuna.com/assets/images/2024/10/main-photo.webp",
           width: 1200,
           height: 630,
-          alt: "COzuna Web Design & Printing",
+          alt: "COzuna Web Design Agency",
         }
       ],
     },
@@ -78,7 +78,7 @@ export default async function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "COzuna Web Design & Printing",
+              "name": "COzuna Web Design Agency",
               "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
               "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
               "url": "https://cozuna.com",

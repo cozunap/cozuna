@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { MonitorSmartphone, PenTool, Printer, Signpost, ArrowRight, ArrowLeft, CheckCircle2, FileQuestion } from "lucide-react";
+import { MonitorSmartphone, PenTool, Printer, Signpost, ArrowRight, CheckCircle2, FileQuestion, Mail, Phone, MapPin } from "lucide-react";
 
 const IconMap: Record<string, any> = {
   MonitorSmartphone,
@@ -30,7 +30,6 @@ type GetAQuoteClientProps = {
 };
 
 export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets = [], dict, lang }: GetAQuoteClientProps) {
-  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     service: "",
     budget: "",
@@ -40,7 +39,10 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
     email: "",
     message: ""
   });
+  
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const defaultServices = [
     { id: "web", title: "Web Design", iconName: "MonitorSmartphone" },
@@ -59,15 +61,12 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
   const services = dynamicServices.length > 0 ? dynamicServices : defaultServices;
   const budgets = dynamicBudgets.length > 0 ? dynamicBudgets : defaultBudgets;
 
-  const handleNext = () => {
-    if (step === 1 && !formData.service) return; // Basic validation
-    setStep((prev) => prev + 1);
-  };
-
-  const handlePrev = () => setStep((prev) => prev - 1);
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+  const timelines = [
+    { id: "asap", label: dict?.step2?.timelineOptions?.asap || "ASAP (Urgent)" },
+    { id: "1_month", label: dict?.step2?.timelineOptions?.["1_month"] || "Within 1 month" },
+    { id: "1_3_months", label: dict?.step2?.timelineOptions?.["1_3_months"] || "1 - 3 months" },
+    { id: "flexible", label: dict?.step2?.timelineOptions?.flexible || "Flexible" },
+  ];
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -96,271 +95,256 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
     }
   };
 
-  const slideVariants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 50 : -50,
-      opacity: 0,
-    }),
-    center: {
-      x: 0,
-      opacity: 1,
-    },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 50 : -50,
-      opacity: 0,
-    }),
-  };
-
   return (
-    <>
-      {/* Wizard Content */}
-      <section className="py-12 px-6 lg:px-8 flex-grow flex flex-col justify-center">
-        <div className="mx-auto max-w-4xl w-full">
-          
-          {/* Progress Bar */}
-          {!isSubmitted && (
-            <div className="mb-12 relative">
-              <div className="overflow-hidden h-2 mb-4 text-xs flex rounded-full bg-zinc-900">
-                <motion.div 
-                  initial={{ width: "33%" }}
-                  animate={{ width: `${(step / 3) * 100}%` }}
-                  transition={{ duration: 0.5, ease: "easeInOut" }}
-                  className="shadow-none flex flex-col text-center whitespace-nowrap text-white justify-center bg-brand-primary"
-                ></motion.div>
+    <section className="py-20 px-6 lg:px-8 flex-grow flex items-center bg-zinc-950 relative overflow-hidden">
+      {/* Background Ornaments */}
+      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+        <div className="absolute w-[600px] h-[600px] bg-brand-primary/10 rounded-full blur-[120px] -top-48 -left-48"></div>
+        <div className="absolute w-[800px] h-[800px] bg-brand-primary/5 rounded-full blur-[150px] bottom-0 right-0 translate-x-1/3 translate-y-1/3"></div>
+      </div>
+
+      <div className="mx-auto max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 relative z-10">
+        
+        {/* Left Column: Corporate Branding & Trust */}
+        <div className="lg:col-span-5 flex flex-col justify-center">
+          <motion.div 
+            initial={{ opacity: 0, x: -30 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <h2 className="text-3xl md:text-5xl font-extrabold text-white mb-6 tracking-tight leading-tight">
+              Let's Build Something <span className="text-brand-primary">Extraordinary</span>
+            </h2>
+            <p className="text-lg text-zinc-400 mb-10 leading-relaxed">
+              {dict?.step1?.subtitle || "Partner with us to elevate your brand's digital and physical presence. Whether you need a high-converting website, stunning graphic design, or premium print materials, our team is ready to deliver excellence."}
+            </p>
+
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md border border-zinc-800/50 p-4 rounded-2xl">
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
+                  <Phone className="w-5 h-5 text-brand-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500 font-medium">Call Us Directly</p>
+                  <p className="text-white font-semibold text-lg">+1 (438) 393-9465</p>
+                </div>
               </div>
-              <div className="flex justify-between text-xs font-semibold text-zinc-500 uppercase tracking-widest">
-                <span className={step >= 1 ? "text-brand-primary" : ""}>Service</span>
-                <span className={step >= 2 ? "text-brand-primary" : ""}>Details</span>
-                <span className={step >= 3 ? "text-brand-primary" : ""}>Contact</span>
+              
+              <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md border border-zinc-800/50 p-4 rounded-2xl">
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
+                  <Mail className="w-5 h-5 text-brand-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500 font-medium">Email Us</p>
+                  <p className="text-white font-semibold text-lg">info@cozuna.com</p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md border border-zinc-800/50 p-4 rounded-2xl">
+                <div className="flex-shrink-0 w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-brand-primary" />
+                </div>
+                <div>
+                  <p className="text-sm text-zinc-500 font-medium">Headquarters</p>
+                  <p className="text-white font-semibold text-lg">Laval, QC. Serving NY & MD</p>
+                </div>
               </div>
             </div>
-          )}
+            
+            <div className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-brand-dark to-zinc-900 border border-zinc-800">
+              <p className="text-sm text-zinc-300 italic mb-4">
+                "Cozuna transformed our brand into something modern, professional, and memorable. Their creativity and understanding of our business made the process seamless."
+              </p>
+              <p className="text-xs font-bold text-brand-primary uppercase tracking-wider">— Degan Tax</p>
+            </div>
+          </motion.div>
+        </div>
 
-          <div className="bg-zinc-900 rounded-3xl border border-zinc-800 p-8 md:p-12 min-h-[450px] relative overflow-hidden flex flex-col">
-            <AnimatePresence mode="wait" custom={1}>
-              
-              {/* SUCCESS STATE */}
-              {isSubmitted && (
+        {/* Right Column: The Form */}
+        <div className="lg:col-span-7">
+          <motion.div 
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="bg-zinc-900/80 backdrop-blur-xl rounded-[2rem] border border-zinc-800 p-6 md:p-10 shadow-2xl relative overflow-hidden"
+          >
+            <AnimatePresence mode="wait">
+              {isSubmitted ? (
                 <motion.div
                   key="success"
-                  initial={{ opacity: 0, scale: 0.9 }}
+                  initial={{ opacity: 0, scale: 0.95 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="flex flex-col items-center justify-center h-full text-center py-12"
+                  className="flex flex-col items-center justify-center h-full text-center py-16"
                 >
-                  <CheckCircle2 className="w-20 h-20 text-green-500 mb-6" />
+                  <div className="w-24 h-24 bg-green-500/20 rounded-full flex items-center justify-center mb-6">
+                    <CheckCircle2 className="w-12 h-12 text-green-500" />
+                  </div>
                   <h2 className="text-3xl font-bold text-white mb-4">{dict?.success?.title || "Quote Request Sent!"}</h2>
-                  <p className="text-zinc-400 max-w-md mx-auto mb-8">
-                    {dict?.success?.message || "We'll review your project details and get back to you shortly."}
+                  <p className="text-zinc-400 max-w-md mx-auto mb-8 text-lg">
+                    {dict?.success?.message || "Thank you for reaching out. Our team is reviewing your project details and will be in touch shortly."}
                   </p>
                   <button 
-                    onClick={() => window.location.href = "/"}
-                    className="rounded-full bg-zinc-800 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-700 transition-colors"
+                    onClick={() => window.location.href = `/${lang}`}
+                    className="rounded-full bg-brand-primary px-8 py-4 text-sm font-bold text-white hover:bg-red-500 transition-colors shadow-lg shadow-brand-primary/20"
                   >
-                    Return to Home
+                    Return to Homepage
                   </button>
                 </motion.div>
-              )}
-
-              {/* STEP 1: SERVICE */}
-              {!isSubmitted && step === 1 && (
-                <motion.div
-                  key="step1"
-                  custom={1}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col h-full"
+              ) : (
+                <motion.form 
+                  key="form"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  onSubmit={handleSubmit} 
+                  className="space-y-8"
                 >
-                  <h2 className="text-2xl font-bold text-white mb-2">{dict?.step1?.title || "What do you need help with?"}</h2>
-                  <p className="text-zinc-400 mb-8">{dict?.step1?.subtitle || "Select a service to begin"}</p>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
-                    {services.map((svc) => (
-                      <button
-                        key={svc.id}
-                        onClick={() => setFormData({ ...formData, service: svc.id })}
-                        className={`p-6 rounded-2xl border-2 text-left transition-all duration-200 flex flex-col items-start ${
-                          formData.service === svc.id 
-                            ? "border-brand-primary bg-brand-primary/10" 
-                            : "border-zinc-800 bg-zinc-950 hover:border-zinc-600"
-                        }`}
-                      >
-                        {(() => {
-                          const IconComponent = IconMap[svc.iconName] || FileQuestion;
-                          return <IconComponent className="w-8 h-8 mb-4 text-brand-primary" />;
-                        })()}
-                        <h3 className="text-lg font-semibold text-white">{dict?.services?.[svc.id] || svc.title}</h3>
-                      </button>
-                    ))}
+                  {/* Service Selection */}
+                  <div>
+                    <label className="block text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+                      1. {dict?.step1?.title || "Select Service"}
+                    </label>
+                    <div className="grid grid-cols-2 gap-3 md:gap-4">
+                      {services.map((svc) => {
+                        const isSelected = formData.service === svc.id;
+                        const IconComponent = IconMap[svc.iconName] || FileQuestion;
+                        return (
+                          <button
+                            type="button"
+                            key={svc.id}
+                            onClick={() => setFormData({ ...formData, service: svc.id })}
+                            className={`p-4 rounded-xl border-2 transition-all duration-300 flex items-center gap-3 ${
+                              isSelected 
+                                ? "border-brand-primary bg-brand-primary/10 shadow-lg shadow-brand-primary/10" 
+                                : "border-zinc-800 bg-zinc-950 hover:border-zinc-600 hover:bg-zinc-800/50"
+                            }`}
+                          >
+                            <IconComponent className={`w-5 h-5 flex-shrink-0 ${isSelected ? "text-brand-primary" : "text-zinc-500"}`} />
+                            <span className={`text-sm font-semibold ${isSelected ? "text-white" : "text-zinc-400"}`}>
+                              {dict?.services?.[svc.id] || svc.title}
+                            </span>
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
 
-                  <div className="mt-auto flex justify-end">
-                    <button
-                      onClick={handleNext}
-                      disabled={!formData.service}
-                      className="flex items-center gap-2 rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                    >
-                      {dict?.buttons?.next || "Next Step"} <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* STEP 2: DETAILS */}
-              {!isSubmitted && step === 2 && (
-                <motion.div
-                  key="step2"
-                  custom={1}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col h-full"
-                >
-                  <h2 className="text-2xl font-bold text-white mb-2">{dict?.step2?.title || "Project Details"}</h2>
-                  <p className="text-zinc-400 mb-8">{dict?.step2?.subtitle || "Tell us a bit more about the scope of the work."}</p>
-                  
-                  <div className="space-y-6 mb-8">
+                  {/* Budget & Timeline */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-6 border-t border-zinc-800/50">
                     <div>
-                      <label className="block text-sm font-medium text-white mb-2">{dict?.step2?.budgetLabel || "Estimated Budget"}</label>
-                      <select 
-                        value={formData.budget}
-                        onChange={(e) => setFormData({...formData, budget: e.target.value})}
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
-                      >
-                        <option value="" disabled>{dict?.step2?.budgetPlaceholder || "Select a budget range"}</option>
+                      <label className="block text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+                        2. {dict?.step2?.budgetLabel || "Estimated Budget"}
+                      </label>
+                      <div className="flex flex-col gap-2">
                         {budgets.map((b) => (
-                          <option key={b.id} value={b.id}>{dict?.budgets?.[b.id] || b.label}</option>
+                          <button
+                            type="button"
+                            key={b.id}
+                            onClick={() => setFormData({ ...formData, budget: b.id })}
+                            className={`px-4 py-3 rounded-lg border text-sm font-medium transition-all text-left ${
+                              formData.budget === b.id
+                                ? "border-brand-primary bg-brand-primary text-white"
+                                : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-600 hover:text-white"
+                            }`}
+                          >
+                            {dict?.budgets?.[b.id] || b.label}
+                          </button>
                         ))}
-                      </select>
-                    </div>
-
-                    <div>
-                      <label className="block text-sm font-medium text-white mb-2">{dict?.step2?.timelineLabel || "Ideal Timeline"}</label>
-                      <select 
-                        value={formData.timeline}
-                        onChange={(e) => setFormData({...formData, timeline: e.target.value})}
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
-                      >
-                        <option value="" disabled>{dict?.step2?.timelinePlaceholder || "Select a timeline"}</option>
-                        <option value="asap">{dict?.step2?.timelineOptions?.asap || "ASAP (Urgent)"}</option>
-                        <option value="1_month">{dict?.step2?.timelineOptions?.["1_month"] || "Within 1 month"}</option>
-                        <option value="1_3_months">{dict?.step2?.timelineOptions?.["1_3_months"] || "1 - 3 months"}</option>
-                        <option value="flexible">{dict?.step2?.timelineOptions?.flexible || "Flexible"}</option>
-                      </select>
-                    </div>
-                  </div>
-
-                  <div className="mt-auto flex justify-between">
-                    <button
-                      onClick={handlePrev}
-                      className="flex items-center gap-2 rounded-full bg-zinc-800 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-700 transition-colors"
-                    >
-                      <ArrowLeft className="w-4 h-4" /> {dict?.buttons?.prev || "Back"}
-                    </button>
-                    <button
-                      onClick={handleNext}
-                      disabled={!formData.budget || !formData.timeline}
-                      className="flex items-center gap-2 rounded-full bg-brand-primary px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                    >
-                      {dict?.buttons?.next || "Next Step"} <ArrowRight className="w-4 h-4" />
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-
-              {/* STEP 3: CONTACT */}
-              {!isSubmitted && step === 3 && (
-                <motion.div
-                  key="step3"
-                  custom={1}
-                  variants={slideVariants}
-                  initial="enter"
-                  animate="center"
-                  exit="exit"
-                  transition={{ duration: 0.3 }}
-                  className="flex flex-col h-full"
-                >
-                  <h2 className="text-2xl font-bold text-white mb-2">{dict?.step3?.title || "Your Information"}</h2>
-                  <p className="text-zinc-400 mb-8">{dict?.step3?.subtitle || "How can we reach you?"}</p>
-                  
-                  <form onSubmit={handleSubmit} className="space-y-6 mb-8 flex-grow">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                      <div>
-                        <input 
-                          type="text" 
-                          placeholder={dict?.step3?.firstName || "First Name"} 
-                          required
-                          value={formData.firstName}
-                          onChange={(e) => setFormData({...formData, firstName: e.target.value})}
-                          className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
-                        />
-                      </div>
-                      <div>
-                        <input 
-                          type="text" 
-                          placeholder={dict?.step3?.lastName || "Last Name"} 
-                          required
-                          value={formData.lastName}
-                          onChange={(e) => setFormData({...formData, lastName: e.target.value})}
-                          className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
-                        />
                       </div>
                     </div>
                     <div>
-                      <input 
-                        type="email" 
-                        placeholder={dict?.step3?.email || "Email Address"} 
-                        required
-                        value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
-                      />
+                      <label className="block text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+                        3. {dict?.step2?.timelineLabel || "Timeline"}
+                      </label>
+                      <div className="flex flex-col gap-2">
+                        {timelines.map((t) => (
+                          <button
+                            type="button"
+                            key={t.id}
+                            onClick={() => setFormData({ ...formData, timeline: t.id })}
+                            className={`px-4 py-3 rounded-lg border text-sm font-medium transition-all text-left ${
+                              formData.timeline === t.id
+                                ? "border-brand-primary bg-brand-primary text-white"
+                                : "border-zinc-800 bg-zinc-950 text-zinc-400 hover:border-zinc-600 hover:text-white"
+                            }`}
+                          >
+                            {t.label}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                    <div>
-                      <textarea 
-                        placeholder={dict?.step3?.message || "Project details, goals, links, etc."} 
-                        rows={3}
-                        value={formData.message}
-                        onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none resize-none"
-                      />
-                    </div>
+                  </div>
 
-                    <div className="mt-auto flex flex-col pt-4 border-t border-zinc-800">
-                      {errorMessage && (
-                        <div className="mb-4 text-sm text-red-500 font-semibold text-center">
-                          {errorMessage}
+                  {/* Contact Information */}
+                  <div className="pt-6 border-t border-zinc-800/50">
+                    <label className="block text-sm font-semibold text-white mb-4 uppercase tracking-wider">
+                      4. {dict?.step3?.title || "Your Information"}
+                    </label>
+                    <div className="space-y-4">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div className="relative group">
+                          <input 
+                            type="text" 
+                            placeholder={dict?.step3?.firstName || "First Name"} 
+                            required
+                            value={formData.firstName}
+                            onChange={(e) => setFormData({...formData, firstName: e.target.value})}
+                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-white focus:ring-2 focus:ring-brand-primary outline-none transition-all placeholder:text-zinc-600 group-hover:border-zinc-700"
+                          />
                         </div>
-                      )}
-                      <div className="flex justify-between">
-                        <button
-                          type="button"
-                          onClick={handlePrev}
-                          className="flex items-center gap-2 rounded-full bg-zinc-800 px-6 py-3 text-sm font-semibold text-white hover:bg-zinc-700 transition-colors"
-                        >
-                          <ArrowLeft className="w-4 h-4" /> {dict?.buttons?.prev || "Back"}
-                        </button>
-                        <button
-                          type="submit"
-                          disabled={!formData.firstName || !formData.lastName || !formData.email || isSubmitting}
-                          className="flex items-center gap-2 rounded-full bg-brand-primary px-8 py-3 text-sm font-bold text-white shadow-sm hover:bg-red-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
-                        >
-                          {isSubmitting ? (dict?.buttons?.submitting || "Sending...") : (dict?.buttons?.submit || "Submit Request")}
-                        </button>
+                        <div className="relative group">
+                          <input 
+                            type="text" 
+                            placeholder={dict?.step3?.lastName || "Last Name"} 
+                            required
+                            value={formData.lastName}
+                            onChange={(e) => setFormData({...formData, lastName: e.target.value})}
+                            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-white focus:ring-2 focus:ring-brand-primary outline-none transition-all placeholder:text-zinc-600 group-hover:border-zinc-700"
+                          />
+                        </div>
+                      </div>
+                      <div className="relative group">
+                        <input 
+                          type="email" 
+                          placeholder={dict?.step3?.email || "Email Address"} 
+                          required
+                          value={formData.email}
+                          onChange={(e) => setFormData({...formData, email: e.target.value})}
+                          className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-white focus:ring-2 focus:ring-brand-primary outline-none transition-all placeholder:text-zinc-600 group-hover:border-zinc-700"
+                        />
+                      </div>
+                      <div className="relative group">
+                        <textarea 
+                          placeholder={dict?.step3?.message || "Tell us about your project..."} 
+                          rows={4}
+                          required
+                          value={formData.message}
+                          onChange={(e) => setFormData({...formData, message: e.target.value})}
+                          className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3.5 text-white focus:ring-2 focus:ring-brand-primary outline-none resize-none transition-all placeholder:text-zinc-600 group-hover:border-zinc-700"
+                        />
                       </div>
                     </div>
-                  </form>
-                </motion.div>
-              )}
+                  </div>
 
+                  {errorMessage && (
+                    <div className="p-4 rounded-xl bg-red-500/10 border border-red-500/20 text-red-400 text-sm font-semibold text-center">
+                      {errorMessage}
+                    </div>
+                  )}
+
+                  <button
+                    type="submit"
+                    disabled={!formData.service || !formData.budget || !formData.timeline || !formData.firstName || !formData.lastName || !formData.email || !formData.message || isSubmitting}
+                    className="w-full flex items-center justify-center gap-2 rounded-xl bg-brand-primary px-8 py-4 text-base font-bold text-white shadow-lg shadow-brand-primary/20 hover:bg-red-500 hover:shadow-brand-primary/40 disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-300"
+                  >
+                    {isSubmitting ? (dict?.buttons?.submitting || "Sending...") : (dict?.buttons?.submit || "Submit Request")}
+                    {!isSubmitting && <ArrowRight className="w-5 h-5" />}
+                  </button>
+                </motion.form>
+              )}
             </AnimatePresence>
-          </div>
+          </motion.div>
         </div>
-      </section>
-    </>
+      </div>
+    </section>
   );
 }

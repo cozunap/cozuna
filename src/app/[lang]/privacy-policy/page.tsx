@@ -1,6 +1,6 @@
 export const metadata = {
-  title: "Privacy Policy | COzuna Web Design & Printing",
-  description: "Privacy Policy for COzuna Web Design & Printing.",
+  title: "Privacy Policy | COzuna Web Design Agency",
+  description: "Privacy Policy for COzuna Web Design Agency.",
 };
 
 import PageHero from "@/components/PageHero";
@@ -13,7 +13,7 @@ export default function PrivacyPolicyPage() {
         
         <h2 className="text-xl font-semibold text-white mt-8 mb-4">1. Introduction</h2>
         <p className="text-zinc-400 mb-4">
-          Welcome to COzuna Web Design & Printing. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights.
+          Welcome to COzuna Web Design Agency. We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights.
         </p>
 
         <h2 className="text-xl font-semibold text-white mt-8 mb-4">2. The Data We Collect</h2>

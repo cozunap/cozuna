@@ -4,7 +4,7 @@ import GetAQuoteClient from "./GetAQuoteClient";
 import { getDictionary } from "@/lib/dictionaries";
 
 export const metadata = {
-  title: "Get a Quote | COzuna Web Design & Printing",
+  title: "Get a Quote | COzuna Web Design Agency",
   description: "Request a personalized quote for your next digital or print project.",
 };
 

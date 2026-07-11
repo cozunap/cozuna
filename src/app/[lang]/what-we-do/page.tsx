@@ -5,7 +5,7 @@ import { getPortfolioProjects, getPageData } from "@/lib/cms";
 import { getDictionary } from "@/lib/dictionaries";
 
 export const metadata = {
-  title: "What We Do - Portfolio | COzuna Web Design & Printing",
+  title: "What We Do - Portfolio | COzuna Web Design Agency",
   description: "Explore our portfolio of successful web design, graphic design, and printing projects.",
 };
 

@@ -9,12 +9,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 
   if (!project) {
     return {
-      title: "Project Not Found | COzuna Web Design & Printing",
+      title: "Project Not Found | COzuna Web Design Agency",
     };
   }
 
-  const title = `${project.title} | COzuna Web Design & Printing`;
-  const description = project.description || `View the ${project.title} project built by COzuna Web Design & Printing.`;
+  const title = `${project.title} | COzuna Web Design Agency`;
+  const description = project.description || `View the ${project.title} project built by COzuna Web Design Agency.`;
   const image = project.image;
 
   return {
@@ -42,8 +42,8 @@ export default async function ProjectDetail({ params }: { params: Promise<{ lang
   const projects = await getPortfolioProjects();
   const project = projects.find((p: any) => p.slug === resolvedParams.slug);
   
-  const title = project ? `${project.title} | COzuna Web Design & Printing` : "Project | COzuna Web Design & Printing";
-  const description = project?.description || "View this amazing project built by COzuna Web Design & Printing.";
+  const title = project ? `${project.title} | COzuna Web Design Agency` : "Project | COzuna Web Design Agency";
+  const description = project?.description || "View this amazing project built by COzuna Web Design Agency.";
   const image = project?.image || project?.thumbnail || "https://cozuna.com/assets/images/2024/10/main-photo.webp";
 
   const jsonLd = {
@@ -55,7 +55,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ lang
     "url": `https://cozuna.com/${resolvedParams.lang}/what-we-do/${resolvedParams.slug}`,
     "creator": {
       "@type": "Organization",
-      "name": "COzuna Web Design & Printing"
+      "name": "COzuna Web Design Agency"
     }
   };
 
