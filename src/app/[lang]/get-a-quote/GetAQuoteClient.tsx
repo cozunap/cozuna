@@ -131,15 +131,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
               </div>
 
 
-              <div className="flex items-center gap-4 bg-white/5 backdrop-blur-md border border-zinc-800/50 p-4 rounded-2xl">
-                <div className="flex-shrink-0 w-12 h-12 bg-brand-primary/20 rounded-full flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-brand-primary" />
-                </div>
-                <div>
-                  <p className="text-sm text-zinc-500 font-medium">Headquarters</p>
-                  <p className="text-white font-semibold text-lg">Laval, QC. Serving NY & MD</p>
-                </div>
-              </div>
+
             </div>
             
             <div className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-brand-dark to-zinc-900 border border-zinc-800">
