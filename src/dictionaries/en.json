@@ -7,15 +7,15 @@
     "getAQuote": "Get A Quote"
   },
   "home": {
-    "heroTitle": "Affordable Web Design & Premium Printing",
-    "heroSubtitle": "We craft stunning digital experiences and high-quality printed materials that elevate your brand without breaking the budget.",
+    "heroTitle": "Affordable Web Development & Design",
+    "heroSubtitle": "We craft stunning custom website solutions and high-quality digital experiences that help small businesses grow without breaking the budget.",
     "ctaSecondary": "View Portfolio",
     "expertise": "Our Expertise",
     "expertiseTitle": "Web Development & Graphic Design",
     "services": {
       "web": {
-        "title": "Web Design",
-        "description": "Stunning, fast, and responsive websites engineered to convert visitors into loyal customers."
+        "title": "Affordable Web Development",
+        "description": "Stunning, fast, and responsive custom website solutions engineered to help small businesses grow and convert visitors into loyal customers."
       },
       "graphic": {
         "title": "Graphic Design",
@@ -61,9 +61,9 @@
     "heroSubtitle": "Everything you need to launch, grow, and scale your brand under one roof.",
     "items": {
       "web": {
-        "title": "Web Design & Development",
-        "description": "Your website is the digital storefront of your business. We build responsive, fast-loading, and visually stunning websites engineered to convert your visitors into loyal customers. From corporate sites to dynamic e-commerce platforms, we handle it all.",
-        "features": ["Responsive Design", "SEO Optimization", "Fast Load Times", "Custom Development"]
+        "title": "Affordable Web Development",
+        "description": "Your website is the digital storefront of your business. We build responsive, fast-loading, and visually stunning custom website solutions engineered to convert your visitors into loyal customers. Whether you need a small business web design or a dynamic e-commerce platform, we provide affordable web development tailored to your needs.",
+        "features": ["Responsive Design", "SEO Optimization", "Fast Load Times", "Custom Web Development"]
       },
       "graphic": {
         "title": "Graphic Design & Branding",

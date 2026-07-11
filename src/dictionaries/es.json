@@ -7,15 +7,15 @@
     "getAQuote": "Cotizar"
   },
   "home": {
-    "heroTitle": "Diseño Web Económico & Impresión Premium",
-    "heroSubtitle": "Creamos experiencias digitales impresionantes y materiales impresos de alta calidad que elevan tu marca sin romper el presupuesto.",
+    "heroTitle": "Desarrollo Web Económico y a Medida",
+    "heroSubtitle": "Creamos soluciones web personalizadas y experiencias digitales impresionantes que ayudan a crecer a los pequeños negocios sin romper el presupuesto.",
     "ctaSecondary": "Ver Portafolio",
     "expertise": "Nuestra Especialidad",
     "expertiseTitle": "Desarrollo Web y Diseño Gráfico",
     "services": {
       "web": {
-        "title": "Diseño Web",
-        "description": "Sitios web impresionantes, rápidos y adaptables diseñados para convertir visitantes en clientes leales."
+        "title": "Desarrollo Web Económico",
+        "description": "Soluciones web personalizadas impresionantes, rápidas y adaptables diseñadas para ayudar a crecer a los pequeños negocios."
       },
       "graphic": {
         "title": "Diseño Gráfico",
@@ -61,9 +61,9 @@
     "heroSubtitle": "Todo lo que necesitas para lanzar, hacer crecer y escalar tu marca bajo un mismo techo.",
     "items": {
       "web": {
-        "title": "Diseño y Desarrollo Web",
-        "description": "Tu sitio web es el escaparate digital de tu negocio. Construimos sitios web adaptables, de carga rápida y visualmente impresionantes, diseñados para convertir a tus visitantes en clientes leales. Desde sitios corporativos hasta plataformas de comercio electrónico dinámicas, lo hacemos todo.",
-        "features": ["Diseño Adaptable", "Optimización SEO", "Carga Rápida", "Desarrollo Personalizado"]
+        "title": "Desarrollo Web Económico",
+        "description": "Tu sitio web es el escaparate digital de tu negocio. Construimos soluciones web personalizadas, rápidas y adaptables diseñadas para convertir a tus visitantes en clientes. Ofrecemos desarrollo web económico adaptado a las necesidades de tu pequeño negocio.",
+        "features": ["Diseño Adaptable", "Optimización SEO", "Carga Rápida", "Desarrollo Web Personalizado"]
       },
       "graphic": {
         "title": "Diseño Gráfico y Branding",

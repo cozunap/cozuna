@@ -18,17 +18,17 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   
   // Basic metadata matching language and location targets
   const title = lang === 'es' 
-    ? "COzuna Web Design Agency | Diseño y Desarrollo Web Económico en RD" 
-    : "COzuna Web Design Agency | Affordable Web Design & Development in NY & MD";
+    ? "COzuna Web Design Agency | Desarrollo Web Económico y a Medida" 
+    : "COzuna Web Design Agency | Affordable Web Design & Custom Development";
   const description = lang === 'es' 
-    ? "Servicios económicos de diseño web, desarrollo a medida, diseño gráfico y de impresión de alta calidad en República Dominicana." 
-    : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for businesses in New York (NY) and Maryland (MD).";
+    ? "Servicios económicos de diseño web, desarrollo a medida, diseño gráfico y de impresión de alta calidad para pequeñas empresas en todo el mundo." 
+    : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for small businesses worldwide.";
 
   return {
     metadataBase: new URL('https://cozuna.com'),
     title,
     description,
-    keywords: "affordable web design New York, best web development agency NY, cheap web designers Maryland, custom web development MD, small business website design NY, ecommerce web development New York, premium web design services MD, diseño web económico República Dominicana, desarrollo de páginas web RD, agencias de diseño web en Santo Domingo, creador de paginas web baratas, desarrollo web a medida República Dominicana, diseño gráfico e impresión RD, diseño de tiendas online RD, COzuna web design, affordable web design and development",
+    keywords: "affordable web development, affordable web design, small business web design, custom website solutions, professional website designer, cheap web designers, global web development agency, diseño web económico, desarrollo web a medida, agencias de diseño web, creador de paginas web baratas, COzuna web design",
     openGraph: {
       title,
       description,
@@ -89,9 +89,10 @@ export default async function RootLayout({
                 "addressCountry": "US"
               },
               "areaServed": [
-                { "@type": "State", "name": "New York" },
-                { "@type": "State", "name": "Maryland" },
-                { "@type": "Country", "name": "Dominican Republic" }
+                { "@type": "Country", "name": "US" },
+                { "@type": "Country", "name": "CA" },
+                { "@type": "Country", "name": "Dominican Republic" },
+                { "@type": "Country", "name": "Worldwide" }
               ],
               "priceRange": "$$",
               "hasOfferCatalog": {
