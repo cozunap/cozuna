@@ -48,7 +48,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
     { id: "web", title: "Web Design", iconName: "MonitorSmartphone" },
     { id: "graphic", title: "Graphic Design", iconName: "PenTool" },
     { id: "print", title: "Printing", iconName: "Printer" },
-    { id: "signage", title: "Signage", iconName: "Signpost" },
+    { id: "signage", title: "Digital Signage", iconName: "Signpost" },
   ];
 
   const defaultBudgets = [
