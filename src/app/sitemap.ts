@@ -75,15 +75,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           languages.forEach((lang) => {
             json.documents.forEach((doc: any) => {
               const slugField = doc.fields?.slug?.stringValue;
-              if (slugField) {
+              const docId = doc.name?.split('/').pop();
+              const finalSlug = slugField || docId;
+              
+              if (finalSlug) {
                 const alternates: Record<string, string> = {};
                 languages.forEach((l) => {
-                  alternates[l] = `${baseUrl}/${l}/blog/${slugField}`;
+                  alternates[l] = `${baseUrl}/${l}/blog/${finalSlug}`;
                 });
-                alternates['x-default'] = `${baseUrl}/en/blog/${slugField}`;
+                alternates['x-default'] = `${baseUrl}/en/blog/${finalSlug}`;
 
                 routes.push({
-                  url: `${baseUrl}/${lang}/blog/${slugField}`,
+                  url: `${baseUrl}/${lang}/blog/${finalSlug}`,
                   lastModified: new Date(),
                   changeFrequency: 'weekly',
                   priority: 0.7,

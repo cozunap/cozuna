@@ -29,6 +29,8 @@ async function getPosts() {
           data[key] = value.timestampValue;
         }
       }
+      data.id = doc.name.split('/').pop();
+      data.slug = data.slug || data.id;
       return data;
     }).sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   } catch (error) {

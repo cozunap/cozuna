@@ -31,7 +31,9 @@ async function getPost(slug: string) {
           data[key] = value.timestampValue;
         }
       }
-      if (data.slug === slug) {
+      data.id = doc.name.split('/').pop();
+      data.slug = data.slug || data.id;
+      if (data.slug === slug || data.id === slug) {
         return data;
       }
     }
