@@ -1,15 +1,16 @@
-name: Daily AI Blog Generation
+name: Biweekly AI Blog Generation
 
 on:
   schedule:
-    # Runs every day at 13:00 UTC (9:00 AM EST)
-    - cron: '0 13 * * *'
+    # Runs every Monday and Thursday at 13:00 UTC (9:00 AM EST)
+    - cron: '0 13 * * 1,4'
   workflow_dispatch:
     # Allows manual triggering from the GitHub Actions tab
 
 jobs:
   generate-post:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - name: Call Generate Post API Endpoint
         run: |
