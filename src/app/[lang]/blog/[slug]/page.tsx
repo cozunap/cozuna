@@ -99,7 +99,7 @@ export default async function BlogPost({ params }: { params: Promise<{ slug: str
         
         <header className="mb-12">
           <div className="flex items-center gap-x-4 text-sm mb-6">
-            <time dateTime={post.createdAt} className="text-zinc-500">
+            <time dateTime={post.createdAt} className="text-zinc-500" suppressHydrationWarning>
               {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
             </time>
             <span className="relative z-10 rounded-full bg-brand-primary/10 px-3 py-1.5 font-medium text-brand-primary">

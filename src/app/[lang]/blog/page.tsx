@@ -67,7 +67,7 @@ export default async function Blog({ params }: { params: Promise<{ lang: string 
             <article key={post.slug} className="relative flex flex-col items-start justify-between bg-zinc-900 p-8 rounded-3xl border border-zinc-800 hover:border-brand-primary/50 transition-colors">
               <Link href={`/${lang}/blog/${post.slug}`} className="flex flex-col items-start justify-between w-full h-full">
                 <div className="flex items-center gap-x-4 text-xs w-full">
-                  <time dateTime={post.createdAt} className="text-zinc-500">
+                  <time dateTime={post.createdAt} className="text-zinc-500" suppressHydrationWarning>
                     {new Date(post.createdAt).toLocaleDateString(lang === 'es' ? 'es-ES' : lang === 'fr' ? 'fr-FR' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                   </time>
                   <span className="relative z-10 rounded-full bg-brand-primary/10 px-3 py-1.5 font-medium text-brand-primary">
