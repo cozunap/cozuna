@@ -16,14 +16,14 @@ export default function Icon() {
           alignItems: 'center',
           justifyContent: 'center',
           color: '#3b82f6', // Brand Primary (Blue)
-          fontSize: 36,
+          fontSize: 30,
           fontWeight: 900,
           fontFamily: 'sans-serif',
-          letterSpacing: '-2px',
+          letterSpacing: '-1px',
           borderRadius: '14px',
         }}
       >
-        O
+        CO
       </div>
     ),
     { ...size }
