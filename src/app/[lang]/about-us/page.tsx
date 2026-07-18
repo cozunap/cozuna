@@ -3,10 +3,18 @@ import Link from "next/link";
 import { getPageData } from "@/lib/cms";
 import { getDictionary } from "@/lib/dictionaries";
 
-export const metadata = {
-  title: "About Us | COzuna Web Design Agency",
-  description: "Learn more about COzuna, our mission, and our passion for building digital and print identities.",
-};
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  return {
+    title: "About Us | COzuna Web Design Agency",
+    description: "Learn more about COzuna, our mission, and our passion for building digital and print identities.",
+    alternates: {
+      canonical: `/${resolvedParams.lang}/about-us`
+    }
+  };
+}
 
 export const revalidate = 60; // ISR for SEO
 

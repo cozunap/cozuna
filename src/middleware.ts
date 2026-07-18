@@ -20,6 +20,14 @@ function getLocale(request: NextRequest): string {
 }
 
 export function middleware(request: NextRequest) {
+  const url = request.nextUrl.clone()
+  
+  // Redirect www to non-www
+  if (url.hostname.startsWith('www.')) {
+    url.hostname = url.hostname.replace(/^www\./, '')
+    return NextResponse.redirect(url, 301)
+  }
+
   // Check if there is any supported locale in the pathname
   const { pathname } = request.nextUrl
   
