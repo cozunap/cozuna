@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import { notFound } from 'next/navigation';
 import { getPortfolioProjects } from "@/lib/cms";
 import ProjectDetailClient from "./ProjectDetailClient";
 
@@ -38,9 +39,12 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
 export default async function ProjectDetail({ params }: { params: Promise<{ lang: string; slug: string }> }) {
   const resolvedParams = await params;
   
-  // Fetch project for JSON-LD structured data
   const projects = await getPortfolioProjects();
   const project = projects.find((p: any) => p.slug === resolvedParams.slug);
+  
+  if (!project) {
+    notFound();
+  }
   
   const title = project ? `${project.title} | COzuna Web Design Agency` : "Project | COzuna Web Design Agency";
   const description = project?.description || "View this amazing project built by COzuna Web Design Agency.";
