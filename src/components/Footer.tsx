@@ -10,7 +10,7 @@ export default function Footer({ lang, dict }: FooterProps) {
   return (
     <footer className="bg-zinc-950 border-t border-zinc-900 pt-20 pb-10">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8 mb-16">
           
           <div className="col-span-1 md:col-span-2">
             <Link href={`/${lang}`} className="inline-block mb-6">
@@ -30,7 +30,17 @@ export default function Footer({ lang, dict }: FooterProps) {
               <li><Link href={`/${lang}/services`} className="text-zinc-400 hover:text-brand-primary transition-colors">{dict.navigation.services}</Link></li>
               <li><Link href={`/${lang}/what-we-do`} className="text-zinc-400 hover:text-brand-primary transition-colors">{dict.navigation.whatWeDo}</Link></li>
               <li><Link href={`/${lang}/about-us`} className="text-zinc-400 hover:text-brand-primary transition-colors">{dict.navigation.aboutUs}</Link></li>
-              <li><Link href={`/${lang}/get-a-quote`} className="text-zinc-400 hover:text-brand-primary transition-colors">{dict.navigation.getAQuote}</Link></li>
+              <li><Link href={`/${lang}/blog`} className="text-zinc-400 hover:text-brand-primary transition-colors">Blog</Link></li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="text-white font-bold mb-6 text-sm tracking-wider uppercase">Solutions</h3>
+            <ul className="space-y-4">
+              <li><Link href={`/${lang}/affordable-web-development`} className="text-zinc-400 hover:text-brand-primary transition-colors">Affordable Web Design</Link></li>
+              <li><Link href={`/${lang}/ecommerce-web-design`} className="text-zinc-400 hover:text-brand-primary transition-colors">E-Commerce Design</Link></li>
+              <li><Link href={`/${lang}/landing-page-design`} className="text-zinc-400 hover:text-brand-primary transition-colors">Landing Pages</Link></li>
+              <li><Link href={`/${lang}/graphic-design-for-small-business`} className="text-zinc-400 hover:text-brand-primary transition-colors">Graphic Design</Link></li>
             </ul>
           </div>
 

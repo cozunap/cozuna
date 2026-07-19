@@ -1,52 +1,51 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { getDictionary } from '@/lib/dictionaries';
-import { ArrowRight, MonitorSmartphone, Code, Search, Rocket } from 'lucide-react';
+import { ArrowRight, PenTool, Layout, Image as ImageIcon, Printer } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
   const title = lang === 'es' 
-    ? "Desarrollo Web Económico para Pequeñas Empresas | COzuna" 
-    : "Affordable Web Development for Small Businesses | COzuna";
+    ? "Diseño Gráfico Profesional para Pequeñas Empresas | COzuna" 
+    : "Professional Graphic Design for Small Businesses | COzuna";
   const description = lang === 'es' 
-    ? "Servicios de desarrollo web económico y diseño de sitios web a medida. Hacemos crecer tu negocio con soluciones digitales de alta calidad a precios accesibles." 
-    : "Affordable web development and custom web design services. Grow your small business with high-quality digital solutions at budget-friendly prices.";
+    ? "Servicios de diseño gráfico, creación de logos, branding y diseño para impresión. Dale a tu negocio una imagen corporativa profesional." 
+    : "Graphic design services, logo creation, branding, and print design. Give your business a professional corporate image.";
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${lang}/affordable-web-development`
+      canonical: `/${lang}/graphic-design-for-small-business`
     }
   };
 }
 
-export default async function AffordableWebDevelopment({ params }: { params: Promise<{ lang: string }> }) {
+export default async function GraphicDesign({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
 
   const content = lang === 'es' ? {
-    title: "Desarrollo Web Económico para Pequeñas Empresas",
-    subtitle: "Soluciones web personalizadas de alta calidad que se ajustan a tu presupuesto. Te ayudamos a destacar en línea sin comprometer la calidad.",
+    title: "Diseño Gráfico Profesional para tu Marca",
+    subtitle: "Una imagen vale más que mil palabras. Construimos la identidad visual de tu empresa para transmitir profesionalismo, confianza y calidad.",
     features: [
-      { title: "Diseño Personalizado", description: "Sitios web únicos adaptados a tu marca.", icon: MonitorSmartphone },
-      { title: "Desarrollo Moderno", description: "Código limpio, rápido y seguro.", icon: Code },
-      { title: "Optimizado para SEO", description: "Atrae más tráfico orgánico a tu negocio.", icon: Search },
-      { title: "Rápido Lanzamiento", description: "Tu sitio en línea en tiempo récord.", icon: Rocket },
+      { title: "Diseño de Logos", description: "Logotipos únicos que capturan la esencia de tu marca.", icon: PenTool },
+      { title: "Identidad Corporativa", description: "Manuales de marca, paletas de colores y tipografías.", icon: Layout },
+      { title: "Material de Marketing", description: "Diseño para redes sociales, banners y anuncios.", icon: ImageIcon },
+      { title: "Diseño para Impresión", description: "Tarjetas de presentación, flyers, banners y más.", icon: Printer },
     ],
-    cta: "Inicia Tu Proyecto Hoy"
+    cta: "Mejora Tu Imagen"
   } : {
-    title: "Affordable Web Development for Small Businesses",
-    subtitle: "High-quality, custom website solutions that fit your budget. We help you stand out online without compromising on quality.",
+    title: "Professional Graphic Design for Your Brand",
+    subtitle: "A picture is worth a thousand words. We build your company's visual identity to convey professionalism, trust, and quality.",
     features: [
-      { title: "Custom Web Design", description: "Unique websites tailored to your brand.", icon: MonitorSmartphone },
-      { title: "Modern Development", description: "Clean, fast, and secure code.", icon: Code },
-      { title: "SEO Optimized", description: "Attract more organic traffic to your business.", icon: Search },
-      { title: "Fast Launch", description: "Get your site online in record time.", icon: Rocket },
+      { title: "Logo Design", description: "Unique logos that capture the essence of your brand.", icon: PenTool },
+      { title: "Corporate Identity", description: "Brand guidelines, color palettes, and typography.", icon: Layout },
+      { title: "Marketing Materials", description: "Design for social media, banners, and ads.", icon: ImageIcon },
+      { title: "Print Design", description: "Business cards, flyers, banners, and more.", icon: Printer },
     ],
-    cta: "Start Your Project Today"
+    cta: "Improve Your Image"
   };
 
   return (

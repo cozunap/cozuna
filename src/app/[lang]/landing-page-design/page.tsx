@@ -1,52 +1,51 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { getDictionary } from '@/lib/dictionaries';
-import { ArrowRight, MonitorSmartphone, Code, Search, Rocket } from 'lucide-react';
+import { ArrowRight, Zap, Target, BarChart, PenTool } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
   const title = lang === 'es' 
-    ? "Desarrollo Web Económico para Pequeñas Empresas | COzuna" 
-    : "Affordable Web Development for Small Businesses | COzuna";
+    ? "Diseño de Landing Pages de Alta Conversión | COzuna" 
+    : "High-Converting Landing Page Design | COzuna";
   const description = lang === 'es' 
-    ? "Servicios de desarrollo web económico y diseño de sitios web a medida. Hacemos crecer tu negocio con soluciones digitales de alta calidad a precios accesibles." 
-    : "Affordable web development and custom web design services. Grow your small business with high-quality digital solutions at budget-friendly prices.";
+    ? "Diseño de landing pages optimizadas para conversiones, leads y ventas. Perfectas para campañas de Google Ads y Facebook Ads." 
+    : "Landing page design optimized for conversions, leads, and sales. Perfect for your Google Ads and Facebook Ads campaigns.";
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${lang}/affordable-web-development`
+      canonical: `/${lang}/landing-page-design`
     }
   };
 }
 
-export default async function AffordableWebDevelopment({ params }: { params: Promise<{ lang: string }> }) {
+export default async function LandingPageDesign({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
 
   const content = lang === 'es' ? {
-    title: "Desarrollo Web Económico para Pequeñas Empresas",
-    subtitle: "Soluciones web personalizadas de alta calidad que se ajustan a tu presupuesto. Te ayudamos a destacar en línea sin comprometer la calidad.",
+    title: "Landing Pages de Alta Conversión",
+    subtitle: "Convierte tus clics en clientes. Diseñamos páginas de aterrizaje súper rápidas, persuasivas y enfocadas 100% en generar ventas y leads.",
     features: [
-      { title: "Diseño Personalizado", description: "Sitios web únicos adaptados a tu marca.", icon: MonitorSmartphone },
-      { title: "Desarrollo Moderno", description: "Código limpio, rápido y seguro.", icon: Code },
-      { title: "Optimizado para SEO", description: "Atrae más tráfico orgánico a tu negocio.", icon: Search },
-      { title: "Rápido Lanzamiento", description: "Tu sitio en línea en tiempo récord.", icon: Rocket },
+      { title: "Diseño Persuasivo", description: "Copywriting y estructura visual que guía hacia la acción.", icon: PenTool },
+      { title: "Velocidad Extrema", description: "Carga en milisegundos para evitar que el usuario abandone.", icon: Zap },
+      { title: "Enfoque en ROI", description: "Ideales para rentabilizar tus campañas de Google o Facebook Ads.", icon: Target },
+      { title: "Análisis de Datos", description: "Listas para integrarse con Google Analytics y Pixel.", icon: BarChart },
     ],
-    cta: "Inicia Tu Proyecto Hoy"
+    cta: "Lanza tu Campaña"
   } : {
-    title: "Affordable Web Development for Small Businesses",
-    subtitle: "High-quality, custom website solutions that fit your budget. We help you stand out online without compromising on quality.",
+    title: "High-Converting Landing Pages",
+    subtitle: "Turn clicks into customers. We design lightning-fast, persuasive landing pages focused 100% on generating sales and leads.",
     features: [
-      { title: "Custom Web Design", description: "Unique websites tailored to your brand.", icon: MonitorSmartphone },
-      { title: "Modern Development", description: "Clean, fast, and secure code.", icon: Code },
-      { title: "SEO Optimized", description: "Attract more organic traffic to your business.", icon: Search },
-      { title: "Fast Launch", description: "Get your site online in record time.", icon: Rocket },
+      { title: "Persuasive Design", description: "Copywriting and visual structure that guides users to take action.", icon: PenTool },
+      { title: "Extreme Speed", description: "Loads in milliseconds to prevent user drop-off.", icon: Zap },
+      { title: "ROI Focused", description: "Ideal for maximizing returns on your Google or Facebook Ads campaigns.", icon: Target },
+      { title: "Data Analytics", description: "Ready to integrate with Google Analytics and Facebook Pixel.", icon: BarChart },
     ],
-    cta: "Start Your Project Today"
+    cta: "Launch Your Campaign"
   };
 
   return (

@@ -66,14 +66,14 @@ export async function GET(request: Request) {
   }
 
   const topics = [
-    "Artificial Intelligence in Design",
-    "Modern Web Development Trends",
-    "Graphic Design Psychology",
-    "Adobe Photoshop Tips for Businesses",
-    "The Future of Digital Signage",
-    "Innovations in Printing Technology",
-    "Why Affordable Web Design Matters",
-    "Illustrator vs InDesign for Branding"
+    "How Affordable Web Design Drives Small Business Growth",
+    "The True ROI of Professional Web Development for Small Businesses",
+    "Why Your Small Business Needs a Custom Website in 2026",
+    "Web Design vs Templates: What Small Businesses Need to Know",
+    "The Importance of Mobile-First Web Design for Local SEO",
+    "How to Choose an Affordable Web Development Agency",
+    "Maximizing Online Presence for Small Businesses on a Budget",
+    "Graphic Design Psychology for High-Converting Websites"
   ];
 
   const randomTopic = topics[Math.floor(Math.random() * topics.length)];
@@ -81,8 +81,14 @@ export async function GET(request: Request) {
   try {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
     
-    const prompt = `You are a professional tech and design blogger for 'COzuna', a Web Design and Printing agency.
+    const prompt = `You are a professional tech and marketing blogger for 'COzuna', an Affordable Web Design and Development agency.
 Write a highly engaging, SEO-optimized blog post about: "${randomTopic}".
+
+CRITICAL SEO INSTRUCTION:
+You MUST include at least one natural internal link in the HTML content pointing to the agency's primary service page.
+- In English: <a href="/en/affordable-web-development">affordable web development</a>
+- In Spanish: <a href="/es/affordable-web-development">desarrollo web económico</a>
+- In French: <a href="/fr/affordable-web-development">développement web abordable</a>
 
 Return EXACTLY a JSON object with no markdown formatting, no backticks, just the raw JSON with these exact keys:
 {
@@ -93,9 +99,9 @@ Return EXACTLY a JSON object with no markdown formatting, no backticks, just the
   "excerpt_en": "A 2 sentence summary in English",
   "excerpt_es": "A 2 sentence summary in Spanish",
   "excerpt_fr": "A 2 sentence summary in French",
-  "content_en": "The full article in English (HTML format). Use <h2>, <p>, <ul>, <li>, <strong>. Minimum 600 words. Do NOT include <h1> or <html>/<body> tags.",
-  "content_es": "The full article translated to Spanish (HTML format). Use the exact same HTML structure as English.",
-  "content_fr": "The full article translated to French (HTML format). Use the exact same HTML structure as English.",
+  "content_en": "The full article in English (HTML format). Use <h2>, <p>, <ul>, <li>, <strong>. Minimum 600 words. Do NOT include <h1> or <html>/<body> tags. MUST include the internal link.",
+  "content_es": "The full article translated to Spanish (HTML format). MUST include the Spanish internal link.",
+  "content_fr": "The full article translated to French (HTML format). MUST include the French internal link.",
   "category_en": "${randomTopic}",
   "category_es": "Categoría en Español",
   "category_fr": "Catégorie en Français",

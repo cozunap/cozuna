@@ -1,52 +1,51 @@
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { getDictionary } from '@/lib/dictionaries';
-import { ArrowRight, MonitorSmartphone, Code, Search, Rocket } from 'lucide-react';
+import { ArrowRight, ShoppingCart, CreditCard, Search, TrendingUp } from 'lucide-react';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
   const title = lang === 'es' 
-    ? "Desarrollo Web Económico para Pequeñas Empresas | COzuna" 
-    : "Affordable Web Development for Small Businesses | COzuna";
+    ? "Diseño de Tiendas Online | E-Commerce | COzuna" 
+    : "E-Commerce Web Design | Online Stores | COzuna";
   const description = lang === 'es' 
-    ? "Servicios de desarrollo web económico y diseño de sitios web a medida. Hacemos crecer tu negocio con soluciones digitales de alta calidad a precios accesibles." 
-    : "Affordable web development and custom web design services. Grow your small business with high-quality digital solutions at budget-friendly prices.";
+    ? "Diseño y desarrollo de tiendas online e-commerce que convierten visitantes en clientes. Aumenta tus ventas con una tienda virtual rápida y segura." 
+    : "E-commerce web design and development that converts visitors into customers. Increase your sales with a fast and secure online store.";
 
   return {
     title,
     description,
     alternates: {
-      canonical: `/${lang}/affordable-web-development`
+      canonical: `/${lang}/ecommerce-web-design`
     }
   };
 }
 
-export default async function AffordableWebDevelopment({ params }: { params: Promise<{ lang: string }> }) {
+export default async function EcommerceWebDesign({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
 
   const content = lang === 'es' ? {
-    title: "Desarrollo Web Económico para Pequeñas Empresas",
-    subtitle: "Soluciones web personalizadas de alta calidad que se ajustan a tu presupuesto. Te ayudamos a destacar en línea sin comprometer la calidad.",
+    title: "Diseño de Tiendas Online que Venden Más",
+    subtitle: "Lleva tus productos al mundo entero. Creamos tiendas virtuales (e-commerce) rápidas, seguras y diseñadas para maximizar tus ventas.",
     features: [
-      { title: "Diseño Personalizado", description: "Sitios web únicos adaptados a tu marca.", icon: MonitorSmartphone },
-      { title: "Desarrollo Moderno", description: "Código limpio, rápido y seguro.", icon: Code },
-      { title: "Optimizado para SEO", description: "Atrae más tráfico orgánico a tu negocio.", icon: Search },
-      { title: "Rápido Lanzamiento", description: "Tu sitio en línea en tiempo récord.", icon: Rocket },
+      { title: "Diseño Orientado a Ventas", description: "Interfaces intuitivas que guían al usuario a comprar.", icon: ShoppingCart },
+      { title: "Pagos Seguros", description: "Integración con Stripe, PayPal y pasarelas locales.", icon: CreditCard },
+      { title: "SEO para E-commerce", description: "Tus productos aparecerán en Google cuando te busquen.", icon: Search },
+      { title: "Escalabilidad", description: "Tu tienda crece al mismo ritmo que tu negocio.", icon: TrendingUp },
     ],
-    cta: "Inicia Tu Proyecto Hoy"
+    cta: "Inicia Tu Tienda Hoy"
   } : {
-    title: "Affordable Web Development for Small Businesses",
-    subtitle: "High-quality, custom website solutions that fit your budget. We help you stand out online without compromising on quality.",
+    title: "E-Commerce Web Design that Sells More",
+    subtitle: "Take your products worldwide. We create fast, secure, and conversion-optimized e-commerce stores designed to maximize your sales.",
     features: [
-      { title: "Custom Web Design", description: "Unique websites tailored to your brand.", icon: MonitorSmartphone },
-      { title: "Modern Development", description: "Clean, fast, and secure code.", icon: Code },
-      { title: "SEO Optimized", description: "Attract more organic traffic to your business.", icon: Search },
-      { title: "Fast Launch", description: "Get your site online in record time.", icon: Rocket },
+      { title: "Sales-Driven Design", description: "Intuitive interfaces that guide users to checkout.", icon: ShoppingCart },
+      { title: "Secure Payments", description: "Integration with Stripe, PayPal, and local gateways.", icon: CreditCard },
+      { title: "E-commerce SEO", description: "Your products will show up on Google when people search.", icon: Search },
+      { title: "Scalability", description: "Your store grows at the same pace as your business.", icon: TrendingUp },
     ],
-    cta: "Start Your Project Today"
+    cta: "Start Your Store Today"
   };
 
   return (
