@@ -110,31 +110,8 @@ export default function AdminDashboard() {
   };
 
   const uploadToCloudflare = async (file: File) => {
-    // 1. Request Direct Upload URL from our secure API
-    const res = await fetch('/api/upload-url', { method: 'POST' });
-    const data = await res.json();
-    
-    if (!data.success) {
-      throw new Error(data.error || 'Failed to get upload URL');
-    }
-
-    // 2. Upload directly to Cloudflare
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const uploadRes = await fetch(data.uploadURL, {
-      method: 'POST',
-      body: formData,
-    });
-
-    const uploadData = await uploadRes.json();
-    if (!uploadData.success) {
-      throw new Error('Failed to upload image to Cloudflare');
-    }
-
-    // 3. Return the formatted delivery URL
-    // eJfkbxcvXp804aif1wioXw is the public delivery hash for COZUNA
-    return `https://imagedelivery.net/eJfkbxcvXp804aif1wioXw/${data.id}/public`;
+    alert('Direct Cloudflare upload is disabled. Images are now hosted on GitHub. Please add the image to public/uploads/ and type the path /uploads/filename.webp manually in the database.');
+    throw new Error('Upload to Cloudflare is disabled.');
   };
 
   const handleEdit = (project: Project) => {
@@ -152,8 +129,8 @@ export default function AdminDashboard() {
     setTestimonialRole(project.testimonialRole || '');
     setEditingId(project.id);
     setExistingImage(project.image);
-    setPreviewUrl(project.image);
-    setGalleryItems((project.gallery || []).map(url => ({ url, file: null })));
+    setPreviewUrl(project.image ? project.image.replace(/https:\/\/imagedelivery\.net\/eJfkbxcvXp804aif1wioXw\/([^\/]+)\/public/, '/uploads/$1.webp') : null);
+    setGalleryItems((project.gallery || []).map(url => ({ url: url.replace(/https:\/\/imagedelivery\.net\/eJfkbxcvXp804aif1wioXw\/([^\/]+)\/public/, '/uploads/$1.webp'), file: null })));
     setSelectedFile(null);
     setIsModalOpen(true);
   };
@@ -329,7 +306,7 @@ export default function AdminDashboard() {
                       <tr key={project.id} className="border-b border-zinc-800/50 hover:bg-zinc-800/20 transition-colors">
                         <td className="py-4 px-4">
                           <div className="relative w-16 h-12 rounded overflow-hidden bg-zinc-800">
-                            {project.image && <Image src={project.image} alt={project.title} fill className="object-cover" />}
+                            {project.image && <Image src={project.image.replace(/https:\/\/imagedelivery\.net\/eJfkbxcvXp804aif1wioXw\/([^\/]+)\/public/, '/uploads/$1.webp')} alt={project.title} fill className="object-cover" />}
                           </div>
                         </td>
                         <td className="py-4 px-4 text-white font-medium">{project.title}</td>

@@ -71,18 +71,8 @@ export default function PagesManager() {
   };
 
   const uploadToCloudflare = async (file: File) => {
-    const res = await fetch('/api/upload-url', { method: 'POST' });
-    const { success, uploadURL, id, error } = await res.json();
-    if (!success) throw new Error(error || 'Failed to get upload URL');
-
-    const formData = new FormData();
-    formData.append('file', file);
-
-    const uploadRes = await fetch(uploadURL, { method: 'POST', body: formData });
-    const uploadData = await uploadRes.json();
-    if (!uploadData.success) throw new Error('Failed to upload image');
-
-    return `https://imagedelivery.net/eJfkbxcvXp804aif1wioXw/${id}/public`;
+    alert('Direct Cloudflare upload is disabled. Images are now hosted on GitHub. Please add the image to public/uploads/ in your code and type the path /uploads/filename.webp manually.');
+    throw new Error('Upload to Cloudflare is disabled.');
   };
 
   const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>, field: string) => {
@@ -105,14 +95,21 @@ export default function PagesManager() {
           <div className="border-2 border-dashed border-zinc-700 rounded-xl p-4 text-center relative hover:bg-zinc-800/50 transition-colors">
             {data[field] ? (
               <div className="relative w-full aspect-video rounded-lg overflow-hidden mb-2">
-                <img src={data[field]} alt="preview" className="object-cover w-full h-full" />
+                <img src={data[field].replace(/https:\/\/imagedelivery\.net\/eJfkbxcvXp804aif1wioXw\/([^\/]+)\/public/, '/uploads/$1.webp')} alt="preview" className="object-cover w-full h-full" />
               </div>
             ) : (
               <UploadCloud className="w-8 h-8 text-zinc-500 mx-auto mb-2" />
             )}
             <input type="file" accept="image/*" onChange={(e) => handleImageUpload(e, field)} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
-            <p className="text-zinc-400 text-xs mt-2">Click to replace image</p>
+            <p className="text-zinc-400 text-xs mt-2">Click to replace image (Disabled)</p>
           </div>
+          <p className="text-zinc-400 text-xs mt-4 mb-2">Or enter path manually (e.g. /uploads/image.webp):</p>
+          <input
+            type="text"
+            value={data[field] || ''}
+            onChange={(e) => handleSimpleChange(field, e.target.value)}
+            className="w-full bg-zinc-950 border border-zinc-800 rounded-xl px-4 py-3 text-white focus:ring-2 focus:ring-brand-primary outline-none"
+          />
         </div>
       );
     }

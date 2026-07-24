@@ -1,3 +1,5 @@
+const convertCFUrl = (val: string) => val && typeof val === 'string' ? val.replace(/https:\/\/imagedelivery\.net\/eJfkbxcvXp804aif1wioXw\/([^\/]+)\/public/g, '/uploads/$1.webp') : val;
+
 export async function getPageData(pageId: string) {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
   const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
@@ -20,11 +22,11 @@ export async function getPageData(pageId: string) {
     const data: any = {};
     for (const [key, value] of Object.entries(json.fields) as any) {
       if (value.stringValue !== undefined) {
-        data[key] = value.stringValue;
+        data[key] = convertCFUrl(value.stringValue);
       } else if (value.mapValue) {
         data[key] = {};
         for (const [subKey, subValue] of Object.entries(value.mapValue.fields) as any) {
-          data[key][subKey] = subValue.stringValue || '';
+          data[key][subKey] = convertCFUrl(subValue.stringValue || '');
         }
       }
     }
@@ -56,10 +58,10 @@ export async function getPortfolioProjects() {
     return json.documents.map((doc: any) => {
       const data: any = { id: doc.name.split('/').pop() };
       for (const [key, value] of Object.entries(doc.fields) as any) {
-        if (value.stringValue !== undefined) data[key] = value.stringValue;
+        if (value.stringValue !== undefined) data[key] = convertCFUrl(value.stringValue);
         else if (value.integerValue !== undefined) data[key] = parseInt(value.integerValue, 10);
         else if (value.arrayValue) {
-          data[key] = value.arrayValue.values?.map((v: any) => v.stringValue) || [];
+          data[key] = value.arrayValue.values?.map((v: any) => convertCFUrl(v.stringValue)) || [];
         }
       }
       return data;
