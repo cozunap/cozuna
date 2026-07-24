@@ -3,8 +3,6 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { db } from "@/lib/firebase";
-import { collection, query, where, getDocs } from "firebase/firestore";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 
@@ -24,37 +22,8 @@ interface Project {
   servicesOffered?: string;
 }
 
-export default function ProjectDetailClient({ lang, slug }: { lang: string; slug: string }) {
-  const [project, setProject] = useState<Project | null>(null);
-  const [loading, setLoading] = useState(true);
+export default function ProjectDetailClient({ lang, project }: { lang: string; project: Project | null }) {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
-
-  useEffect(() => {
-    async function fetchProject() {
-      try {
-        const q = query(collection(db, "projects"), where("slug", "==", slug));
-        const querySnapshot = await getDocs(q);
-        
-        if (!querySnapshot.empty) {
-          const doc = querySnapshot.docs[0];
-          setProject({ id: doc.id, ...doc.data() } as Project);
-        }
-      } catch (error) {
-        console.error("Error fetching project:", error);
-      } finally {
-        setLoading(false);
-      }
-    }
-    fetchProject();
-  }, [slug]);
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-zinc-950 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-brand-primary border-t-transparent rounded-full animate-spin"></div>
-      </div>
-    );
-  }
 
   if (!project) {
     return (

@@ -69,7 +69,7 @@ export default async function ProjectDetail({ params }: { params: Promise<{ lang
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <ProjectDetailClient lang={resolvedParams.lang} slug={resolvedParams.slug} />
+      <ProjectDetailClient lang={resolvedParams.lang} project={project} />
     </>
   );
 }
