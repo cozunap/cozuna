@@ -77,16 +77,20 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Corporation",
+              "@type": "LocalBusiness",
               "name": "COzuna Web Design Agency",
               "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
               "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
               "url": "https://cozuna.com",
+              "telephone": "+14383939465",
+              "email": "ozunaprinting@gmail.com",
               "address": {
                 "@type": "PostalAddress",
-                "addressLocality": "New York",
-                "addressRegion": "NY",
-                "addressCountry": "US"
+                "streetAddress": "490 Avenue Ampere",
+                "addressLocality": "Laval",
+                "addressRegion": "QC",
+                "postalCode": "H7N 5J9",
+                "addressCountry": "CA"
               },
               "areaServed": [
                 { "@type": "Country", "name": "US" },

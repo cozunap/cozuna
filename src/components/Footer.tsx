@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { MessageSquare } from "lucide-react";
+import { MessageSquare, Phone } from "lucide-react";
 
 type FooterProps = {
   lang: string;
@@ -19,9 +19,13 @@ export default function Footer({ lang, dict }: FooterProps) {
                 CO<span className="text-brand-primary">zuna</span>.
               </div>
             </Link>
-            <p className="text-zinc-400 text-lg max-w-sm mb-8 leading-relaxed">
+            <p className="text-zinc-400 text-lg max-w-sm mb-6 leading-relaxed">
               {dict.footer.tagline}
             </p>
+            <div className="flex items-center text-zinc-300 hover:text-white transition-colors w-fit">
+              <Phone className="w-5 h-5 mr-3 text-brand-primary" />
+              <a href="tel:+14383939465" className="font-medium tracking-wide">+1 (438) 393-9465</a>
+            </div>
           </div>
 
           <div>
