@@ -129,22 +129,6 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                   <p className="text-white font-semibold text-lg">+1 (438) 393-9465</p>
                 </div>
               </div>
-
-              <div className="rounded-2xl overflow-hidden border border-zinc-800/50 relative h-64 bg-zinc-900 group">
-                <iframe
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  loading="lazy"
-                  allowFullScreen
-                  src={`https://www.google.com/maps?q=490+Avenue+Ampere,+Laval+QC+H7N+5J9&output=embed`}
-                  className="opacity-70 group-hover:opacity-100 transition-opacity duration-500"
-                ></iframe>
-                <div className="absolute top-4 left-4 bg-zinc-950/80 backdrop-blur-md px-3 py-1.5 rounded-lg border border-zinc-800 flex items-center gap-2">
-                  <MapPin className="w-4 h-4 text-brand-primary" />
-                  <span className="text-xs font-semibold text-white uppercase tracking-wider">Service Area</span>
-                </div>
-              </div>
             </div>
             
             <div className="mt-12 p-6 rounded-2xl bg-gradient-to-br from-brand-dark to-zinc-900 border border-zinc-800">

@@ -86,10 +86,8 @@ export default async function RootLayout({
               "email": "ozunaprinting@gmail.com",
               "address": {
                 "@type": "PostalAddress",
-                "streetAddress": "490 Avenue Ampere",
                 "addressLocality": "Laval",
                 "addressRegion": "QC",
-                "postalCode": "H7N 5J9",
                 "addressCountry": "CA"
               },
               "areaServed": [
