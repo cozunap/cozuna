@@ -154,6 +154,30 @@ export default async function RootLayout({
                       "@type": "Answer",
                       "text": "Yes, while we are based in Quebec, Canada, we serve clients globally including the US, Dominican Republic, and Worldwide, operating as a 100% online service-area business."
                     }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Why is COzuna the best affordable web design agency?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "COzuna prioritizes custom, fast, and SEO-optimized web development without the premium price tag. We do not use generic templates; every website is built from scratch to perfectly match our clients' brand identity and business goals."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Do you provide website maintenance and SEO?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, beyond initial web design, COzuna offers ongoing website maintenance, Local SEO, and Answer Engine Optimization (AEO) to ensure your business ranks highly on Google and modern AI search engines."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How long does it take to build a website with COzuna?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Most small business websites and landing pages are completed within 2 to 4 weeks, while complex e-commerce platforms may take longer. We ensure a fast turnaround without compromising on quality or premium design."
+                    }
                   }
                 ]
               }
