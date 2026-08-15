@@ -49,6 +49,14 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'max-snippet': -1,
       },
     },
+    icons: {
+      icon: [
+        { url: '/icon', type: 'image/png' },
+      ],
+      apple: [
+        { url: '/apple-icon', type: 'image/png' },
+      ],
+    },
     openGraph: {
       title,
       description,
