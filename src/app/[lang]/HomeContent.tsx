@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion, Variants } from "framer-motion";
 import { Monitor, PenTool, Printer, Presentation } from "lucide-react";
 import DynamicTestimonials from '@/components/DynamicTestimonials';
+import FAQSection from '@/components/FAQSection';
 
 export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }: { lang: string, dict: any, cmsData: any, portfolioItems?: any[] }) {
   const containerVariants: Variants = {
@@ -215,6 +216,8 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [] }
       </section>
 
       <DynamicTestimonials />
+
+      <FAQSection />
 
       {/* Contact / CTA Section */}
       <section className="w-full relative isolate overflow-hidden bg-brand-dark px-6 py-32 lg:px-8 border-t border-zinc-900">
