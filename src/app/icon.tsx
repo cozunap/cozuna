@@ -15,15 +15,16 @@ export default function Icon() {
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          color: '#3b82f6', // Brand Primary (Blue)
-          fontSize: 45,
+          color: '#ffffff',
+          fontSize: 52,
           fontWeight: 900,
-          fontFamily: 'sans-serif',
-          letterSpacing: '-1px',
-          borderRadius: '21px',
+          fontFamily: 'system-ui, sans-serif',
+          letterSpacing: '-2px',
+          borderRadius: '24px',
+          border: '4px solid #3b82f6', // Brand Primary border
         }}
       >
-        CO
+        C<span style={{ color: '#3b82f6' }}>O</span>
       </div>
     ),
     { ...size }
