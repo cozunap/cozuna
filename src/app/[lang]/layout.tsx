@@ -29,12 +29,32 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     title,
     description,
     keywords: "affordable web development, affordable web design, small business web design, custom website solutions, professional website designer, cheap web designers, global web development agency, diseño web económico, desarrollo web a medida, agencias de diseño web, creador de paginas web baratas, COzuna web design",
+    alternates: {
+      canonical: `https://cozuna.com/${lang}`,
+      languages: {
+        'en': 'https://cozuna.com/en',
+        'es': 'https://cozuna.com/es',
+        'fr': 'https://cozuna.com/fr',
+        'x-default': 'https://cozuna.com/en'
+      }
+    },
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
     openGraph: {
       title,
       description,
       type: "website",
       locale: lang,
-      url: "https://cozuna.com",
+      url: `https://cozuna.com/${lang}`,
       siteName: "COzuna",
       images: [
         {
@@ -75,38 +95,69 @@ export default async function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "LocalBusiness",
-              "name": "COzuna Web Design Agency",
-              "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
-              "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
-              "url": "https://cozuna.com",
-              "telephone": "+14383939465",
-              "email": "ozunaprinting@gmail.com",
-              "address": {
-                "@type": "PostalAddress",
-                "addressLocality": "Laval",
-                "addressRegion": "QC",
-                "addressCountry": "CA"
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "COzuna Web Design Agency",
+                "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
+                "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
+                "url": "https://cozuna.com",
+                "telephone": "+14383939465",
+                "email": "ozunaprinting@gmail.com",
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "Laval",
+                  "addressRegion": "QC",
+                  "addressCountry": "CA"
+                },
+                "areaServed": [
+                  { "@type": "Country", "name": "US" },
+                  { "@type": "Country", "name": "CA" },
+                  { "@type": "Country", "name": "Dominican Republic" },
+                  { "@type": "Country", "name": "Worldwide" }
+                ],
+                "hasOfferCatalog": {
+                  "@type": "OfferCatalog",
+                  "name": "Services",
+                  "itemListElement": [
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High Quality Printing" } }
+                  ]
+                }
               },
-              "areaServed": [
-                { "@type": "Country", "name": "US" },
-                { "@type": "Country", "name": "CA" },
-                { "@type": "Country", "name": "Dominican Republic" },
-                { "@type": "Country", "name": "Worldwide" }
-              ],
-              "priceRange": "$$",
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Services",
-                "itemListElement": [
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design" } },
-                  { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High Quality Printing" } }
+              {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                  {
+                    "@type": "Question",
+                    "name": "What services does COzuna offer?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "COzuna is a premium digital agency specializing in affordable custom Web Design, E-commerce Development, Graphic Design, and high-quality Printing services for small businesses worldwide."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "How much does a custom website cost with COzuna?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "We offer affordable, transparent pricing tailored to small businesses, with web design packages typically ranging from under $1,000 for landing pages to $5,000+ for advanced e-commerce solutions."
+                    }
+                  },
+                  {
+                    "@type": "Question",
+                    "name": "Does COzuna work internationally?",
+                    "acceptedAnswer": {
+                      "@type": "Answer",
+                      "text": "Yes, while we are based in Quebec, Canada, we serve clients globally including the US, Dominican Republic, and Worldwide, operating as a 100% online service-area business."
+                    }
+                  }
                 ]
               }
-            })
+            ])
           }}
         />
         <Navbar lang={lang} dict={dict} />
