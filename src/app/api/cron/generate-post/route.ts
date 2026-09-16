@@ -65,18 +65,28 @@ export async function GET(request: Request) {
     return NextResponse.json({ error: 'Firebase Project ID is not set' }, { status: 500 });
   }
 
-  const topics = [
-    "How Affordable Web Design Drives Small Business Growth",
-    "The True ROI of Professional Web Development for Small Businesses",
-    "Why Your Small Business Needs a Custom Website in 2026",
-    "Web Design vs Templates: What Small Businesses Need to Know",
-    "The Importance of Mobile-First Web Design for Local SEO",
+  const coreTopics = [
+    "How Affordable Web Design Drives Growth for Local Businesses",
+    "The True ROI of Professional Web Development",
+    "Why Your Business Needs a Custom Website in 2026",
+    "Web Design vs Templates: What You Need to Know",
+    "The Importance of Mobile-First Web Design",
     "How to Choose an Affordable Web Development Agency",
-    "Maximizing Online Presence for Small Businesses on a Budget",
+    "Maximizing Online Presence on a Budget",
     "Graphic Design Psychology for High-Converting Websites"
   ];
 
-  const randomTopic = topics[Math.floor(Math.random() * topics.length)];
+  const targetCities = [
+    "Laval", "Montreal", "Quebec City", "Toronto", 
+    "Santo Domingo", "Punta Cana", "Santiago", 
+    "Miami", "New York", "Chicago"
+  ];
+
+  const randomCoreTopic = coreTopics[Math.floor(Math.random() * coreTopics.length)];
+  const randomCity = targetCities[Math.floor(Math.random() * targetCities.length)];
+  
+  // Create a localized programmatic SEO topic
+  const randomTopic = `${randomCoreTopic} in ${randomCity}`;
 
   try {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });

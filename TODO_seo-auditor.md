@@ -17,7 +17,7 @@
   - **Impact**: Medium
   - **Recommendation**: Evaluate if Edge runtime is strictly necessary for content pages. If not, switch to Node.js runtime to enable full static generation of all localized routes for maximum speed.
 
-- [ ] **SEO-FIND-1.2 [Blog Automation Content Gap]**:
+- [x] **SEO-FIND-1.2 [Blog Automation Content Gap]**:
   - **Location**: `/[lang]/blog`
   - **Description**: The blog section lacks an automated, high-frequency publishing pipeline targeting long-tail keywords (e.g., "affordable web designer in Montreal").
   - **Impact**: High
@@ -33,7 +33,7 @@
 
 ### Remediation Recommendations
 
-- [ ] **SEO-REC-1.1 [Deploy Blog Content Pipeline]**:
+- [x] **SEO-REC-1.1 [Deploy Blog Content Pipeline]**:
   - **Priority**: High
   - **Effort**: 1-2 Weeks
   - **Expected Outcome**: Massive increase in organic long-tail traffic and internal link equity.
@@ -45,7 +45,7 @@
   - **Expected Outcome**: Improved TTFB and perfect 100/100 Lighthouse scores.
   - **Validation**: Run Lighthouse and WebPageTest after removing Edge runtime from non-interactive content routes.
 
-- [ ] **SEO-REC-1.3 [Local Landing Pages (Programmatic SEO)]**:
+- [x] **SEO-REC-1.3 [Local Landing Pages (Programmatic SEO)]**:
   - **Priority**: High
   - **Effort**: 2 Weeks
   - **Expected Outcome**: Dominate local search results in specific target cities (e.g., Web Design in Laval, Web Design in Santo Domingo).
