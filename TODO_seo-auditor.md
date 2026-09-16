@@ -39,11 +39,11 @@
   - **Expected Outcome**: Massive increase in organic long-tail traffic and internal link equity.
   - **Validation**: Monitor Google Search Console for new impressions on "How much does a website cost in [City]" queries.
 
-- [x] **SEO-REC-1.2 [Optimize Edge Runtime usage]**:
+- [ ] **SEO-REC-1.2 [Optimize Edge Runtime usage]** *(BLOCKED)*:
   - **Priority**: Medium
   - **Effort**: 2 Days
   - **Expected Outcome**: Improved TTFB and perfect 100/100 Lighthouse scores.
-  - **Validation**: Run Lighthouse and WebPageTest after removing Edge runtime from non-interactive content routes.
+  - **Validation**: Blocked by Cloudflare Pages `@cloudflare/next-on-pages` which strictly requires Edge runtime.
 
 - [x] **SEO-REC-1.3 [Local Landing Pages (Programmatic SEO)]**:
   - **Priority**: High
