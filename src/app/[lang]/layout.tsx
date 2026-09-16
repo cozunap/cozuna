@@ -82,7 +82,7 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   };
 }
 
-export const runtime = 'edge';
+
 
 export default async function RootLayout({
   children,
