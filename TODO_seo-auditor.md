@@ -23,7 +23,7 @@
   - **Impact**: High
   - **Recommendation**: Implement the previously discussed AI-driven blog automation to generate programmatic SEO articles based on low-competition, high-intent local and global queries.
 
-- [ ] **SEO-FIND-1.3 [Image Optimization]**:
+- [x] **SEO-FIND-1.3 [Image Optimization]**:
   - **Location**: `HomeContent.tsx` and Portfolio projects.
   - **Description**: While Next.js `<Image>` is used, we need to ensure all source images (like `main-photo.webp`) are properly sized and compressed before being served to minimize LCP.
   - **Impact**: Low
