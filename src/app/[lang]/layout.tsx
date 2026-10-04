@@ -138,6 +138,9 @@ export default async function RootLayout({
                   { "@type": "Country", "name": "Dominican Republic" },
                   { "@type": "Country", "name": "Worldwide" }
                 ],
+                "sameAs": [
+                  "https://www.behance.net/cozuna"
+                ],
                 "hasOfferCatalog": {
                   "@type": "OfferCatalog",
                   "name": "Services",
