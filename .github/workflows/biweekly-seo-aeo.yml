@@ -1,0 +1,23 @@
+name: Bi-Weekly SEO & AEO Optimization
+
+on:
+  schedule:
+    # Runs on the 1st and 15th of every month at 14:00 UTC (10:00 AM EST)
+    - cron: '0 14 1,15 * *'
+  workflow_dispatch:
+    # Allows manual triggering anytime from the GitHub Actions tab
+
+jobs:
+  optimize-seo-aeo:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Trigger Bi-Weekly AI SEO & AEO Engine
+        run: |
+          response=$(curl -s -w "%{http_code}" -o response.json -X GET "https://cozuna.com/api/cron/update-seo-aeo?secret=${{ secrets.CRON_SECRET }}")
+          echo "HTTP Status Code: $response"
+          cat response.json
+          if [ "$response" -ne 200 ]; then
+            echo "Failed to run Bi-Weekly SEO & AEO optimization"
+            exit 1
+          fi

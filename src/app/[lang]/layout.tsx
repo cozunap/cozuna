@@ -9,6 +9,7 @@ import SecurityShield from "@/components/SecurityShield";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import SkipToContent from "@/components/SkipToContent";
 import { getDictionary } from "@/lib/dictionaries";
+import { getAEOFAQs } from "@/lib/cms";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -93,7 +94,19 @@ export default async function RootLayout({
 }>) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
-  const dict = await getDictionary(lang as 'en' | 'es' | 'fr');
+  const [dict, faqs] = await Promise.all([
+    getDictionary(lang as 'en' | 'es' | 'fr'),
+    getAEOFAQs(lang)
+  ]);
+
+  const faqEntities = faqs.map((faq: any) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer
+    }
+  }));
 
   return (
     <html lang={lang} className="scroll-smooth" suppressHydrationWarning>
@@ -138,56 +151,7 @@ export default async function RootLayout({
               {
                 "@context": "https://schema.org",
                 "@type": "FAQPage",
-                "mainEntity": [
-                  {
-                    "@type": "Question",
-                    "name": "What services does COzuna offer?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "COzuna is a premium digital agency specializing in affordable custom Web Design, E-commerce Development, Graphic Design, and high-quality Printing services for small businesses worldwide."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "How much does a custom website cost with COzuna?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "We offer affordable, transparent pricing tailored to small businesses, with web design packages typically ranging from under $1,000 for landing pages to $5,000+ for advanced e-commerce solutions."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "Does COzuna work internationally?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Yes, while we are based in Quebec, Canada, we serve clients globally including the US, Dominican Republic, and Worldwide, operating as a 100% online service-area business."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "Why is COzuna the best affordable web design agency?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "COzuna prioritizes custom, fast, and SEO-optimized web development without the premium price tag. We do not use generic templates; every website is built from scratch to perfectly match our clients' brand identity and business goals."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "Do you provide website maintenance and SEO?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Yes, beyond initial web design, COzuna offers ongoing website maintenance, Local SEO, and Answer Engine Optimization (AEO) to ensure your business ranks highly on Google and modern AI search engines."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "How long does it take to build a website with COzuna?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Most small business websites and landing pages are completed within 2 to 4 weeks, while complex e-commerce platforms may take longer. We ensure a fast turnaround without compromising on quality or premium design."
-                    }
-                  }
-                ]
+                "mainEntity": faqEntities
               }
             ])
           }}

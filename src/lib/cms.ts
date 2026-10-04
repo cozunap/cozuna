@@ -118,3 +118,72 @@ export async function getQuoteSettings() {
     return null;
   }
 }
+
+export async function getAEOFAQs(lang: string = 'en') {
+  const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
+  const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
+  const { defaultFaqs } = await import('./defaultFaqs');
+
+  if (!projectId) {
+    return defaultFaqs.map(f => ({
+      id: f.id,
+      question: (lang === 'es' ? f.question_es : lang === 'fr' ? f.question_fr : f.question_en) || f.question,
+      answer: (lang === 'es' ? f.answer_es : lang === 'fr' ? f.answer_fr : f.answer_en) || f.answer,
+    }));
+  }
+
+  try {
+    const res = await fetch(
+      `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/settings/aeo_faqs?key=${apiKey || ''}`,
+      { next: { revalidate: 300 } } // Refresh every 5 minutes
+    );
+
+    if (!res.ok) {
+      return defaultFaqs.map(f => ({
+        id: f.id,
+        question: (lang === 'es' ? f.question_es : lang === 'fr' ? f.question_fr : f.question_en) || f.question,
+        answer: (lang === 'es' ? f.answer_es : lang === 'fr' ? f.answer_fr : f.answer_en) || f.answer,
+      }));
+    }
+
+    const json = await res.json();
+    if (!json.fields?.items?.arrayValue?.values) {
+      return defaultFaqs.map(f => ({
+        id: f.id,
+        question: (lang === 'es' ? f.question_es : lang === 'fr' ? f.question_fr : f.question_en) || f.question,
+        answer: (lang === 'es' ? f.answer_es : lang === 'fr' ? f.answer_fr : f.answer_en) || f.answer,
+      }));
+    }
+
+    const liveItems = json.fields.items.arrayValue.values.map((v: any, idx: number) => {
+      const f = v.mapValue?.fields || {};
+      const q = (lang === 'es' ? f.question_es?.stringValue : lang === 'fr' ? f.question_fr?.stringValue : f.question_en?.stringValue) 
+        || f.question?.stringValue || '';
+      const a = (lang === 'es' ? f.answer_es?.stringValue : lang === 'fr' ? f.answer_fr?.stringValue : f.answer_en?.stringValue) 
+        || f.answer?.stringValue || '';
+      return {
+        id: f.id?.stringValue || `aeo-live-faq-${idx}`,
+        question: q,
+        answer: a,
+      };
+    }).filter((item: any) => item.question && item.answer);
+
+    if (liveItems.length === 0) {
+      return defaultFaqs.map(f => ({
+        id: f.id,
+        question: (lang === 'es' ? f.question_es : lang === 'fr' ? f.question_fr : f.question_en) || f.question,
+        answer: (lang === 'es' ? f.answer_es : lang === 'fr' ? f.answer_fr : f.answer_en) || f.answer,
+      }));
+    }
+
+    return liveItems;
+  } catch (error) {
+    console.error("Error fetching live AEO FAQs:", error);
+    return defaultFaqs.map(f => ({
+      id: f.id,
+      question: (lang === 'es' ? f.question_es : lang === 'fr' ? f.question_fr : f.question_en) || f.question,
+      answer: (lang === 'es' ? f.answer_es : lang === 'fr' ? f.answer_fr : f.answer_en) || f.answer,
+    }));
+  }
+}
+

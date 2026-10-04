@@ -1,6 +1,6 @@
 import HomeContent from "./HomeContent";
 import { getDictionary } from "@/lib/dictionaries";
-import { getPageData, getPortfolioProjects } from "@/lib/cms";
+import { getPageData, getPortfolioProjects, getAEOFAQs } from "@/lib/cms";
 import { Metadata } from 'next';
 
 export const revalidate = 60; // ISR for SEO
@@ -19,10 +19,11 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
   const lang = resolvedParams.lang;
   const dict = await getDictionary(lang as 'en' | 'es' | 'fr');
   
-  const [cmsData, portfolioItems] = await Promise.all([
+  const [cmsData, portfolioItems, aeoFaqs] = await Promise.all([
     getPageData('home'),
-    getPortfolioProjects()
+    getPortfolioProjects(),
+    getAEOFAQs(lang)
   ]);
 
-  return <HomeContent lang={lang} dict={dict} cmsData={cmsData} portfolioItems={portfolioItems || []} />;
+  return <HomeContent lang={lang} dict={dict} cmsData={cmsData} portfolioItems={portfolioItems || []} aeoFaqs={aeoFaqs} />;
 }
