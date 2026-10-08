@@ -49,6 +49,8 @@ ${RECEPTIONIST_KB}`;
     const reply = response.text?.trim() || (
       lang === 'fr'
         ? "Merci pour votre message ! Pour vous donner une réponse précise, je vous invite à demander un rappel ou à nous contacter au +1 (438) 393-9465."
+        : lang === 'es'
+        ? "¡Gracias por tu mensaje! Para darte una respuesta exacta, solicita una llamada o llámanos directamente al +1 (438) 393-9465."
         : "Thanks for your message! To give you an exact answer, feel free to request a callback or call us at +1 (438) 393-9465."
     );
 
