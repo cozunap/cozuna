@@ -176,6 +176,13 @@ export default async function RootLayout({
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
+        <script
+          src="/widget.js"
+          data-api="/api/chat"
+          data-lead="/api/lead"
+          data-lang={lang}
+          defer
+        />
       </body>
     </html>
   );
