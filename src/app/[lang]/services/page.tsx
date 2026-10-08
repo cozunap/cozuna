@@ -3,12 +3,33 @@ import Link from "next/link";
 import { getPageData } from "@/lib/cms";
 import { getDictionary } from "@/lib/dictionaries";
 
+import { Metadata } from "next";
 import PageHero from "@/components/PageHero";
 
-export const metadata = {
-  title: "Our Services | COzuna Web Design Agency",
-  description: "Explore our professional web design, graphic design, printing, and signage services.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang || 'en';
+
+  const title = lang === 'fr'
+    ? "Nos Services de Conception Web & Impression | COzuna Laval & Montréal"
+    : lang === 'es'
+    ? "Nuestros Servicios de Diseño Web e Impresión | COzuna"
+    : "Our Services | Web Design, Branding & Printing | COzuna Laval & Montreal";
+
+  const description = lang === 'fr'
+    ? "Découvrez nos services complets : conception Web abordable, design graphique, image de marque, impression et signalétique pour entreprises à Laval, Montréal et ailleurs."
+    : lang === 'es'
+    ? "Descubre nuestros servicios integrales de diseño web económico, diseño gráfico, branding, impresión y letreros para empresas en Laval, Montreal y globalmente."
+    : "Explore our professional web design, branding, graphic design, printing, and signage services for businesses in Laval, Montreal, and worldwide.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${lang}/services`
+    }
+  };
+}
 
 export default async function ServicesPage({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
@@ -91,10 +112,10 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
 
                   <div>
                     <Link
-                      href="/get-a-quote"
+                      href={`/${lang}/get-a-quote`}
                       className="inline-flex rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-sm hover:bg-brand-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 border border-zinc-800 hover:border-brand-primary"
                     >
-                      Request a Quote
+                      {lang === 'fr' ? "Demander un Devis" : lang === 'es' ? "Solicitar Cotización" : "Request a Quote"}
                     </Link>
                   </div>
                 </div>
@@ -108,16 +129,20 @@ export default async function ServicesPage({ params }: { params: Promise<{ lang:
       <section className="py-24 bg-brand-primary px-6 lg:px-8 text-center mt-auto">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-            Ready to get started?
+            {lang === 'fr' ? "Prêt à démarrer ?" : lang === 'es' ? "¿Listo para comenzar?" : "Ready to get started?"}
           </h2>
           <p className="text-lg text-white/90 mb-10 max-w-xl mx-auto">
-            Let's discuss how we can help your business stand out from the competition.
+            {lang === 'fr'
+              ? "Voyons comment nous pouvons aider votre entreprise à surpasser la concurrence."
+              : lang === 'es'
+              ? "Hablemos de cómo podemos ayudar a tu negocio a destacar frente a la competencia."
+              : "Let's discuss how we can help your business stand out from the competition."}
           </p>
           <Link
-            href="/get-a-quote"
+            href={`/${lang}/get-a-quote`}
             className="inline-block rounded-full bg-white px-8 py-4 text-sm font-bold text-brand-primary shadow-lg hover:bg-zinc-100 transition-colors"
           >
-            Contact Us Today
+            {lang === 'fr' ? "Contactez-nous Aujourd'hui" : lang === 'es' ? "Contáctanos Hoy" : "Contact Us Today"}
           </Link>
         </div>
       </section>

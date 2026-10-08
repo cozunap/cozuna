@@ -4,10 +4,32 @@ import ClientPortfolio from "./ClientPortfolio";
 import { getPortfolioProjects, getPageData } from "@/lib/cms";
 import { getDictionary } from "@/lib/dictionaries";
 
-export const metadata = {
-  title: "What We Do - Portfolio | COzuna Web Design Agency",
-  description: "Explore our portfolio of successful web design, graphic design, and printing projects.",
-};
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+
+  const title = lang === 'fr'
+    ? "Nos Réalisations - Portfolio | Agence Web COzuna"
+    : lang === 'es'
+    ? "Nuestro Portafolio de Proyectos | COzuna Web Agency"
+    : "Portfolio & Recent Work | Web Design & Branding | COzuna";
+
+  const description = lang === 'fr'
+    ? "Explorez notre portfolio de projets réussis en conception Web, image de marque et impression pour entreprises à Laval, Montréal et ailleurs."
+    : lang === 'es'
+    ? "Explora nuestro portafolio de proyectos exitosos en diseño web, diseño gráfico e impresión para clientes en Laval, Montreal y el mundo."
+    : "Explore our portfolio of successful web design, graphic design, and custom branding projects for businesses in Laval, Montreal, and worldwide.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${lang}/what-we-do`
+    }
+  };
+}
 
 export const revalidate = 60; // Revalidate every 60 seconds (ISR)
 

@@ -229,16 +229,22 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
           transition={{ duration: 0.6 }}
           className="mx-auto max-w-2xl text-center"
         >
-          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">Let's Build Something Great.</h2>
+          <h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl">
+            {lang === 'fr' ? "Bâtissons Quelque Chose d'Exceptionnel." : lang === 'es' ? "Construyamos Algo Extraordinario." : "Let's Build Something Great."}
+          </h2>
           <p className="mx-auto mt-6 max-w-xl text-xl leading-8 text-zinc-300 font-light">
-            Whether you need a complete rebrand, high-quality printing, or a modern website, we are ready to help your business grow.
+            {lang === 'fr' 
+              ? "Que vous ayez besoin d'une nouvelle identité, d'impressions de haute qualité ou d'un site Web moderne, nous sommes prêts à propulser votre entreprise."
+              : lang === 'es'
+              ? "Ya sea que necesites una identidad de marca completa, impresiones de alta calidad o un sitio web moderno, estamos listos para hacer crecer tu negocio."
+              : "Whether you need a complete rebrand, high-quality printing, or a modern website, we are ready to help your business grow."}
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link
-              href="/get-a-quote"
+              href={`/${lang}/get-a-quote`}
               className="animate-pulse-glow rounded-full bg-white px-10 py-5 text-sm font-bold text-brand-dark shadow-sm hover:bg-zinc-200 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-brand-primary/50"
             >
-              Start Your Project
+              {lang === 'fr' ? "Démarrer Votre Projet" : lang === 'es' ? "Inicia Tu Proyecto" : "Start Your Project"}
             </Link>
           </div>
         </motion.div>

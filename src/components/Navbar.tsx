@@ -107,6 +107,15 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                       {item.name}
                     </a>
                   ))}
+                  <div className="pt-4">
+                    <a
+                      href="tel:+14383939465"
+                      className="flex items-center justify-center gap-2 w-full py-3 px-4 rounded-full bg-brand-primary text-white font-bold text-sm shadow-md"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <span>📞 +1 (438) 393-9465</span>
+                    </a>
+                  </div>
                 </div>
               </div>
             </div>

@@ -39,6 +39,33 @@ async function getPosts() {
   }
 }
 
+import { Metadata } from 'next';
+
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+
+  const title = lang === 'fr'
+    ? "Blog Conseils Web & Marketing | COzuna Laval & Montréal"
+    : lang === 'es'
+    ? "Blog de Diseño Web y Marketing Digital | COzuna"
+    : "Web Design, SEO & Business Blog | COzuna Laval & Montreal";
+
+  const description = lang === 'fr'
+    ? "Guides pratiques et conseils d'experts sur la conception Web abordable, le SEO local et l'image de marque pour les entreprises à Laval et Montréal."
+    : lang === 'es'
+    ? "Guías prácticas y consejos sobre diseño web económico, SEO local y branding para pequeñas empresas."
+    : "Expert guides, pricing breakdowns, and actionable tips on affordable web development, local SEO, and branding for businesses in Laval, Montreal, and beyond.";
+
+  return {
+    title,
+    description,
+    alternates: {
+      canonical: `/${lang}/blog`
+    }
+  };
+}
+
 export default async function Blog({ params }: { params: Promise<{ lang: string }> }) {
   const resolvedParams = await params;
   const lang = resolvedParams.lang;

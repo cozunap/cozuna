@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import BackToTop from "@/components/BackToTop";
 import SecurityShield from "@/components/SecurityShield";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import MobileStickyCallBar from "@/components/MobileStickyCallBar";
 import SkipToContent from "@/components/SkipToContent";
 import { getDictionary } from "@/lib/dictionaries";
 import { getAEOFAQs } from "@/lib/cms";
@@ -17,13 +18,18 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
-  // Basic metadata matching language and location targets
-  const title = lang === 'es' 
-    ? "COzuna Web Design Agency | Desarrollo Web Económico y a Medida" 
-    : "COzuna Web Design Agency | Affordable Web Design & Custom Development";
-  const description = lang === 'es' 
-    ? "Servicios económicos de diseño web, desarrollo a medida, diseño gráfico y de impresión de alta calidad para pequeñas empresas en todo el mundo." 
-    : "Affordable custom Web Design, Web Development, Graphic Design, and high-quality Printing services for small businesses worldwide.";
+  // Localized metadata targeting primary local market (Laval, Montreal & Global) - Page 5 audit
+  const title = lang === 'fr'
+    ? "Conception de sites Web à Laval et Montréal | COzuna"
+    : lang === 'es'
+    ? "Diseño Web en Laval y Montreal | COzuna Web Agency"
+    : "Web Design Laval & Montreal | COzuna Web Design Agency";
+
+  const description = lang === 'fr'
+    ? "Services professionnels et abordables de conception de sites Web, design graphique, image de marque et impression pour entreprises à Laval, Montréal et ailleurs."
+    : lang === 'es'
+    ? "Servicios profesionales y económicos de diseño web, diseño gráfico e impresión para empresas en Laval, Montreal y a nivel internacional."
+    : "Professional and affordable web design, branding, graphic design, and printing services for businesses in Laval, Montreal, and worldwide.";
 
   return {
     metadataBase: new URL('https://cozuna.com'),
@@ -128,8 +134,10 @@ export default async function RootLayout({
                 "email": "ozunaprinting@gmail.com",
                 "address": {
                   "@type": "PostalAddress",
+                  "streetAddress": "490 Av. Ampère",
                   "addressLocality": "Laval",
                   "addressRegion": "QC",
+                  "postalCode": "H7N 5J9",
                   "addressCountry": "CA"
                 },
                 "areaServed": [
@@ -164,6 +172,7 @@ export default async function RootLayout({
         <Footer lang={lang} dict={dict} />
         <BackToTop />
         <WhatsAppButton />
+        <MobileStickyCallBar lang={lang} />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}

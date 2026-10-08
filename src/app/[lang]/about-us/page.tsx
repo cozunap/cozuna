@@ -7,11 +7,25 @@ import { Metadata } from 'next';
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
+  const lang = resolvedParams.lang;
+
+  const title = lang === 'fr'
+    ? "À Propos de Nous | Agence Web COzuna Laval & Montréal"
+    : lang === 'es'
+    ? "Sobre Nosotros | Agencia Web COzuna"
+    : "About Us | COzuna Web Design Agency | Laval & Montreal";
+
+  const description = lang === 'fr'
+    ? "Découvrez COzuna, notre mission et notre passion pour la conception de sites Web sur mesure, le branding et l'impression pour entreprises locales et internationales."
+    : lang === 'es'
+    ? "Conoce COzuna, nuestra misión y nuestra pasión por construir identidades digitales y de impresión de alta calidad para empresas locales y globales."
+    : "Learn more about COzuna, our mission, and our passion for building custom digital and print identities for businesses in Laval, Montreal, and beyond.";
+
   return {
-    title: "About Us | COzuna Web Design Agency",
-    description: "Learn more about COzuna, our mission, and our passion for building digital and print identities.",
+    title,
+    description,
     alternates: {
-      canonical: `/${resolvedParams.lang}/about-us`
+      canonical: `/${lang}/about-us`
     }
   };
 }
@@ -42,7 +56,13 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
         <div className="relative z-10 mx-auto max-w-7xl flex flex-col lg:flex-row items-center gap-16">
           <div className="w-full lg:w-1/2">
             <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-6xl mb-6">
-              {heroTitle} <span className="text-brand-primary">{heroTitleHighlight}</span>
+              {heroTitle.trim() === 'Who We Are' ? (
+                <>Who We <span className="text-brand-primary">Are</span></>
+              ) : heroTitle.includes(heroTitleHighlight) ? (
+                heroTitle
+              ) : (
+                <>{heroTitle} <span className="text-brand-primary">{heroTitleHighlight}</span></>
+              )}
             </h1>
             <p className="text-xl leading-8 text-zinc-300 mb-8 font-light whitespace-pre-wrap">
               {heroSubtitle}
@@ -116,16 +136,20 @@ export default async function AboutUsPage({ params }: { params: Promise<{ lang: 
       <section className="py-24 px-6 lg:px-8 text-center mt-auto border-t border-zinc-900">
         <div className="mx-auto max-w-3xl">
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl mb-6">
-            Join Our Story
+            {lang === 'fr' ? "Faites Partie de Notre Histoire" : lang === 'es' ? "Únete a Nuestra Historia" : "Join Our Story"}
           </h2>
           <p className="text-lg text-zinc-400 mb-10 max-w-xl mx-auto">
-            Ready to work with a team that cares about your brand as much as you do?
+            {lang === 'fr' 
+              ? "Prêt à collaborer avec une équipe qui valorise votre marque autant que vous ?"
+              : lang === 'es'
+              ? "¿Listo para trabajar con un equipo apasionado por tu marca tanto como tú?"
+              : "Ready to work with a team that cares about your brand as much as you do?"}
           </p>
           <Link
-            href="/get-a-quote"
+            href={`/${lang}/get-a-quote`}
             className="inline-block rounded-full bg-brand-primary px-8 py-4 text-sm font-bold text-white shadow-lg hover:bg-red-500 transition-colors"
           >
-            Get in Touch
+            {lang === 'fr' ? "Contactez-nous" : lang === 'es' ? "Contáctanos" : "Get in Touch"}
           </Link>
         </div>
       </section>

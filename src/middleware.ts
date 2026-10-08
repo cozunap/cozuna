@@ -40,6 +40,52 @@ export function middleware(request: NextRequest) {
     return NextResponse.next()
   }
 
+  // 1. Legacy and canonical 301 redirects (Pages 3, 4 of cozuna-seo-audit.pdf)
+  // Clean trailing slash for standard lookup
+  const normalizedPath = pathname.length > 1 && pathname.endsWith('/') ? pathname.slice(0, -1) : pathname;
+
+  const legacyRedirects: Record<string, string> = {
+    // Unlocalized canonical routes -> redirect to /en/ counterparts
+    '/services': '/en/services',
+    '/about-us': '/en/about-us',
+    '/what-we-do': '/en/what-we-do',
+    '/get-a-quote': '/en/get-a-quote',
+    '/blog': '/en/blog',
+    '/affordable-web-development': '/en/affordable-web-development',
+    '/ecommerce-web-design': '/en/ecommerce-web-design',
+    '/landing-page-design': '/en/landing-page-design',
+    '/graphic-design-for-small-business': '/en/graphic-design-for-small-business',
+    '/privacy-policy': '/en/privacy-policy',
+    '/terms-of-service': '/en/terms-of-service',
+
+    // Legacy service pages from pre-rebuild site (Page 4 of audit)
+    '/printing-services': '/en/services',
+    '/graphic-design': '/en/services',
+    '/digital-signage': '/en/services',
+    '/web-development': '/en/affordable-web-development',
+    '/business-cards': '/en/services',
+    '/promotional-flyers': '/en/services',
+    '/contact-us': '/en/get-a-quote',
+
+    // Legacy portfolio slugs -> new project URLs (Page 4 of audit)
+    '/ajs-mechanical': '/en/what-we-do',
+    '/elsy-leonso': '/en/what-we-do/elsy-leonso',
+    '/la-casa-del-mofongo-md': '/en/what-we-do/la-casa-del-mofongo',
+    '/jacinthe-coiffure-studio': '/en/what-we-do/jacinthe-studio',
+    '/bel-air-clean': '/en/what-we-do',
+    '/la-shisha-restaurant': '/en/what-we-do/la-shisha-restaurant',
+    '/monica-nails-spa': '/en/what-we-do/monica-nails-spa',
+    '/crossway-driving-school': '/en/what-we-do/crossway-driving-school',
+
+    // Outdated WordPress default post
+    '/hello-world': '/en/blog',
+  };
+
+  if (legacyRedirects[normalizedPath]) {
+    url.pathname = legacyRedirects[normalizedPath];
+    return NextResponse.redirect(url, 301);
+  }
+
   const pathnameHasLocale = locales.some(
     (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   )
@@ -50,7 +96,7 @@ export function middleware(request: NextRequest) {
   const preferredLocale = getLocale(request);
   
   request.nextUrl.pathname = `/${preferredLocale}${pathname === '/' ? '' : pathname}`
-  return NextResponse.redirect(request.nextUrl)
+  return NextResponse.redirect(request.nextUrl, 301)
 }
 
 export const config = {
