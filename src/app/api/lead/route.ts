@@ -56,12 +56,14 @@ export async function POST(request: Request) {
           body: JSON.stringify({
             recipient: 'cmozunap@gmail.com',
             firstName: name,
-            lastName: '(AI Chat Callback)',
+            lastName: `(Phone: ${contact})`,
             email: contact.includes('@') ? contact : 'cmozunap@gmail.com',
-            service: 'AI Receptionist Callback / Lead',
-            budget: 'N/A',
-            timeline: 'Urgent Callback Requested',
-            message: `New Lead Captured by COzuna AI Receptionist\n\nName: ${name}\nPhone / Contact: ${contact}\nNeed / Note: ${message || 'No additional note'}\nLanguage: ${lang}\nPage: ${page}\n\n====================\nCHAT CONVERSATION HISTORY:\n====================\n${historyText}`,
+            phone: contact,
+            contact: contact,
+            service: `AI Lead: ${name} (${contact})`,
+            budget: `Phone: ${contact} | Lang: ${lang}`,
+            timeline: `Call Request: ${contact}`,
+            message: `Lead Details:\n• Name: ${name}\n• Phone / Contact: ${contact}\n• Need: ${message || 'No additional note'}\n• Language: ${lang}\n• Page: ${page}\n\n====================\nCHAT CONVERSATION HISTORY:\n====================\n${historyText}`,
             lang: lang
           })
         });
