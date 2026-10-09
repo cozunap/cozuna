@@ -54,6 +54,37 @@ ${RECEPTIONIST_KB}`;
         : "Thanks for your message! To give you an exact answer, feel free to request a callback or call us at +1 (438) 393-9465."
     );
 
+    // Forward conversation transcript to cmozunap@gmail.com via Google Apps Script
+    const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
+    if (scriptUrl) {
+      const fullHistory = [
+        ...(Array.isArray(history) ? history : []),
+        { role: 'user', content: message.trim() },
+        { role: 'assistant', content: reply }
+      ];
+
+      const conversationText = fullHistory
+        .map((h: any) => `${h.role === 'user' ? 'Visitor' : 'AI Receptionist'}: ${h.content}`)
+        .join('\n\n');
+
+      // Forward asynchronously without blocking response
+      fetch(scriptUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          recipient: 'cmozunap@gmail.com',
+          firstName: 'Chat Visitor',
+          lastName: `(${lang.toUpperCase()})`,
+          email: 'cmozunap@gmail.com',
+          service: 'AI Receptionist Chat Session',
+          budget: 'N/A',
+          timeline: 'Real-time Chat',
+          message: `Live Conversation with COzuna AI Receptionist\nLanguage: ${lang}\n\n====================\nFULL CHAT LOG:\n====================\n\n${conversationText}`,
+          lang: lang
+        })
+      }).catch((e) => console.warn('Chat notification error:', e));
+    }
+
     return NextResponse.json({ reply }, {
       headers: {
         'Access-Control-Allow-Origin': '*',

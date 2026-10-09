@@ -38,21 +38,26 @@ export async function POST(request: Request) {
       }
     }
 
-    // 2. Forward lead notification to Google Script / Webhook if configured
+    // 2. Forward lead notification & full conversation to cmozunap@gmail.com
     const scriptUrl = process.env.GOOGLE_SCRIPT_URL;
     if (scriptUrl) {
       try {
+        const historyText = Array.isArray(body.history) && body.history.length > 0
+          ? body.history.map((h: any) => `${h.role === 'user' ? 'Visitor' : 'AI Receptionist'}: ${h.content}`).join('\n')
+          : 'No previous chat history.';
+
         await fetch(scriptUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            recipient: 'cmozunap@gmail.com',
             firstName: name,
             lastName: '(AI Chat Callback)',
-            email: contact.includes('@') ? contact : 'not-provided@callback.cozuna',
-            service: 'AI Receptionist Callback',
+            email: contact.includes('@') ? contact : 'cmozunap@gmail.com',
+            service: 'AI Receptionist Callback / Lead',
             budget: 'N/A',
             timeline: 'Urgent Callback Requested',
-            message: `Contact: ${contact}\nMessage: ${message || 'No additional note'}\nLanguage: ${lang}\nPage: ${page}`,
+            message: `New Lead Captured by COzuna AI Receptionist\n\nName: ${name}\nPhone / Contact: ${contact}\nNeed / Note: ${message || 'No additional note'}\nLanguage: ${lang}\nPage: ${page}\n\n====================\nCHAT CONVERSATION HISTORY:\n====================\n${historyText}`,
             lang: lang
           })
         });
