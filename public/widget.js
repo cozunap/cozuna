@@ -541,10 +541,13 @@
         body: JSON.stringify({
           name: name,
           phone: phone,
+          contact: phone,
           need: need,
+          message: need,
           history: history,
           lang: LANG,
-          source: window.location.href
+          source: window.location.href,
+          page: window.location.href
         })
       });
       if (!res.ok) throw new Error('Lead error');

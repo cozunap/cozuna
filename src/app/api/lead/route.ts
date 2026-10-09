@@ -5,7 +5,11 @@ export const runtime = 'edge';
 export async function POST(request: Request) {
   try {
     const body = await request.json();
-    const { name, contact, message, lang = 'en', page = '' } = body;
+    const name = body.name || '';
+    const contact = body.contact || body.phone || '';
+    const message = body.message || body.need || '';
+    const lang = body.lang || 'en';
+    const page = body.page || body.source || '';
 
     if (!name || !contact) {
       return NextResponse.json({ error: 'Name and contact are required' }, { status: 400 });
