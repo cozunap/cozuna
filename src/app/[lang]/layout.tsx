@@ -4,7 +4,6 @@ import "../globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import BackToTop from "@/components/BackToTop";
 import SecurityShield from "@/components/SecurityShield";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import MobileStickyCallBar from "@/components/MobileStickyCallBar";
@@ -170,7 +169,6 @@ export default async function RootLayout({
         <Navbar lang={lang} dict={dict} />
         <div id="main-content" className="flex-grow flex flex-col pt-[30px]">{children}</div>
         <Footer lang={lang} dict={dict} />
-        <BackToTop />
         <WhatsAppButton />
         <MobileStickyCallBar lang={lang} />
         {process.env.NEXT_PUBLIC_GA_ID && (
