@@ -61,4 +61,40 @@
   .animate-pulse-glow {
     animation: pulse-glow 2s infinite;
   }
+
+  .shimmer-badge {
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.03) 100%);
+    background-size: 200% 100%;
+    animation: shimmer 3s infinite linear;
+  }
+
+  .glass-card {
+    background: rgba(18, 18, 23, 0.7);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+  }
+
+  .glass-card-hover {
+    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .glass-card-hover:hover {
+    transform: translateY(-4px);
+    border-color: rgba(59, 130, 246, 0.4);
+    box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.2);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 30px rgba(59, 130, 246, 0.35);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
 }
