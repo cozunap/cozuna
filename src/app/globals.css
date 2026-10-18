@@ -69,24 +69,31 @@
   }
 
   .glass-card {
-    background: rgba(18, 18, 23, 0.7);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: rgba(18, 18, 23, 0.75);
     border: 1px solid rgba(255, 255, 255, 0.08);
   }
 
+  @supports (backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px)) {
+    .glass-card {
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  }
+
   .glass-card-hover {
-    transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateZ(0);
+    will-change: transform, border-color, box-shadow;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1), border-color 0.25s ease, box-shadow 0.25s ease;
   }
 
   .glass-card-hover:hover {
-    transform: translateY(-4px);
+    transform: translateY(-4px) translateZ(0);
     border-color: rgba(59, 130, 246, 0.4);
-    box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.15), 0 0 0 1px rgba(59, 130, 246, 0.2);
+    box-shadow: 0 16px 32px -10px rgba(59, 130, 246, 0.15);
   }
 
   .text-glow {
-    text-shadow: 0 0 30px rgba(59, 130, 246, 0.35);
+    text-shadow: 0 0 20px rgba(59, 130, 246, 0.35);
   }
 }
 
