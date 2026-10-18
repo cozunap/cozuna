@@ -32,13 +32,19 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     { name: 'Blog', href: `/${lang}/blog` },
   ];
 
+  const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/" || pathname === "";
+
   return (
     <header className="sticky top-0 z-[100] w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2">
       <nav
-        className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full backdrop-blur-2xl transition-colors duration-300 ${
-          isScrolled 
-            ? "bg-zinc-950/95 border border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.7)]" 
-            : "bg-zinc-950/60 border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+        className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full transition-all duration-300 ${
+          isHomePage
+            ? isScrolled
+              ? "bg-zinc-950/90 border border-white/15 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+              : "bg-transparent border border-white/10 backdrop-blur-none shadow-none"
+            : isScrolled
+              ? "bg-zinc-950/95 border border-white/15 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
+              : "bg-zinc-950/85 border border-white/10 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.4)]"
         }`}
         aria-label="Global"
       >
