@@ -140,10 +140,14 @@ export default async function WhatWeDoPage({ params }: { params: Promise<{ lang:
             {dict.portfolio.cta.description}
           </p>
           <Link
-            href="/get-a-quote"
-            className="inline-block rounded-full bg-brand-primary px-8 py-4 text-sm font-bold text-white shadow-lg hover:bg-red-500 transition-colors"
+            href={`/${lang}/get-a-quote`}
+            className="group relative inline-flex items-center gap-2 rounded-full bg-brand-primary px-8 py-4 text-sm font-bold tracking-wide uppercase text-white shadow-xl shadow-brand-primary/30 hover:bg-blue-600 hover:shadow-brand-primary/50 hover:scale-[1.04] transition-all duration-300 btn-kinetic-roll"
           >
-            {dict.portfolio.cta.button}
+            <span className="roll-track">
+              <span className="roll-text">{dict.portfolio.cta.button}</span>
+              <span className="roll-text text-cyan-200">{dict.portfolio.cta.button}</span>
+            </span>
+            <span aria-hidden="true" className="text-zinc-300 group-hover:text-white transition-transform group-hover:translate-x-0.5">→</span>
           </Link>
         </div>
       </section>

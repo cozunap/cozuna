@@ -283,35 +283,78 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
             viewport={{ once: true, margin: "-80px" }}
             className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
           >
-            {portfolioItems.slice(0, 6).map((project, index) => (
-              <motion.div 
-                key={project.id || index} 
-                variants={itemVariants} 
-                className="group relative aspect-[4/3] overflow-hidden rounded-2xl mask-chamfer-corner bg-zinc-900 border border-white/10 hover:border-blue-500/50 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500"
-              >
-                <Image 
-                  src={project.image || "/assets/images/2024/10/la-casa-del-mofongo.webp"} 
-                  alt={project.title} 
-                  fill 
-                  className="object-cover transition-transform duration-700 group-hover:scale-105" 
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
-                
-                {/* Verified Trust Chip */}
-                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/70 border border-white/10 backdrop-blur-md">
-                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-300">Verified Project</span>
-                </div>
+            {portfolioItems.slice(0, 6).map((project, index) => {
+              const hasVideo = project.slug === "la-casa-del-mofongo" || project.slug === "crossway-driving-school";
+              const videoSrc = "/videos/designer-working.mp4";
+              const projectLink = project.slug ? `/${lang}/what-we-do/${project.slug}` : `/${lang}/what-we-do`;
 
-                <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
-                  <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-1.5 inline-block">{project.category}</span>
-                  <h3 className="text-xl font-bold text-white flex items-center justify-between">
-                    <span>{project.title}</span>
-                    <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
-                  </h3>
-                </div>
-              </motion.div>
-            ))}
+              return (
+                <motion.div 
+                  key={project.id || index} 
+                  variants={itemVariants} 
+                  className="w-full"
+                >
+                  <Link 
+                    href={projectLink}
+                    prefetch={true}
+                    className="block group relative aspect-[4/3] overflow-hidden rounded-2xl mask-chamfer-corner bg-zinc-900 border border-white/10 hover:border-blue-500/50 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500"
+                  >
+                    <Image 
+                      src={project.image || "/assets/images/2024/10/la-casa-del-mofongo.webp"} 
+                      alt={project.title} 
+                      fill 
+                      className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
+                        hasVideo ? 'group-hover:opacity-0 transition-opacity duration-500' : ''
+                      }`} 
+                    />
+
+                    {/* Interactive Video Snippet on hover */}
+                    {hasVideo && (
+                      <video
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        preload="metadata"
+                        className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none transform-gpu"
+                      >
+                        <source src={videoSrc} type="video/mp4" />
+                      </video>
+                    )}
+
+                    <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+                    
+                    {/* Verified Badges & Client Trust Chips */}
+                    <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between gap-2 pointer-events-none">
+                      <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-950/80 border border-white/10 backdrop-blur-md shadow-lg">
+                        <div className="w-5 h-5 rounded-full bg-blue-600/30 border border-blue-400/40 flex items-center justify-center text-[10px] font-black text-blue-300 uppercase">
+                          {(project.title || "CO").charAt(0)}
+                        </div>
+                        <div className="flex items-center gap-1.5">
+                          <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
+                          <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-200">Verified Client</span>
+                        </div>
+                      </div>
+
+                      {hasVideo && (
+                        <div className="px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-[10px] font-bold uppercase tracking-wider text-blue-300 backdrop-blur-md flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                          <span>Live Preview</span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
+                      <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-1.5 inline-block">{project.category}</span>
+                      <h3 className="text-xl font-bold text-white flex items-center justify-between">
+                        <span>{project.title}</span>
+                        <ArrowUpRight className="w-4 h-4 text-zinc-500 group-hover:text-white transition-colors" />
+                      </h3>
+                    </div>
+                  </Link>
+                </motion.div>
+              );
+            })}
           </motion.div>
         </div>
       </section>
@@ -354,9 +397,12 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 href={`/${lang}/get-a-quote`}
-                className="group inline-flex items-center gap-2 rounded-full bg-brand-primary px-8 py-4 text-sm font-bold tracking-wide uppercase text-white shadow-xl shadow-brand-primary/30 hover:bg-blue-600 hover:shadow-brand-primary/50 hover:scale-[1.04] transition-all duration-300"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-brand-primary px-8 py-4 text-sm font-bold tracking-wide uppercase text-white shadow-xl shadow-brand-primary/30 hover:bg-blue-600 hover:shadow-brand-primary/50 hover:scale-[1.04] transition-all duration-300 btn-kinetic-roll"
               >
-                <span>{lang === 'fr' ? "Demander un devis gratuit" : lang === 'es' ? "Solicitar cotización" : "Get a Free Quote"}</span>
+                <span className="roll-track">
+                  <span className="roll-text">{lang === 'fr' ? "Demander un devis gratuit" : lang === 'es' ? "Solicitar cotización" : "Get a Free Quote"}</span>
+                  <span className="roll-text text-cyan-200">{lang === 'fr' ? "Demander un devis gratuit" : lang === 'es' ? "Solicitar cotización" : "Get a Free Quote"}</span>
+                </span>
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
               <a

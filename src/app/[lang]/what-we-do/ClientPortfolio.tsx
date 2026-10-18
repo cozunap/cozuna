@@ -74,6 +74,10 @@ export default function ClientPortfolio({ items, dict, lang }: { items: Portfoli
           const safeImage = item.image || "/assets/images/2024/10/la-casa-del-mofongo.webp";
           const itemHref = item.slug ? `/${lang}/what-we-do/${item.slug}` : `/${lang}/what-we-do`;
           
+          // Video preview snippets for live website projects
+          const hasVideoSnippet = item.slug === "la-casa-del-mofongo" || item.slug === "crossway-driving-school";
+          const videoSnippetSrc = "/videos/designer-working.mp4";
+          
           const cardInner = (
             <div className="group relative aspect-[4/5] overflow-hidden rounded-2xl mask-chamfer-corner bg-zinc-900 border border-zinc-800 w-full hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500">
               <Image 
@@ -81,15 +85,47 @@ export default function ClientPortfolio({ items, dict, lang }: { items: Portfoli
                 alt={item.title || "Portfolio Item"} 
                 fill 
                 className={`object-cover transition-transform duration-700 group-hover:scale-105 ${
+                  hasVideoSnippet ? 'group-hover:opacity-0 transition-opacity duration-500' : ''
+                } ${
                   safeImage.includes('crossway') || safeImage.includes('overall') || safeImage.includes('tbstax') ? 'object-contain bg-white p-4' : ''
                 }`} 
               />
+
+              {/* Interactive Portfolio Video Snippet (plays on hover / live preview) */}
+              {hasVideoSnippet && (
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  preload="metadata"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none transform-gpu"
+                >
+                  <source src={videoSnippetSrc} type="video/mp4" />
+                </video>
+              )}
+
               <div className="absolute inset-0 bg-gradient-to-t from-zinc-950/90 via-zinc-950/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity" />
               
-              {/* Trust Badge */}
-              <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/80 border border-white/10 backdrop-blur-md">
-                <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-300">Case Study</span>
+              {/* Verified Badge & Client Trust Chip */}
+              <div className="absolute top-4 left-4 right-4 z-10 flex items-center justify-between gap-2 pointer-events-none">
+                <div className="flex items-center gap-2 px-3 py-1.5 rounded-full bg-zinc-950/85 border border-white/10 backdrop-blur-md shadow-lg">
+                  {/* Client Logo / Initials Chip */}
+                  <div className="w-5 h-5 rounded-full bg-blue-600/30 border border-blue-400/40 flex items-center justify-center text-[10px] font-black text-blue-300 uppercase">
+                    {(item.title || "CO").charAt(0)}
+                  </div>
+                  <div className="flex items-center gap-1.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                    <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-200">Verified Client</span>
+                  </div>
+                </div>
+
+                {hasVideoSnippet && (
+                  <div className="px-2.5 py-1 rounded-full bg-blue-500/20 border border-blue-400/30 text-[10px] font-bold uppercase tracking-wider text-blue-300 backdrop-blur-md flex items-center gap-1">
+                    <span className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+                    <span>Live Preview</span>
+                  </div>
+                )}
               </div>
 
               <div className="absolute bottom-0 left-0 right-0 p-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
