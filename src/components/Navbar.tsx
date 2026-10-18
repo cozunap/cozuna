@@ -61,7 +61,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           {/* CTA Button with Glow */}
           <Link
             href={`/${lang}/get-a-quote`}
-            className="group relative inline-flex items-center gap-1.5 rounded-full bg-brand-primary px-6 py-2.5 text-xs font-bold tracking-wide uppercase text-white shadow-lg shadow-brand-primary/25 hover:bg-blue-600 hover:shadow-brand-primary/40 hover:scale-[1.03] transition-all duration-300"
+            className="group relative inline-flex items-center gap-1.5 rounded-full bg-brand-primary px-5 py-2 text-xs font-bold tracking-wide uppercase text-white shadow-lg shadow-brand-primary/25 hover:bg-blue-600 hover:shadow-brand-primary/40 hover:scale-[1.03] transition-all duration-300"
           >
             <span>{dict.navigation.getAQuote}</span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -70,12 +70,6 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
         {/* Mobile menu button */}
         <div className="flex lg:hidden items-center gap-2">
-          <Link
-            href={`/${lang}/get-a-quote`}
-            className="inline-flex items-center gap-1 rounded-full bg-brand-primary px-3.5 py-1.5 text-xs font-bold uppercase text-white shadow-md shadow-brand-primary/20"
-          >
-            <span>{dict.navigation.getAQuote}</span>
-          </Link>
           <button
             type="button"
             className="inline-flex items-center justify-center rounded-full p-2 text-zinc-300 bg-zinc-900 border border-white/10 hover:text-white hover:bg-zinc-800 transition-colors"
