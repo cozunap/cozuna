@@ -33,17 +33,17 @@ export default function Navbar({ lang, dict }: NavbarProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2 transition-all duration-500">
+    <header className="sticky top-0 z-[100] w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2">
       <nav
-        className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full backdrop-blur-2xl transition-all duration-500 ${
+        className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full backdrop-blur-2xl transition-colors duration-300 ${
           isScrolled 
-            ? "bg-zinc-950/90 border border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.7)]" 
-            : "bg-zinc-950/45 border border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+            ? "bg-zinc-950/95 border border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.7)]" 
+            : "bg-zinc-950/60 border border-white/10 shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
         }`}
         aria-label="Global"
       >
         {/* Logo */}
-        <Link href={`/${lang}`} className="flex items-center gap-2 group">
+        <Link href={`/${lang}`} className="flex items-center gap-2 group z-10">
           <span className="sr-only">COzuna Web Design Agency</span>
           <div className="text-2xl font-black text-white tracking-tighter transition-transform duration-300 group-hover:scale-105">
             CO<span className="text-brand-primary">zuna</span>.
@@ -51,14 +51,14 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 bg-white/[0.03] border border-white/5 px-3 py-1.5 rounded-full">
+        <div className="hidden lg:flex items-center gap-1 bg-white/[0.03] border border-white/5 px-3 py-1.5 rounded-full z-10">
           {navigation.map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-200 ${
+                className={`relative px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer ${
                   isActive
                     ? "text-white bg-white/10 shadow-sm"
                     : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
@@ -71,7 +71,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         </div>
 
         {/* Right Actions: Quote Button */}
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3 z-10">
           {/* CTA Button with Kinetic Roll & Glow */}
           <Link
             href={`/${lang}/get-a-quote`}
