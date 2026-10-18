@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu, X } from "lucide-react";
@@ -12,7 +12,17 @@ type NavbarProps = {
 
 export default function Navbar({ lang, dict }: NavbarProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const navigation = [
     { name: dict.navigation.home, href: `/${lang}` },
@@ -23,9 +33,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2">
+    <header className="sticky top-0 z-50 w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2 transition-all duration-500">
       <nav
-        className="max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full bg-zinc-950/75 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] transition-all duration-300"
+        className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full backdrop-blur-2xl transition-all duration-500 ${
+          isScrolled 
+            ? "bg-zinc-950/90 border border-white/15 shadow-[0_12px_40px_rgba(0,0,0,0.7)]" 
+            : "bg-zinc-950/45 border border-white/5 shadow-[0_4px_24px_rgba(0,0,0,0.3)]"
+        }`}
         aria-label="Global"
       >
         {/* Logo */}
@@ -58,12 +72,15 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
         {/* Right Actions: Quote Button */}
         <div className="hidden lg:flex items-center gap-3">
-          {/* CTA Button with Glow */}
+          {/* CTA Button with Kinetic Roll & Glow */}
           <Link
             href={`/${lang}/get-a-quote`}
-            className="group relative inline-flex items-center gap-1.5 rounded-full bg-brand-primary px-5 py-2 text-xs font-bold tracking-wide uppercase text-white shadow-lg shadow-brand-primary/25 hover:bg-blue-600 hover:shadow-brand-primary/40 hover:scale-[1.03] transition-all duration-300"
+            className="group relative inline-flex items-center gap-2 rounded-full bg-brand-primary px-5 py-2 text-xs font-bold tracking-wide uppercase text-white shadow-lg shadow-brand-primary/25 hover:bg-blue-600 hover:shadow-brand-primary/40 hover:scale-[1.03] transition-all duration-300 btn-kinetic-roll"
           >
-            <span>{dict.navigation.getAQuote}</span>
+            <span className="roll-track">
+              <span className="roll-text">{dict.navigation.getAQuote}</span>
+              <span className="roll-text text-cyan-200">{dict.navigation.getAQuote}</span>
+            </span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
           </Link>
         </div>

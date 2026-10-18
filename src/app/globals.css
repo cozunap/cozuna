@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+:root {
+  /* Fluid Typography & Container formulas (Lando Norris / Modern Fluid Standard) */
+  --min-viewport: 360px;
+  --max-viewport: 1600px;
+  --fluid-container: clamp(var(--min-viewport), 100vw, var(--max-viewport));
+  
+  /* Scaled fluid heading formula */
+  --fluid-hero: clamp(2.5rem, 5.5vw + 1rem, 5.5rem);
+  --fluid-h2: clamp(2rem, 3.8vw + 0.5rem, 3.75rem);
+  --fluid-h3: clamp(1.25rem, 2vw + 0.5rem, 2rem);
+  --fluid-body: clamp(1rem, 0.4vw + 0.9rem, 1.25rem);
+}
+
 @theme {
   --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   
@@ -16,6 +29,71 @@
   }
   .animate-marquee {
     animation: marquee 40s linear infinite;
+  }
+
+  /* Fluid typography utility classes */
+  .font-fluid-hero {
+    font-size: var(--fluid-hero);
+    line-height: 1.05;
+  }
+  .font-fluid-h2 {
+    font-size: var(--fluid-h2);
+    line-height: 1.15;
+  }
+  .font-fluid-h3 {
+    font-size: var(--fluid-h3);
+    line-height: 1.25;
+  }
+  .font-fluid-body {
+    font-size: var(--fluid-body);
+    line-height: 1.6;
+  }
+
+  /* Bespoke Angular / Chamfered Geometric Card Masks */
+  .mask-chamfer-corner {
+    clip-path: polygon(
+      0% 0%, 
+      calc(100% - 24px) 0%, 
+      100% 24px, 
+      100% 100%, 
+      0% 100%
+    );
+  }
+  .mask-hex-diagonal {
+    clip-path: polygon(
+      20px 0%, 
+      100% 0%, 
+      100% calc(100% - 20px), 
+      calc(100% - 20px) 100%, 
+      0% 100%, 
+      0% 20px
+    );
+  }
+  .mask-trapezoid-top {
+    clip-path: polygon(0 0, 100% 0, 100% calc(100% - 16px), calc(100% - 16px) 100%, 0 100%);
+  }
+
+  /* Kinetic Sliding Dual-Label Button (Dialedweb standard) */
+  .btn-kinetic-roll {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+  }
+  .btn-kinetic-roll .roll-track {
+    display: flex;
+    flex-direction: column;
+    height: 1.3em;
+    overflow: hidden;
+  }
+  .btn-kinetic-roll .roll-text {
+    display: block;
+    line-height: 1.3em;
+    transform: translateY(0%);
+    transition: transform 0.35s cubic-bezier(0.65, 0.05, 0, 1);
+  }
+  .btn-kinetic-roll:hover .roll-text {
+    transform: translateY(-100%);
   }
 }
 

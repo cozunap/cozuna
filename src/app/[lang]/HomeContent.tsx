@@ -131,14 +131,14 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
             </span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tight text-white mb-6 text-balance leading-[1.08]">
+          <h1 className="font-fluid-hero font-black tracking-tight text-white mb-6 text-balance">
             {titleStart}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 text-glow">
               {titleEnd}
             </span>
           </h1>
 
-          <p className="mt-4 text-lg sm:text-xl md:text-2xl leading-relaxed text-zinc-300 max-w-3xl mx-auto text-balance font-light whitespace-pre-wrap">
+          <p className="mt-4 font-fluid-body text-zinc-300 max-w-3xl mx-auto text-balance font-light whitespace-pre-wrap">
             {heroSubtitle}
           </p>
 
@@ -146,18 +146,24 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/${lang}/get-a-quote`}
-              className="group relative inline-flex items-center gap-2 rounded-full bg-brand-primary px-8 py-4 text-sm font-bold tracking-wide uppercase text-white shadow-xl shadow-brand-primary/30 hover:bg-blue-600 hover:shadow-brand-primary/50 hover:scale-[1.04] transition-all duration-300"
+              className="group relative inline-flex items-center gap-2 rounded-full bg-brand-primary px-8 py-4 text-sm font-bold tracking-wide uppercase text-white shadow-xl shadow-brand-primary/30 hover:bg-blue-600 hover:shadow-brand-primary/50 hover:scale-[1.04] transition-all duration-300 btn-kinetic-roll"
             >
-              <span>{dict.navigation.getAQuote}</span>
+              <span className="roll-track">
+                <span className="roll-text">{dict.navigation.getAQuote}</span>
+                <span className="roll-text text-cyan-200">{dict.navigation.getAQuote}</span>
+              </span>
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
             </Link>
             
             <Link 
               href={`/${lang}/what-we-do`} 
-              className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-semibold text-zinc-300 bg-white/[0.03] border border-white/10 hover:border-white/20 hover:text-white hover:bg-white/[0.06] backdrop-blur-md transition-all duration-300"
+              className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-semibold text-zinc-300 bg-white/[0.03] border border-white/10 hover:border-white/20 hover:text-white hover:bg-white/[0.06] backdrop-blur-md transition-all duration-300 btn-kinetic-roll"
             >
-              <span>{dict.home.ctaSecondary}</span>
-              <span aria-hidden="true" className="text-zinc-500 group-hover:text-white">→</span>
+              <span className="roll-track">
+                <span className="roll-text">{dict.home.ctaSecondary}</span>
+                <span className="roll-text text-white">{dict.home.ctaSecondary}</span>
+              </span>
+              <span aria-hidden="true" className="text-zinc-500 group-hover:text-white transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
           </div>
 
@@ -259,7 +265,7 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
           >
             <div>
               <p className="text-xs font-bold leading-6 text-brand-primary tracking-widest uppercase">Our Work</p>
-              <h2 className="mt-2 text-4xl sm:text-5xl font-black tracking-tight text-white">Featured Projects</h2>
+              <h2 className="mt-2 font-fluid-h2 font-black tracking-tight text-white">Featured Projects</h2>
             </div>
             <Link 
               href={`/${lang}/what-we-do`} 
@@ -281,7 +287,7 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
               <motion.div 
                 key={project.id || index} 
                 variants={itemVariants} 
-                className="group relative aspect-[4/3] overflow-hidden rounded-3xl bg-zinc-900 border border-white/10 hover:border-blue-500/40 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500"
+                className="group relative aspect-[4/3] overflow-hidden rounded-2xl mask-chamfer-corner bg-zinc-900 border border-white/10 hover:border-blue-500/50 hover:-translate-y-1.5 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-500"
               >
                 <Image 
                   src={project.image || "/assets/images/2024/10/la-casa-del-mofongo.webp"} 
@@ -290,6 +296,13 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
                   className="object-cover transition-transform duration-700 group-hover:scale-105" 
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/40 to-transparent opacity-85 group-hover:opacity-95 transition-opacity" />
+                
+                {/* Verified Trust Chip */}
+                <div className="absolute top-4 left-4 z-10 flex items-center gap-1.5 px-3 py-1 rounded-full bg-zinc-950/70 border border-white/10 backdrop-blur-md">
+                  <CheckCircle2 className="w-3.5 h-3.5 text-blue-400" />
+                  <span className="text-[10px] uppercase font-bold tracking-wider text-zinc-300">Verified Project</span>
+                </div>
+
                 <div className="absolute bottom-0 left-0 right-0 p-6 translate-y-1 group-hover:translate-y-0 transition-transform duration-300">
                   <span className="text-blue-400 text-xs font-bold tracking-widest uppercase mb-1.5 inline-block">{project.category}</span>
                   <h3 className="text-xl font-bold text-white flex items-center justify-between">
