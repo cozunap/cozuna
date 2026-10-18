@@ -1,5 +1,15 @@
 const convertCFUrl = (val: string) => val && typeof val === 'string' ? val.replace(/https:\/\/imagedelivery\.net\/eJfkbxcvXp804aif1wioXw\/([^\/]+)\/public/g, '/uploads/$1.webp') : val;
 
+// Specific project overrides for projects whose gallery images were stored with expired Cloudflare IDs
+const PROJECT_OVERRIDES: Record<string, { gallery?: string[] }> = {
+  'crossway-driving-school': {
+    gallery: [
+      '/assets/images/2024/11/crossway_flag.webp',
+      '/assets/images/2024/10/crossway_business_card-1024x739.webp'
+    ]
+  }
+};
+
 export async function getPageData(pageId: string) {
   const projectId = process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID;
   const apiKey = process.env.NEXT_PUBLIC_FIREBASE_API_KEY;
@@ -63,6 +73,9 @@ export async function getPortfolioProjects() {
         else if (value.arrayValue) {
           data[key] = value.arrayValue.values?.map((v: any) => convertCFUrl(v.stringValue)) || [];
         }
+      }
+      if (data.slug && PROJECT_OVERRIDES[data.slug]) {
+        Object.assign(data, PROJECT_OVERRIDES[data.slug]);
       }
       return data;
     });

@@ -37,10 +37,21 @@ export default function ProjectDetailClient({ lang, project }: { lang: string; p
     );
   }
 
-  const isGraphicDesign = project.category === "Graphic Design / Branding" || project.category === "Graphic Design";
+  const [failedImages, setFailedImages] = useState<Set<string>>(new Set());
+
+  const handleImageError = (src: string) => {
+    setFailedImages((prev) => {
+      const next = new Set(prev);
+      next.add(src);
+      return next;
+    });
+  };
+
+  const isGraphicDesign = project?.category === "Graphic Design / Branding" || project?.category === "Graphic Design";
   
-  // Combine main image and gallery for the lightbox
-  const allImages = [project.image, ...(project.gallery || [])];
+  // Combine main image and gallery for the lightbox, filtering out any broken ones
+  const validGallery = (project?.gallery || []).filter((img) => !failedImages.has(img));
+  const allImages = [project?.image, ...validGallery].filter(Boolean) as string[];
 
   const nextImage = (e: React.MouseEvent) => {
     e.stopPropagation();
@@ -102,9 +113,9 @@ export default function ProjectDetailClient({ lang, project }: { lang: string; p
                 />
               </div>
               {/* Gallery Images */}
-              {project.gallery?.map((img, idx) => (
+              {validGallery.map((img, idx) => (
                 <div 
-                  key={idx} 
+                  key={img} 
                   className="w-full aspect-square bg-zinc-900 border border-zinc-800 relative cursor-pointer hover:opacity-80 transition-opacity"
                   onClick={() => setLightboxIndex(idx + 1)}
                 >
@@ -113,6 +124,7 @@ export default function ProjectDetailClient({ lang, project }: { lang: string; p
                     alt={`${project.title} gallery image ${idx + 1}`} 
                     fill
                     className="object-cover"
+                    onError={() => handleImageError(img)}
                   />
                 </div>
               ))}
@@ -199,9 +211,9 @@ export default function ProjectDetailClient({ lang, project }: { lang: string; p
                   style={{ imageRendering: "high-quality" as any }}
                 />
               </div>
-              {project.gallery?.map((img, idx) => (
+              {validGallery.map((img, idx) => (
                 <div 
-                  key={idx} 
+                  key={img} 
                   className="w-full rounded-3xl overflow-hidden bg-zinc-900 border border-zinc-800 shadow-xl cursor-pointer hover:opacity-90 transition-opacity"
                   onClick={() => setLightboxIndex(idx + 1)}
                 >
@@ -213,6 +225,7 @@ export default function ProjectDetailClient({ lang, project }: { lang: string; p
                     unoptimized={true}
                     className="w-full h-auto block"
                     style={{ imageRendering: "high-quality" as any }}
+                    onError={() => handleImageError(img)}
                   />
                 </div>
               ))}
