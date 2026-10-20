@@ -3,10 +3,10 @@ export const RECEPTIONIST_KB = `# COzuna — AI Receptionist Knowledge Base
 ## Business identity
 - Name: COzuna (COzuna Web Design and Printing)
 - Website: cozuna.com
-- Address: 490 Av. Ampère, Laval, QC H7N 5J9, Canada
+- Address: 516 W 136th St Apt. #3, New York, NY 10031, United States
 - Phone: +1 (438) 393-9465
-- Languages served: English, French, and Spanish
-- Service area: based in Laval / Montreal, Quebec; works with clients everywhere — Canada, the United States, the Dominican Republic, and worldwide. Most work is done 100% online.
+- Languages served: English, Spanish, and French
+- Service area: Based in New York, NY. Focused on serving businesses across New York City and New York State. Most work is done 100% online.
 
 ## Services
 1. **Web Development** — custom, responsive, fast-loading websites built from scratch (no generic templates). Includes small business websites, landing pages, and e-commerce platforms. Every site is SEO-optimized.

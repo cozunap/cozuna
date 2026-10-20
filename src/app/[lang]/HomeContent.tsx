@@ -388,10 +388,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
 
             <p className="text-lg sm:text-xl text-zinc-300 font-light max-w-2xl mx-auto mb-10 leading-relaxed">
               {lang === 'fr' 
-                ? "Conception de sites Web sur mesure, image de marque et impression professionnelle pour entreprises à Laval, Montréal et à l'international."
+                ? "Conception de sites Web sur mesure, image de marque et impression professionnelle pour entreprises à New York."
                 : lang === 'es'
-                ? "Diseño web a medida, branding e imprenta comercial para negocios en Laval, Montreal y el mundo."
-                : "High-converting websites, corporate identity, and commercial printing tailored for modern businesses."}
+                ? "Diseño web a medida, branding e imprenta comercial para negocios en New York."
+                : "High-converting websites, corporate identity, and commercial printing tailored for modern businesses in New York."}
             </p>
 
             <div className="flex flex-wrap items-center justify-center gap-4">

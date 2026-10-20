@@ -11,16 +11,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const lang = resolvedParams.lang;
 
   const title = lang === 'fr'
-    ? "Nos Réalisations - Portfolio | Agence Web COzuna"
+    ? "Nos Réalisations - Portfolio | Agence Web COzuna New York"
     : lang === 'es'
-    ? "Nuestro Portafolio de Proyectos | COzuna Web Agency"
-    : "Portfolio & Recent Work | Web Design & Branding | COzuna";
+    ? "Nuestro Portafolio de Proyectos | COzuna Web Agency New York"
+    : "Portfolio & Recent Work | Web Design & Branding | COzuna New York";
 
   const description = lang === 'fr'
-    ? "Explorez notre portfolio de projets réussis en conception Web, image de marque et impression pour entreprises à Laval, Montréal et ailleurs."
+    ? "Explorez notre portfolio de projets réussis en conception Web, image de marque et impression pour entreprises à New York."
     : lang === 'es'
-    ? "Explora nuestro portafolio de proyectos exitosos en diseño web, diseño gráfico e impresión para clientes en Laval, Montreal y el mundo."
-    : "Explore our portfolio of successful web design, graphic design, and custom branding projects for businesses in Laval, Montreal, and worldwide.";
+    ? "Explora nuestro portafolio de proyectos exitosos en diseño web, diseño gráfico e impresión para clientes en New York."
+    : "Explore our portfolio of successful web design, graphic design, and custom branding projects for businesses in New York.";
 
   return {
     title,

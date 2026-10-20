@@ -76,7 +76,7 @@ export async function GET(request: Request) {
     const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
     const prompt = `You are a world-class SEO & AEO (Answer Engine Optimization) expert for 'COzuna Web Design Agency' (https://cozuna.com).
-COzuna offers affordable, custom web development, e-commerce, graphic design, and printing services globally (Montreal, Laval, Quebec, Toronto, Miami, New York, Santo Domingo, Dominican Republic, and worldwide).
+COzuna is based in New York, NY (516 W 136th St Apt. #3, New York, NY 10031) and offers affordable custom web development, e-commerce, graphic design, and commercial printing services targeted primarily to businesses across New York City (Manhattan, Brooklyn, Queens, Bronx, Staten Island) and New York State.
 
 Analyze current high-intent user search queries and AI answer engine patterns (from ChatGPT, Perplexity, Google SGE, and Gemini).
 Produce 6 highly authoritative, direct, and conversational Q&A pairs (FAQs) optimized to get cited by AI answer engines and featured in Google rich snippets.

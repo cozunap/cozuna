@@ -11,16 +11,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const lang = resolvedParams.lang || 'en';
 
   const title = lang === 'fr'
-    ? "Nos Services de Conception Web & Impression | COzuna Laval & Montréal"
+    ? "Nos Services de Conception Web & Impression | COzuna New York"
     : lang === 'es'
-    ? "Nuestros Servicios de Diseño Web e Impresión | COzuna"
-    : "Our Services | Web Design, Branding & Printing | COzuna Laval & Montreal";
+    ? "Nuestros Servicios de Diseño Web e Impresión | COzuna New York"
+    : "Our Services | Web Design, Branding & Printing | COzuna New York NY";
 
   const description = lang === 'fr'
-    ? "Découvrez nos services complets : conception Web abordable, design graphique, image de marque, impression et signalétique pour entreprises à Laval, Montréal et ailleurs."
+    ? "Découvrez nos services complets : conception Web abordable, design graphique, image de marque, impression et signalétique pour entreprises à New York."
     : lang === 'es'
-    ? "Descubre nuestros servicios integrales de diseño web económico, diseño gráfico, branding, impresión y letreros para empresas en Laval, Montreal y globalmente."
-    : "Explore our professional web design, branding, graphic design, printing, and signage services for businesses in Laval, Montreal, and worldwide.";
+    ? "Descubre nuestros servicios integrales de diseño web económico, diseño gráfico, branding, impresión y letreros para empresas en New York."
+    : "Explore our professional web design, branding, graphic design, printing, and signage services for businesses in New York.";
 
   return {
     title,

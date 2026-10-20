@@ -77,9 +77,8 @@ export async function GET(request: Request) {
   ];
 
   const targetCities = [
-    "Laval", "Montreal", "Quebec City", "Toronto", 
-    "Santo Domingo", "Punta Cana", "Santiago", 
-    "Miami", "New York", "Chicago"
+    "New York", "Manhattan", "Brooklyn", "Queens", "Bronx", "Staten Island",
+    "Harlem", "Upper West Side", "Astoria", "Williamsburg"
   ];
 
   const randomCoreTopic = coreTopics[Math.floor(Math.random() * coreTopics.length)];

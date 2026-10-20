@@ -10,16 +10,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const lang = resolvedParams.lang;
 
   const title = lang === 'fr'
-    ? "À Propos de Nous | Agence Web COzuna Laval & Montréal"
+    ? "À Propos de Nous | Agence Web COzuna New York"
     : lang === 'es'
-    ? "Sobre Nosotros | Agencia Web COzuna"
-    : "About Us | COzuna Web Design Agency | Laval & Montreal";
+    ? "Sobre Nosotros | Agencia Web COzuna New York"
+    : "About Us | COzuna Web Design Agency | New York NY";
 
   const description = lang === 'fr'
-    ? "Découvrez COzuna, notre mission et notre passion pour la conception de sites Web sur mesure, le branding et l'impression pour entreprises locales et internationales."
+    ? "Découvrez COzuna, notre mission et notre passion pour la conception de sites Web sur mesure, le branding et l'impression pour entreprises à New York."
     : lang === 'es'
-    ? "Conoce COzuna, nuestra misión y nuestra pasión por construir identidades digitales y de impresión de alta calidad para empresas locales y globales."
-    : "Learn more about COzuna, our mission, and our passion for building custom digital and print identities for businesses in Laval, Montreal, and beyond.";
+    ? "Conoce COzuna, nuestra misión y nuestra pasión por construir identidades digitales y de impresión de alta calidad para empresas en New York."
+    : "Learn more about COzuna, our mission, and our passion for building custom digital and print identities for businesses in New York.";
 
   return {
     title,

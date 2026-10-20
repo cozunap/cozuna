@@ -46,16 +46,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const lang = resolvedParams.lang;
 
   const title = lang === 'fr'
-    ? "Blog Conseils Web & Marketing | COzuna Laval & Montréal"
+    ? "Blog Conseils Web & Marketing | COzuna New York"
     : lang === 'es'
-    ? "Blog de Diseño Web y Marketing Digital | COzuna"
-    : "Web Design, SEO & Business Blog | COzuna Laval & Montreal";
+    ? "Blog de Diseño Web y Marketing Digital | COzuna New York"
+    : "Web Design, SEO & Business Blog | COzuna New York NY";
 
   const description = lang === 'fr'
-    ? "Guides pratiques et conseils d'experts sur la conception Web abordable, le SEO local et l'image de marque pour les entreprises à Laval et Montréal."
+    ? "Guides pratiques et conseils d'experts sur la conception Web abordable, le SEO local et l'image de marque pour les entreprises à New York."
     : lang === 'es'
-    ? "Guías prácticas y consejos sobre diseño web económico, SEO local y branding para pequeñas empresas."
-    : "Expert guides, pricing breakdowns, and actionable tips on affordable web development, local SEO, and branding for businesses in Laval, Montreal, and beyond.";
+    ? "Guías prácticas y consejos sobre diseño web económico, SEO local y branding para pequeñas empresas en New York."
+    : "Expert guides, pricing breakdowns, and actionable tips on affordable web development, local SEO, and branding for businesses in New York.";
 
   return {
     title,

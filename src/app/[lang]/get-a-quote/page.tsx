@@ -16,10 +16,10 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
     : "Get a Free Quote | Web Design, Branding & Print | COzuna";
 
   const description = lang === 'fr'
-    ? "Demandez une soumission gratuite pour la conception de votre site Web, design graphique ou impression à Laval, Montréal et ailleurs."
+    ? "Demandez une soumission gratuite pour la conception de votre site Web, design graphique ou impression à New York."
     : lang === 'es'
-    ? "Solicita una cotización personalizada para tu sitio web, diseño gráfico o impresión en Laval, Montreal o internacionalmente."
-    : "Request a personalized quote for your next custom web design, branding, or high-quality printing project.";
+    ? "Solicita una cotización personalizada para tu sitio web, diseño gráfico o impresión en New York."
+    : "Request a personalized quote for your next custom web design, branding, or high-quality printing project in New York.";
 
   return {
     title,

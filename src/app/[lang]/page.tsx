@@ -10,16 +10,16 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const lang = resolvedParams.lang;
 
   const title = lang === 'fr'
-    ? "Conception de sites Web à Laval et Montréal | COzuna"
+    ? "Conception de sites Web à New York | COzuna"
     : lang === 'es'
-    ? "Diseño Web en Laval y Montreal | COzuna Web Agency"
-    : "Web Design Laval & Montreal | COzuna";
+    ? "Diseño Web en New York | COzuna Web Agency"
+    : "Web Design New York NY | COzuna Web Design Agency";
 
   const description = lang === 'fr'
-    ? "Conception de sites Web sur mesure, image de marque et impression professionnelle pour entreprises à Laval et Montréal."
+    ? "Conception de sites Web sur mesure, image de marque et impression professionnelle pour entreprises à New York."
     : lang === 'es'
-    ? "Diseño de páginas web a medida, branding e impresión profesional para empresas en Laval, Montreal y globalmente."
-    : "Custom web design, branding, and printing services tailored for businesses in Laval, Montreal, and worldwide.";
+    ? "Diseño de páginas web a medida, branding e impresión profesional para empresas en New York."
+    : "Custom web design, branding, and printing services tailored for businesses in New York.";
 
   return {
     title,

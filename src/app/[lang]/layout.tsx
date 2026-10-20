@@ -17,18 +17,18 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
-  // Localized metadata targeting primary local market (Laval, Montreal & Global) - Page 5 audit
+  // Localized metadata targeting New York market
   const title = lang === 'fr'
-    ? "Conception de sites Web à Laval et Montréal | COzuna"
+    ? "Conception de sites Web à New York | COzuna"
     : lang === 'es'
-    ? "Diseño Web en Laval y Montreal | COzuna Web Agency"
-    : "Web Design Laval & Montreal | COzuna Web Design Agency";
+    ? "Diseño Web en New York | COzuna Web Agency"
+    : "Web Design New York NY | COzuna Web Design Agency";
 
   const description = lang === 'fr'
-    ? "Services professionnels et abordables de conception de sites Web, design graphique, image de marque et impression pour entreprises à Laval, Montréal et ailleurs."
+    ? "Services professionnels et abordables de conception de sites Web, design graphique, image de marque et impression pour entreprises à New York."
     : lang === 'es'
-    ? "Servicios profesionales y económicos de diseño web, diseño gráfico e impresión para empresas en Laval, Montreal y a nivel internacional."
-    : "Professional and affordable web design, branding, graphic design, and printing services for businesses in Laval, Montreal, and worldwide.";
+    ? "Servicios profesionales y económicos de diseño web, diseño gráfico e impresión para empresas en New York."
+    : "Professional and affordable custom web design, branding, graphic design, and commercial printing services tailored for businesses in New York.";
 
   return {
     metadataBase: new URL('https://cozuna.com'),
@@ -133,17 +133,16 @@ export default async function RootLayout({
                 "email": "ozunaprinting@gmail.com",
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "490 Av. Ampère",
-                  "addressLocality": "Laval",
-                  "addressRegion": "QC",
-                  "postalCode": "H7N 5J9",
-                  "addressCountry": "CA"
+                  "streetAddress": "516 W 136th St Apt. #3",
+                  "addressLocality": "New York",
+                  "addressRegion": "NY",
+                  "postalCode": "10031",
+                  "addressCountry": "US"
                 },
                 "areaServed": [
-                  { "@type": "Country", "name": "US" },
-                  { "@type": "Country", "name": "CA" },
-                  { "@type": "Country", "name": "Dominican Republic" },
-                  { "@type": "Country", "name": "Worldwide" }
+                  { "@type": "City", "name": "New York" },
+                  { "@type": "State", "name": "New York" },
+                  { "@type": "Country", "name": "US" }
                 ],
                 "sameAs": [
                   "https://www.behance.net/cozuna"
