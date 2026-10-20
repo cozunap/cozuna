@@ -166,22 +166,6 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
               <span aria-hidden="true" className="text-zinc-500 group-hover:text-white transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
           </div>
-
-          {/* Trust Metrics Pill Bar */}
-          <div className="mt-14 grid grid-cols-2 sm:grid-cols-3 gap-6 pt-8 border-t border-white/10 max-w-2xl w-full">
-            <div className="flex flex-col items-center">
-              <span className="text-2xl font-black text-white">100%</span>
-              <span className="text-xs uppercase tracking-wider text-zinc-400 font-medium">Custom Tailored</span>
-            </div>
-            <div className="flex flex-col items-center">
-              <span className="text-2xl font-black text-white">2-4 Days</span>
-              <span className="text-xs uppercase tracking-wider text-zinc-400 font-medium">Print Turnaround</span>
-            </div>
-            <div className="col-span-2 sm:col-span-1 flex flex-col items-center">
-              <span className="text-2xl font-black text-white">5.0 ★★★★★</span>
-              <span className="text-xs uppercase tracking-wider text-zinc-400 font-medium">Client Rating</span>
-            </div>
-          </div>
         </motion.div>
       </section>
 
