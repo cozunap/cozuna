@@ -122,15 +122,6 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
           transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
           className="relative z-10 mx-auto max-w-5xl text-center flex flex-col items-center"
         >
-          {/* Shimmer Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.04] backdrop-blur-md mb-8 shimmer-badge shadow-[0_0_20px_rgba(255,255,255,0.05)]">
-            <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-ping" />
-            <Sparkles className="w-3.5 h-3.5 text-blue-400" />
-            <span className="text-xs font-semibold uppercase tracking-wider text-zinc-200">
-              {badgeText}
-            </span>
-          </div>
-
           <h1 className="font-fluid-hero font-black tracking-tight text-white mb-6 text-balance">
             {titleStart}{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-blue-500 to-cyan-300 text-glow">
