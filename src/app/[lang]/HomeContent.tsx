@@ -81,8 +81,8 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden">
       
-      {/* Hero Section with Ambient Glow (Supahero style) - Full 100vh Screen */}
-      <section className="relative w-full min-h-[100vh] sm:min-h-screen flex items-center justify-center overflow-hidden bg-zinc-950 px-4 sm:px-6 lg:px-8 m-0 p-0 pb-16">
+      {/* Hero Section with Ambient Glow (Supahero style) - Full 100vh Screen Center/Center */}
+      <section className="relative w-full h-screen min-h-[100vh] flex items-center justify-center overflow-hidden bg-zinc-950 px-4 sm:px-6 lg:px-8 m-0 p-0">
         
         {/* Ambient Radial Lights (GPU accelerated) */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/15 rounded-full blur-[90px] pointer-events-none transform-gpu" />
