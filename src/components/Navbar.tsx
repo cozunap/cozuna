@@ -57,17 +57,21 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         </Link>
 
         {/* Desktop Navigation Links */}
-        <div className="hidden lg:flex items-center gap-1 bg-white/[0.03] border border-white/5 px-3 py-1.5 rounded-full z-10">
+        <div className="hidden lg:flex items-center gap-1 bg-white/[0.04] border border-white/10 px-3 py-1.5 rounded-full z-10 backdrop-blur-md">
           {navigation.map((item) => {
-            const isActive = pathname === item.href;
+            const isHomeItem = item.href === `/${lang}`;
+            const isActive = isHomeItem 
+              ? (pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/" || pathname === "")
+              : (pathname === item.href || (pathname?.startsWith(item.href + "/") ?? false));
+
             return (
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative px-4 py-1.5 text-xs font-semibold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer ${
+                className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer ${
                   isActive
-                    ? "text-white bg-white/10 shadow-sm"
-                    : "text-zinc-400 hover:text-white hover:bg-white/[0.04]"
+                    ? "text-white bg-brand-primary shadow-md shadow-brand-primary/40 border border-blue-400/30 scale-[1.03]"
+                    : "text-zinc-400 hover:text-white hover:bg-white/[0.06]"
                 }`}
               >
                 {item.name}
@@ -130,20 +134,27 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               </div>
 
               <div className="mt-6 flex flex-col gap-2">
-                {navigation.map((item) => (
-                  <Link
-                    key={item.name}
-                    href={item.href}
-                    className={`block rounded-xl px-4 py-3 text-sm font-semibold tracking-wide uppercase transition-colors ${
-                      pathname === item.href
-                        ? "text-brand-primary bg-zinc-900/80 border border-brand-primary/20"
-                        : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    {item.name}
-                  </Link>
-                ))}
+                {navigation.map((item) => {
+                  const isHomeItem = item.href === `/${lang}`;
+                  const isActive = isHomeItem 
+                    ? (pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/" || pathname === "")
+                    : (pathname === item.href || (pathname?.startsWith(item.href + "/") ?? false));
+
+                  return (
+                    <Link
+                      key={item.name}
+                      href={item.href}
+                      className={`block rounded-xl px-4 py-3 text-sm font-bold tracking-wide uppercase transition-all ${
+                        isActive
+                          ? "text-white bg-brand-primary shadow-lg shadow-brand-primary/30 border border-blue-400/40"
+                          : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
+                      }`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {item.name}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 
