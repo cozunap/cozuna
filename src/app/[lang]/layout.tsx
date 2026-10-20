@@ -167,7 +167,7 @@ export default async function RootLayout({
           }}
         />
         <Navbar lang={lang} dict={dict} />
-        <div id="main-content" className="flex-grow flex flex-col pt-[30px]">{children}</div>
+        <div id="main-content" className="flex-grow flex flex-col">{children}</div>
         <Footer lang={lang} dict={dict} />
         <WhatsAppButton />
         <MobileStickyCallBar lang={lang} />

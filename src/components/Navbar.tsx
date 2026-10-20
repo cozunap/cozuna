@@ -41,7 +41,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           isHomePage
             ? isScrolled
               ? "bg-zinc-950/90 border border-white/15 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
-              : "bg-transparent border border-white/10 backdrop-blur-none shadow-none"
+              : "bg-transparent border-transparent backdrop-blur-none shadow-none"
             : isScrolled
               ? "bg-zinc-950/95 border border-white/15 backdrop-blur-2xl shadow-[0_12px_40px_rgba(0,0,0,0.7)]"
               : "bg-zinc-950/85 border border-white/10 backdrop-blur-xl shadow-[0_4px_24px_rgba(0,0,0,0.4)]"

@@ -6,7 +6,6 @@ import { motion, Variants } from "framer-motion";
 import { Monitor, PenTool, Printer, Presentation, ArrowUpRight, Sparkles, CheckCircle2 } from "lucide-react";
 import DynamicTestimonials from '@/components/DynamicTestimonials';
 import FAQSection from '@/components/FAQSection';
-import ThreeScene from '@/components/ThreeScene';
 
 export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], aeoFaqs = [] }: { lang: string, dict: any, cmsData: any, portfolioItems?: any[], aeoFaqs?: any[] }) {
   const containerVariants: Variants = {
@@ -88,9 +87,6 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
         {/* Ambient Radial Lights (GPU accelerated) */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/15 rounded-full blur-[90px] pointer-events-none transform-gpu" />
         <div className="absolute bottom-10 right-1/4 w-[350px] h-[300px] bg-cyan-500/10 rounded-full blur-[80px] pointer-events-none transform-gpu" />
-
-        {/* 3D WebGL Three.js Scene */}
-        <ThreeScene />
 
         {/* Media Background */}
         <div className="absolute inset-0 z-0 w-full h-full bg-black">
