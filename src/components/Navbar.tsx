@@ -68,7 +68,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               <Link
                 key={item.name}
                 href={item.href}
-                className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer ${
+                prefetch={true}
+                className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none ${
                   isActive
                     ? "text-white bg-brand-primary shadow-md shadow-brand-primary/40 border border-blue-400/30 scale-[1.03]"
                     : "text-zinc-400 hover:text-white hover:bg-white/[0.06]"
@@ -144,7 +145,8 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     <Link
                       key={item.name}
                       href={item.href}
-                      className={`block rounded-xl px-4 py-3 text-sm font-bold tracking-wide uppercase transition-all ${
+                      prefetch={true}
+                      className={`block rounded-xl px-4 py-3 text-sm font-bold tracking-wide uppercase transition-all select-none ${
                         isActive
                           ? "text-white bg-brand-primary shadow-lg shadow-brand-primary/30 border border-blue-400/40"
                           : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
