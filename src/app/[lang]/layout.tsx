@@ -133,7 +133,7 @@ export default async function RootLayout({
                 "email": "ozunaprinting@gmail.com",
                 "address": {
                   "@type": "PostalAddress",
-                  "streetAddress": "516 W 136th St Apt. #3",
+                  "streetAddress": "516 W 136th St Apt.",
                   "addressLocality": "New York",
                   "addressRegion": "NY",
                   "postalCode": "10031",

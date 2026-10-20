@@ -88,7 +88,7 @@ export default function Footer({ lang, dict }: FooterProps) {
             &copy; {new Date().getFullYear()} COzuna. All rights reserved.
           </p>
           <div className="flex space-x-6">
-            <span>516 W 136th St Apt. #3, New York, NY 10031</span>
+            <span>516 W 136th St Apt. New York, NY 10031</span>
           </div>
         </div>
       </div>
