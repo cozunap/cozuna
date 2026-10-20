@@ -35,7 +35,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
   const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/" || pathname === "";
 
   return (
-    <header className="sticky top-0 z-[100] w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2">
+    <header className={`${isHomePage ? 'fixed' : 'sticky'} top-0 z-[100] w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2`}>
       <nav
         className={`max-w-6xl mx-auto flex items-center justify-between px-5 py-3 rounded-full transition-all duration-300 ${
           isHomePage
