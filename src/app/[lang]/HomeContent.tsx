@@ -406,10 +406,10 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
                 <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
               <a
-                href="tel:+14383939465"
+                href="tel:+16468831869"
                 className="inline-flex items-center gap-2 rounded-full px-7 py-4 text-sm font-semibold text-zinc-300 bg-zinc-900 border border-white/10 hover:border-white/20 hover:text-white transition-all duration-300"
               >
-                <span>📞 +1 (438) 393-9465</span>
+                <span>📞 +1 (646) 883-1869</span>
               </a>
             </div>
           </motion.div>

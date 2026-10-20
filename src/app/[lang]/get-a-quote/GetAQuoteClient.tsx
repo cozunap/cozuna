@@ -126,7 +126,7 @@ export default function GetAQuoteClient({ dynamicServices = [], dynamicBudgets =
                 </div>
                 <div>
                   <p className="text-sm text-zinc-500 font-medium">Call Us Directly</p>
-                  <p className="text-white font-semibold text-lg">+1 (438) 393-9465</p>
+                  <p className="text-white font-semibold text-lg">+1 (646) 883-1869</p>
                 </div>
               </div>
             </div>

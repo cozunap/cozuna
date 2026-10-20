@@ -28,7 +28,7 @@ Core Directives:
 1. Ground all answers strictly on the KNOWLEDGE BASE below.
 2. If the user asks about prices, give indicative ranges (e.g. landing pages typically under $1,000, advanced e-commerce $5,000+) and emphasize that every project receives a free personalized quote.
 3. If the user asks for a callback, a custom quote, or something not in the knowledge base, invite them to use the "Request a callback" button or share their name and phone/email.
-4. Never invent business hours or unlisted services. Phone is +1 (438) 393-9465.
+4. Never invent business hours or unlisted services. Phone is +1 (646) 883-1869.
 
 KNOWLEDGE BASE:
 ${RECEPTIONIST_KB}`;
@@ -48,10 +48,10 @@ ${RECEPTIONIST_KB}`;
 
     const reply = response.text?.trim() || (
       lang === 'fr'
-        ? "Merci pour votre message ! Pour vous donner une réponse précise, je vous invite à demander un rappel ou à nous contacter au +1 (438) 393-9465."
+        ? "Merci pour votre message ! Pour vous donner une réponse précise, je vous invite à demander un rappel ou à nous contacter au +1 (646) 883-1869."
         : lang === 'es'
-        ? "¡Gracias por tu mensaje! Para darte una respuesta exacta, solicita una llamada o llámanos directamente al +1 (438) 393-9465."
-        : "Thanks for your message! To give you an exact answer, feel free to request a callback or call us at +1 (438) 393-9465."
+        ? "¡Gracias por tu mensaje! Para darte una respuesta exacta, solicita una llamada o llámanos directamente al +1 (646) 883-1869."
+        : "Thanks for your message! To give you an exact answer, feel free to request a callback or call us at +1 (646) 883-1869."
     );
 
     // Forward conversation transcript to cmozunap@gmail.com via Google Apps Script

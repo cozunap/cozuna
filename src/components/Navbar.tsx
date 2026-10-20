@@ -157,11 +157,11 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <a
-                href="tel:+14383939465"
+                href="tel:+16468831869"
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-xs"
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span>📞 +1 (438) 393-9465</span>
+                <span>📞 +1 (646) 883-1869</span>
               </a>
             </div>
           </div>

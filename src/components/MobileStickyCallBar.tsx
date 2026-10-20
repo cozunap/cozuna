@@ -14,7 +14,7 @@ export default function MobileStickyCallBar({ lang = 'en' }: { lang?: string }) 
     if (typeof window !== 'undefined' && (window as any).gtag) {
       (window as any).gtag('event', 'phone_call_click', {
         event_category: 'engagement',
-        event_label: '+14383939465',
+        event_label: '+16468831869',
       });
     }
   };
@@ -22,13 +22,13 @@ export default function MobileStickyCallBar({ lang = 'en' }: { lang?: string }) 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-40 md:hidden bg-zinc-950/95 backdrop-blur-md border-t border-zinc-800 p-3 px-4 shadow-2xl">
       <motion.a
-        href="tel:+14383939465"
+        href="tel:+16468831869"
         onClick={handleClick}
         className="w-full flex items-center justify-center gap-3 bg-brand-primary text-white py-3.5 px-6 rounded-full font-bold text-base shadow-lg shadow-brand-primary/40 active:scale-95 transition-transform"
         whileTap={{ scale: 0.96 }}
       >
         <Phone className="w-5 h-5 animate-pulse" />
-        <span>{callText}: +1 (438) 393-9465</span>
+        <span>{callText}: +1 (646) 883-1869</span>
       </motion.a>
     </div>
   );

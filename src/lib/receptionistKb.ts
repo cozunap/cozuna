@@ -4,7 +4,7 @@ export const RECEPTIONIST_KB = `# COzuna — AI Receptionist Knowledge Base
 - Name: COzuna (COzuna Web Design and Printing)
 - Website: cozuna.com
 - Address: 516 W 136th St Apt. #3, New York, NY 10031, United States
-- Phone: +1 (438) 393-9465
+- Phone: +1 (646) 883-1869
 - Languages served: English, Spanish, and French
 - Service area: Based in New York, NY. Focused on serving businesses across New York City and New York State. Most work is done 100% online.
 
@@ -33,7 +33,7 @@ export const RECEPTIONIST_KB = `# COzuna — AI Receptionist Knowledge Base
 4. Launch, plus optional maintenance and SEO
 
 ## Contact & callbacks
-- Phone: +1 (438) 393-9465
+- Phone: +1 (646) 883-1869
 - For anything needing a human (custom quote, complex project, pricing not listed here): offer to collect the visitor's name and phone number or email for a prompt callback.
 - Business hours are not published — never state specific opening hours. Say messages are answered promptly.
 

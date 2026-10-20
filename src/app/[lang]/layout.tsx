@@ -129,7 +129,7 @@ export default async function RootLayout({
                 "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
                 "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
                 "url": "https://cozuna.com",
-                "telephone": "+14383939465",
+                "telephone": "+16468831869",
                 "email": "ozunaprinting@gmail.com",
                 "address": {
                   "@type": "PostalAddress",
