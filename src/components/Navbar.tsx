@@ -34,6 +34,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
   const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/" || pathname === "";
 
+  const handleHomeClick = (e: React.MouseEvent) => {
+    if (isHomePage) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
+
   return (
     <header className={`${isHomePage ? 'fixed' : 'sticky'} top-0 z-[100] w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2`}>
       <nav
@@ -49,7 +56,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         aria-label="Global"
       >
         {/* Logo */}
-        <Link href={`/${lang}`} className="flex items-center gap-2 group z-10">
+        <Link href={`/${lang}`} onClick={handleHomeClick} className="flex items-center gap-2 group z-10 cursor-pointer">
           <span className="sr-only">COzuna Web Design Agency</span>
           <div className="text-2xl font-black text-white tracking-tighter transition-transform duration-300 group-hover:scale-105">
             CO<span className="text-brand-primary">zuna</span>.
@@ -69,6 +76,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 key={item.name}
                 href={item.href}
                 prefetch={true}
+                onClick={isHomeItem ? handleHomeClick : undefined}
                 className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none ${
                   isActive
                     ? "text-white bg-brand-primary shadow-md shadow-brand-primary/40 border border-blue-400/30 scale-[1.03]"
@@ -119,7 +127,14 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           <div className="fixed inset-y-0 right-0 z-50 w-full max-w-xs overflow-y-auto bg-zinc-950 p-6 border-l border-zinc-800/80 shadow-2xl flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-zinc-900">
-                <Link href={`/${lang}`} className="flex items-center gap-2" onClick={() => setMobileMenuOpen(false)}>
+                <Link
+                  href={`/${lang}`}
+                  className="flex items-center gap-2"
+                  onClick={(e) => {
+                    handleHomeClick(e);
+                    setMobileMenuOpen(false);
+                  }}
+                >
                   <div className="text-2xl font-black text-white tracking-tighter">
                     CO<span className="text-brand-primary">zuna</span>.
                   </div>
@@ -151,7 +166,10 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                           ? "text-white bg-brand-primary shadow-lg shadow-brand-primary/30 border border-blue-400/40"
                           : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
                       }`}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => {
+                        if (isHomeItem) handleHomeClick(e);
+                        setMobileMenuOpen(false);
+                      }}
                     >
                       {item.name}
                     </Link>
