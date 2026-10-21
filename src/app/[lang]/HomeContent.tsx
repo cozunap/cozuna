@@ -6,7 +6,6 @@ import { motion, Variants } from "framer-motion";
 import { Monitor, PenTool, Printer, Presentation, ArrowUpRight, Sparkles, CheckCircle2 } from "lucide-react";
 import DynamicTestimonials from '@/components/DynamicTestimonials';
 import FAQSection from '@/components/FAQSection';
-import Hero3DMockup from '@/components/Hero3DMockup';
 
 export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], aeoFaqs = [] }: { lang: string, dict: any, cmsData: any, portfolioItems?: any[], aeoFaqs?: any[] }) {
   const containerVariants: Variants = {
@@ -83,7 +82,7 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
     <main className="flex min-h-screen flex-col items-center justify-between overflow-x-hidden">
       
       {/* Hero Section with Ambient Glow (Supahero style) - Full 100vh Screen Center/Center */}
-      <section className="relative w-full min-h-screen py-24 sm:py-32 flex items-center justify-center overflow-hidden bg-zinc-950 px-4 sm:px-6 lg:px-8 m-0">
+      <section className="relative w-full h-screen min-h-[100vh] flex items-center justify-center overflow-hidden bg-zinc-950 px-4 sm:px-6 lg:px-8 m-0 p-0">
         
         {/* Ambient Radial Lights (GPU accelerated) */}
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-600/15 rounded-full blur-[90px] pointer-events-none transform-gpu" />
@@ -158,9 +157,6 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
               <span aria-hidden="true" className="text-zinc-500 group-hover:text-white transition-transform group-hover:translate-x-0.5">→</span>
             </Link>
           </div>
-
-          {/* Clean 3D Interactive Device Mockup Showcase */}
-          <Hero3DMockup lang={lang} />
         </motion.div>
       </section>
 
