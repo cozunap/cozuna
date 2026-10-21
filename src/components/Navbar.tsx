@@ -34,6 +34,22 @@ export default function Navbar({ lang, dict }: NavbarProps) {
 
   const isHomePage = pathname === `/${lang}` || pathname === `/${lang}/` || pathname === "/" || pathname === "";
 
+  const handleNavClick = (href: string, e: React.MouseEvent<HTMLAnchorElement>) => {
+    // If clicking Home / Logo while already on the home page, smoothly scroll to top
+    if (href === `/${lang}` && isHomePage) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      setMobileMenuOpen(false);
+      return;
+    }
+
+    // If navigating between different pages, ensure browser scrolls to top immediately
+    if (href !== pathname) {
+      window.scrollTo(0, 0);
+    }
+    setMobileMenuOpen(false);
+  };
+
   return (
     <header className={`${isHomePage ? 'fixed' : 'sticky'} top-0 z-[100] w-full px-4 sm:px-6 lg:px-8 pt-4 pb-2`}>
       <nav
@@ -51,6 +67,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         {/* Logo */}
         <a
           href={`/${lang}`}
+          onClick={(e) => handleNavClick(`/${lang}`, e)}
           className="flex items-center gap-2 group z-10 cursor-pointer"
         >
           <span className="sr-only">COzuna Web Design Agency</span>
@@ -71,6 +88,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               <a
                 key={item.name}
                 href={item.href}
+                onClick={(e) => handleNavClick(item.href, e)}
                 className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none ${
                   isActive
                     ? "text-white bg-brand-primary shadow-md shadow-brand-primary/40 border border-blue-400/30 scale-[1.03]"
@@ -124,7 +142,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 <a
                   href={`/${lang}`}
                   className="flex items-center gap-2"
-                  onClick={() => setMobileMenuOpen(false)}
+                  onClick={(e) => handleNavClick(`/${lang}`, e)}
                 >
                   <div className="text-[1.875rem] leading-none font-black text-white tracking-tighter">
                     CO<span className="text-brand-primary">zuna</span>.
@@ -156,7 +174,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                           ? "text-white bg-brand-primary shadow-lg shadow-brand-primary/30 border border-blue-400/40"
                           : "text-zinc-300 hover:bg-zinc-900 hover:text-white"
                       }`}
-                      onClick={() => setMobileMenuOpen(false)}
+                      onClick={(e) => handleNavClick(item.href, e)}
                     >
                       {item.name}
                     </a>

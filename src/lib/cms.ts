@@ -18,7 +18,10 @@ export async function getPageData(pageId: string) {
   try {
     const res = await fetch(
       `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/pages/${pageId}?key=${apiKey}`,
-      { next: { revalidate: 60 } } // Revalidate every 60 seconds
+      { 
+        next: { revalidate: 60 },
+        signal: AbortSignal.timeout(3500)
+      } // Revalidate every 60 seconds with 3.5s timeout guard
     );
 
     if (!res.ok) {
@@ -55,7 +58,10 @@ export async function getPortfolioProjects() {
   try {
     const res = await fetch(
       `https://firestore.googleapis.com/v1/projects/${projectId}/databases/(default)/documents/projects?key=${apiKey}`,
-      { next: { revalidate: 60 } }
+      { 
+        next: { revalidate: 60 },
+        signal: AbortSignal.timeout(3500)
+      }
     );
 
     if (!res.ok) {
