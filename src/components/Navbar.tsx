@@ -58,7 +58,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         {/* Logo */}
         <Link href={`/${lang}`} onClick={handleHomeClick} className="flex items-center gap-2 group z-10 cursor-pointer">
           <span className="sr-only">COzuna Web Design Agency</span>
-          <div className="text-2xl font-black text-white tracking-tighter transition-transform duration-300 group-hover:scale-105">
+          <div className="text-[1.875rem] leading-none font-black text-white tracking-tighter transition-transform duration-300 group-hover:scale-105">
             CO<span className="text-brand-primary">zuna</span>.
           </div>
         </Link>
@@ -135,7 +135,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     setMobileMenuOpen(false);
                   }}
                 >
-                  <div className="text-2xl font-black text-white tracking-tighter">
+                  <div className="text-[1.875rem] leading-none font-black text-white tracking-tighter">
                     CO<span className="text-brand-primary">zuna</span>.
                   </div>
                 </Link>
