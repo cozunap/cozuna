@@ -56,12 +56,16 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         aria-label="Global"
       >
         {/* Logo */}
-        <Link href={`/${lang}`} onClick={handleHomeClick} className="flex items-center gap-2 group z-10 cursor-pointer">
+        <a
+          href={`/${lang}`}
+          onClick={handleHomeClick}
+          className="flex items-center gap-2 group z-10 cursor-pointer"
+        >
           <span className="sr-only">COzuna Web Design Agency</span>
           <div className="text-[1.875rem] leading-none font-black text-white tracking-tighter transition-transform duration-300 group-hover:scale-105">
             CO<span className="text-brand-primary">zuna</span>.
           </div>
-        </Link>
+        </a>
 
         {/* Desktop Navigation Links */}
         <div className="hidden lg:flex items-center gap-1 bg-white/[0.04] border border-white/10 px-3 py-1.5 rounded-full z-10 backdrop-blur-md">
@@ -72,10 +76,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               : (pathname === item.href || (pathname?.startsWith(item.href + "/") ?? false));
 
             return (
-              <Link
+              <a
                 key={item.name}
                 href={item.href}
-                prefetch={true}
                 onClick={isHomeItem ? handleHomeClick : undefined}
                 className={`relative px-4 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full transition-all duration-200 cursor-pointer select-none ${
                   isActive
@@ -84,7 +87,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                 }`}
               >
                 {item.name}
-              </Link>
+              </a>
             );
           })}
         </div>
@@ -92,7 +95,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
         {/* Right Actions: Quote Button */}
         <div className="hidden lg:flex items-center gap-3 z-10">
           {/* CTA Button with Kinetic Roll & Glow */}
-          <Link
+          <a
             href={`/${lang}/get-a-quote`}
             className="group relative inline-flex items-center gap-2 rounded-full bg-brand-primary px-5 py-2 text-xs font-bold tracking-wide uppercase text-white shadow-lg shadow-brand-primary/25 hover:bg-blue-600 hover:shadow-brand-primary/40 hover:scale-[1.03] transition-all duration-300 btn-kinetic-roll"
           >
@@ -101,7 +104,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
               <span className="roll-text text-cyan-200">{dict.navigation.getAQuote}</span>
             </span>
             <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </Link>
+          </a>
         </div>
 
         {/* Mobile menu button */}
@@ -127,7 +130,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
           <div className="fixed inset-y-0 right-0 z-50 w-full max-w-xs overflow-y-auto bg-zinc-950 p-6 border-l border-zinc-800/80 shadow-2xl flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between pb-6 border-b border-zinc-900">
-                <Link
+                <a
                   href={`/${lang}`}
                   className="flex items-center gap-2"
                   onClick={(e) => {
@@ -138,7 +141,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                   <div className="text-[1.875rem] leading-none font-black text-white tracking-tighter">
                     CO<span className="text-brand-primary">zuna</span>.
                   </div>
-                </Link>
+                </a>
                 <button
                   type="button"
                   className="rounded-full p-2 text-zinc-400 hover:text-white bg-zinc-900 border border-zinc-800"
@@ -157,10 +160,9 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                     : (pathname === item.href || (pathname?.startsWith(item.href + "/") ?? false));
 
                   return (
-                    <Link
+                    <a
                       key={item.name}
                       href={item.href}
-                      prefetch={true}
                       className={`block rounded-xl px-4 py-3 text-sm font-bold tracking-wide uppercase transition-all select-none ${
                         isActive
                           ? "text-white bg-brand-primary shadow-lg shadow-brand-primary/30 border border-blue-400/40"
@@ -172,21 +174,21 @@ export default function Navbar({ lang, dict }: NavbarProps) {
                       }}
                     >
                       {item.name}
-                    </Link>
+                    </a>
                   );
                 })}
               </div>
             </div>
 
             <div className="pt-6 border-t border-zinc-900 space-y-3">
-              <Link
+              <a
                 href={`/${lang}/get-a-quote`}
                 className="w-full flex items-center justify-center gap-2 py-3.5 px-4 rounded-xl bg-brand-primary text-white font-bold text-sm tracking-wide uppercase shadow-lg shadow-brand-primary/30"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span>{dict.navigation.getAQuote}</span>
                 <ArrowUpRight className="w-4 h-4" />
-              </Link>
+              </a>
               <a
                 href="tel:+16468831869"
                 className="w-full flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-zinc-900 border border-zinc-800 text-zinc-300 font-semibold text-xs"
