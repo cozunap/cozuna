@@ -43,6 +43,14 @@ export default function Navbar({ lang, dict }: NavbarProps) {
       return;
     }
 
+    // Always ensure fresh navigation to home from any subpage
+    if (href === `/${lang}` && !isHomePage) {
+      e.preventDefault();
+      setMobileMenuOpen(false);
+      window.location.assign(`/${lang}`);
+      return;
+    }
+
     // If navigating between different pages, ensure browser scrolls to top immediately
     if (href !== pathname) {
       window.scrollTo(0, 0);
