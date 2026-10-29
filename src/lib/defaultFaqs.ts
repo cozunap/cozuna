@@ -37,15 +37,27 @@ export const defaultFaqs: FAQItem[] = [
     category: "Pricing"
   },
   {
+    id: "faq-locations-served",
+    question: "Which areas does COzuna primarily serve?",
+    question_en: "Which areas does COzuna primarily serve?",
+    question_es: "¿Cuáles son las principales áreas que atiende COzuna?",
+    question_fr: "Quelles sont les principales régions desservies par COzuna?",
+    answer: "COzuna specializes in serving businesses across New York City (Manhattan, Bronx, Brooklyn, Queens, Staten Island), New Jersey, Rhode Island, and the Dominican Republic (Santo Domingo, Santiago, Punta Cana), providing custom web design, e-commerce development, and commercial printing services.",
+    answer_en: "COzuna specializes in serving businesses across New York City (Manhattan, Bronx, Brooklyn, Queens, Staten Island), New Jersey, Rhode Island, and the Dominican Republic (Santo Domingo, Santiago, Punta Cana), providing custom web design, e-commerce development, and commercial printing services.",
+    answer_es: "COzuna se especializa en atender empresas en toda la ciudad de Nueva York (Manhattan, Bronx, Brooklyn, Queens, Staten Island), Nueva Jersey, Rhode Island y la República Dominicana (Santo Domingo, Santiago, Punta Cana), ofreciendo diseño web personalizado, comercio electrónico e imprenta comercial.",
+    answer_fr: "COzuna est spécialisée dans les services aux entreprises de New York City, du New Jersey, de Rhode Island et de la République Dominicaine, offrant la conception Web personnalisée, le commerce électronique et l'impression commerciale.",
+    category: "Locations"
+  },
+  {
     id: "faq-international",
     question: "Does COzuna work internationally?",
     question_en: "Does COzuna work internationally?",
     question_es: "¿COzuna trabaja a nivel internacional?",
     question_fr: "COzuna travaille-t-elle à l'international?",
-    answer: "Yes, while we are based in Quebec, Canada, we serve clients globally including the US, Dominican Republic, and Worldwide, operating as a 100% online service-area business.",
-    answer_en: "Yes, while we are based in Quebec, Canada, we serve clients globally including the US, Dominican Republic, and Worldwide, operating as a 100% online service-area business.",
-    answer_es: "Sí, aunque nuestra sede está en Quebec, Canadá, atendemos a clientes de todo el mundo, incluidos Estados Unidos, República Dominicana e internacionalmente, operando como un negocio 100% en línea.",
-    answer_fr: "Oui, bien que nous soyons basés au Québec, Canada, nous servons des clients dans le monde entier, notamment aux États-Unis, en République dominicaine et à l'international, en opérant à 100 % en ligne.",
+    answer: "Yes. While our primary market focus is the US East Coast (New York, New Jersey, Rhode Island) and the Dominican Republic, we serve clients globally through our seamless 100% digital onboarding and cloud infrastructure.",
+    answer_en: "Yes. While our primary market focus is the US East Coast (New York, New Jersey, Rhode Island) and the Dominican Republic, we serve clients globally through our seamless 100% digital onboarding and cloud infrastructure.",
+    answer_es: "Sí. Aunque nuestro enfoque principal es la Costa Este de EE. UU. (New York, New Jersey, Rhode Island) y la República Dominicana, atendemos a clientes de todo el mundo mediante nuestro flujo de trabajo digital ágil y seguro.",
+    answer_fr: "Oui. Bien que notre marché principal soit la côte est des États-Unis (New York, New Jersey, Rhode Island) et la République Dominicaine, nous accompagnons nos clients à l'international.",
     category: "Locations"
   },
   {

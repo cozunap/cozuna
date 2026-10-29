@@ -17,24 +17,24 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
   const resolvedParams = await params;
   const lang = resolvedParams.lang;
   
-  // Localized metadata targeting New York market
+  // Localized metadata targeting New York City, New Jersey, Rhode Island & Dominican Republic
   const title = lang === 'fr'
-    ? "Conception de sites Web à New York | COzuna"
+    ? "Conception Web & Impression | New York, New Jersey, Rhode Island | COzuna"
     : lang === 'es'
-    ? "Diseño Web en New York | COzuna Web Agency"
-    : "Web Design New York NY | COzuna Web Design Agency";
+    ? "Diseño Web e Imprenta en New York, New Jersey, Rhode Island y Rep. Dominicana | COzuna"
+    : "Web Design & Printing | NYC, New Jersey, Rhode Island & Dominican Republic | COzuna";
 
   const description = lang === 'fr'
-    ? "Services professionnels et abordables de conception de sites Web, design graphique, image de marque et impression pour entreprises à New York."
+    ? "Agence professionnelle de conception de sites Web sur mesure, e-commerce, design graphique et impression haute fidélité desservant New York City, New Jersey, Rhode Island et la République Dominicaine."
     : lang === 'es'
-    ? "Servicios profesionales y económicos de diseño web, diseño gráfico e impresión para empresas en New York."
-    : "Professional and affordable custom web design, branding, graphic design, and commercial printing services tailored for businesses in New York.";
+    ? "Agencia líder en diseño de páginas web a medida, tiendas online, diseño gráfico e imprenta comercial para empresas en New York City, New Jersey, Rhode Island y República Dominicana."
+    : "Top-rated custom web design, high-converting e-commerce, graphic design, and commercial printing services serving businesses across New York City, New Jersey, Rhode Island, and the Dominican Republic.";
 
   return {
     metadataBase: new URL('https://cozuna.com'),
     title,
     description,
-    keywords: "affordable web development, affordable web design, small business web design, custom website solutions, professional website designer, cheap web designers, global web development agency, diseño web económico, desarrollo web a medida, agencias de diseño web, creador de paginas web baratas, COzuna web design",
+    keywords: "web design new york city, web design new jersey, web design rhode island, diseno web dominican republic, diseno web santo domingo, diseno web santiago, affordable web development nyc, small business web design, diseno web economico, desarrollo web a medida, imprenta comercial new york, COzuna web design",
     alternates: {
       canonical: `https://cozuna.com/${lang}`,
       languages: {
@@ -124,13 +124,14 @@ export default async function RootLayout({
             __html: JSON.stringify([
               {
                 "@context": "https://schema.org",
-                "@type": "Organization",
+                "@type": "ProfessionalService",
                 "name": "COzuna Web Design Agency",
                 "image": "https://cozuna.com/assets/images/2024/10/main-photo.webp",
-                "description": "Affordable custom Web Design, Web Development, Graphic Design, and Printing services.",
+                "description": "Affordable custom Web Design, Web Development, Graphic Design, and Commercial Printing services serving New York City, New Jersey, Rhode Island, and the Dominican Republic.",
                 "url": "https://cozuna.com",
                 "telephone": "+16468831869",
                 "email": "ozunaprinting@gmail.com",
+                "priceRange": "$$",
                 "address": {
                   "@type": "PostalAddress",
                   "streetAddress": "516 W 136th St Apt.",
@@ -139,10 +140,26 @@ export default async function RootLayout({
                   "postalCode": "10031",
                   "addressCountry": "US"
                 },
+                "geo": {
+                  "@type": "GeoCoordinates",
+                  "latitude": 40.8207,
+                  "longitude": -73.9535
+                },
+                "openingHoursSpecification": [
+                  {
+                    "@type": "OpeningHoursSpecification",
+                    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                    "opens": "09:00",
+                    "closes": "18:00"
+                  }
+                ],
                 "areaServed": [
-                  { "@type": "City", "name": "New York" },
+                  { "@type": "City", "name": "New York City" },
                   { "@type": "State", "name": "New York" },
-                  { "@type": "Country", "name": "US" }
+                  { "@type": "State", "name": "New Jersey" },
+                  { "@type": "State", "name": "Rhode Island" },
+                  { "@type": "Country", "name": "Dominican Republic" },
+                  { "@type": "Country", "name": "United States" }
                 ],
                 "sameAs": [
                   "https://www.behance.net/cozuna"
@@ -151,9 +168,10 @@ export default async function RootLayout({
                   "@type": "OfferCatalog",
                   "name": "Services",
                   "itemListElement": [
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Web Design & Development" } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Graphic Design" } },
-                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "High Quality Printing" } }
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Custom Web Design & Development" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "E-Commerce Web Design" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Brand Identity & Graphic Design" } },
+                    { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Commercial Printing & Custom Signage" } }
                   ]
                 }
               },
