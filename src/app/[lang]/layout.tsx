@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "../globals.css";
 import { GoogleAnalytics } from '@next/third-parties/google';
@@ -6,12 +6,21 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import SecurityShield from "@/components/SecurityShield";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import MobileStickyCallBar from "@/components/MobileStickyCallBar";
+import MobileAppTabBar from "@/components/MobileAppTabBar";
 import SkipToContent from "@/components/SkipToContent";
 import { getDictionary } from "@/lib/dictionaries";
 import { getAEOFAQs } from "@/lib/cms";
 
 const inter = Inter({ subsets: ["latin"] });
+
+export const viewport: Viewport = {
+  themeColor: '#09090b',
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  viewportFit: 'cover',
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
   const resolvedParams = await params;
@@ -44,6 +53,15 @@ export async function generateMetadata({ params }: { params: Promise<{ lang: str
         'x-default': 'https://cozuna.com/en'
       }
     },
+    appleWebApp: {
+      capable: true,
+      statusBarStyle: 'black-translucent',
+      title: 'COzuna',
+    },
+    formatDetection: {
+      telephone: false,
+    },
+    manifest: '/manifest.webmanifest',
     robots: {
       index: true,
       follow: true,
@@ -184,10 +202,10 @@ export default async function RootLayout({
           }}
         />
         <Navbar lang={lang} dict={dict} />
-        <div id="main-content" className="flex-grow flex flex-col">{children}</div>
+        <div id="main-content" className="flex-grow flex flex-col pb-20 md:pb-0">{children}</div>
         <Footer lang={lang} dict={dict} />
         <WhatsAppButton />
-        <MobileStickyCallBar lang={lang} />
+        <MobileAppTabBar lang={lang} />
         {process.env.NEXT_PUBLIC_GA_ID && (
           <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID} />
         )}
