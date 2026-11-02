@@ -35,7 +35,9 @@ export function middleware(request: NextRequest) {
   if (
     pathname.startsWith('/_next') ||
     pathname.startsWith('/api') ||
-    pathname.includes('.') // like favicon.ico, robots.txt, etc.
+    pathname === '/icon' ||
+    pathname === '/apple-icon' ||
+    pathname.includes('.') // like favicon.ico, robots.txt, sitemap.xml, manifest.webmanifest
   ) {
     return NextResponse.next()
   }

@@ -286,12 +286,17 @@ export default function HomeContent({ lang, dict, cmsData, portfolioItems = [], 
                     {/* Interactive Video Snippet on hover */}
                     {hasVideo && (
                       <video
-                        autoPlay
                         loop
                         muted
                         playsInline
-                        preload="metadata"
+                        preload="none"
                         className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none transform-gpu"
+                        onMouseEnter={(e) => {
+                          try { e.currentTarget.play(); } catch {}
+                        }}
+                        onMouseLeave={(e) => {
+                          try { e.currentTarget.pause(); } catch {}
+                        }}
                       >
                         <source src={videoSrc} type="video/mp4" />
                       </video>

@@ -94,12 +94,17 @@ export default function ClientPortfolio({ items, dict, lang }: { items: Portfoli
               {/* Interactive Portfolio Video Snippet (plays on hover / live preview) */}
               {hasVideoSnippet && (
                 <video
-                  autoPlay
                   loop
                   muted
                   playsInline
-                  preload="metadata"
+                  preload="none"
                   className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none transform-gpu"
+                  onMouseEnter={(e) => {
+                    try { e.currentTarget.play(); } catch {}
+                  }}
+                  onMouseLeave={(e) => {
+                    try { e.currentTarget.pause(); } catch {}
+                  }}
                 >
                   <source src={videoSnippetSrc} type="video/mp4" />
                 </video>
