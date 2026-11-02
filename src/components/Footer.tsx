@@ -64,12 +64,13 @@ export default function Footer({ lang, dict }: FooterProps) {
           </div>
 
           <div className="md:col-span-3">
-            <h3 className="text-white font-bold mb-5 text-xs tracking-widest uppercase">Solutions</h3>
+            <h3 className="text-white font-bold mb-5 text-xs tracking-widest uppercase">Solutions & Locations</h3>
             <ul className="space-y-3 text-sm">
+              <li><Link href={`/${lang}/web-design-new-york-city`} className="text-zinc-300 hover:text-brand-primary font-medium transition-colors">Web Design New York City</Link></li>
+              <li><Link href={`/${lang}/diseno-web-republica-dominicana`} className="text-zinc-300 hover:text-brand-primary font-medium transition-colors">Diseño Web Rep. Dominicana</Link></li>
               <li><Link href={`/${lang}/affordable-web-development`} className="text-zinc-400 hover:text-brand-primary transition-colors">Affordable Web Design</Link></li>
               <li><Link href={`/${lang}/ecommerce-web-design`} className="text-zinc-400 hover:text-brand-primary transition-colors">E-Commerce Design</Link></li>
               <li><Link href={`/${lang}/landing-page-design`} className="text-zinc-400 hover:text-brand-primary transition-colors">Landing Pages</Link></li>
-              <li><Link href={`/${lang}/graphic-design-for-small-business`} className="text-zinc-400 hover:text-brand-primary transition-colors">Graphic Design</Link></li>
             </ul>
           </div>
 

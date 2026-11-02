@@ -55,6 +55,8 @@ export function middleware(request: NextRequest) {
     '/ecommerce-web-design': '/en/ecommerce-web-design',
     '/landing-page-design': '/en/landing-page-design',
     '/graphic-design-for-small-business': '/en/graphic-design-for-small-business',
+    '/diseno-web-republica-dominicana': '/es/diseno-web-republica-dominicana',
+    '/web-design-new-york-city': '/en/web-design-new-york-city',
     '/privacy-policy': '/en/privacy-policy',
     '/terms-of-service': '/en/terms-of-service',
 

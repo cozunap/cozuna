@@ -4,7 +4,7 @@ import { getPortfolioProjects } from '@/lib/cms';
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = 'https://cozuna.com';
   
-  // Base routes targeting core services and landing pages
+  // Base routes targeting core services and high-intent geo landing pages
   const staticPaths = [
     '',
     '/about-us',
@@ -12,6 +12,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     '/what-we-do',
     '/get-a-quote',
     '/blog',
+    '/diseno-web-republica-dominicana',
+    '/web-design-new-york-city',
     '/affordable-web-development',
     '/ecommerce-web-design',
     '/landing-page-design',

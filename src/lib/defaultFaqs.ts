@@ -37,6 +37,30 @@ export const defaultFaqs: FAQItem[] = [
     category: "Pricing"
   },
   {
+    id: "faq-dr-dominican-republic",
+    question: "How does COzuna help businesses in the Dominican Republic?",
+    question_en: "How does COzuna help businesses in the Dominican Republic?",
+    question_es: "¿Cómo ayuda COzuna a las empresas en República Dominicana?",
+    question_fr: "Comment COzuna aide-t-elle les entreprises en République Dominicaine?",
+    answer: "COzuna provides Dominican businesses in Santo Domingo, Santiago, and Punta Cana with high-converting custom Next.js websites, local SEO to rank #1 on Google RD, direct WhatsApp integration, and local payment gateway support (Cardnet, Azul, Stripe) with plans starting from $45,000 DOP / $850 USD.",
+    answer_en: "COzuna provides Dominican businesses in Santo Domingo, Santiago, and Punta Cana with high-converting custom Next.js websites, local SEO to rank #1 on Google RD, direct WhatsApp integration, and local payment gateway support (Cardnet, Azul, Stripe) with plans starting from $45,000 DOP / $850 USD.",
+    answer_es: "COzuna ofrece a empresas dominicanas en Santo Domingo, Santiago y Punta Cana páginas web a medida en Next.js, SEO local para liderar el puesto #1 en Google República Dominicana, botones directos de WhatsApp e integración con pasarelas locales (Cardnet, Azul, Stripe) desde $45,000 DOP / $850 USD.",
+    answer_fr: "COzuna aide les entreprises dominicaines avec des sites Next.js sur mesure, le référencement local Google RD, l'intégration WhatsApp et les passerelles de paiement locales à partir de 850 $ USD.",
+    category: "Locations"
+  },
+  {
+    id: "faq-nyc-web-design",
+    question: "Why is COzuna a top choice for web design in New York City?",
+    question_en: "Why is COzuna a top choice for web design in New York City?",
+    question_es: "¿Por qué COzuna es una de las mejores opciones de diseño web en New York City?",
+    question_fr: "Pourquoi COzuna est-elle l'une des meilleures agences web à New York City?",
+    answer: "Headquartered in Upper Manhattan, COzuna delivers Madison-Avenue grade custom web engineering, sub-second Next.js edge performance, local SEO across all 5 boroughs (Manhattan, Brooklyn, Queens, Bronx, Staten Island), and transparent pricing starting from $950 USD.",
+    answer_en: "Headquartered in Upper Manhattan, COzuna delivers Madison-Avenue grade custom web engineering, sub-second Next.js edge performance, local SEO across all 5 boroughs (Manhattan, Brooklyn, Queens, Bronx, Staten Island), and transparent pricing starting from $950 USD.",
+    answer_es: "Con sede en Upper Manhattan, COzuna entrega desarrollo web a medida con tecnología Next.js, SEO local en los 5 condados de Nueva York (Manhattan, Brooklyn, Queens, Bronx, Staten Island) y tarifas transparentes desde $950 USD.",
+    answer_fr: "Basée à Upper Manhattan, COzuna offre une ingénierie web Next.js haut de gamme et du référencement local pour les 5 arrondissements de New York à partir de 950 $ USD.",
+    category: "Locations"
+  },
+  {
     id: "faq-locations-served",
     question: "Which areas does COzuna primarily serve?",
     question_en: "Which areas does COzuna primarily serve?",
